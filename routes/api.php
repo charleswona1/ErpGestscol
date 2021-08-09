@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/classe/ajouterClasse', [App\Http\Controllers\ClasseController::class, 'store'])->name('classe.store');
+Route::get('/classe/listeClasse', [App\Http\Controllers\ClasseController::class, 'index'])->name('classe.index');
+Route::delete('/classe/supprimerClasse/{id}', [App\Http\Controllers\ClasseController::class, 'destroy'])->name('classe.destroy');
+
+Route::apiResource('classe', 'ClasseController');

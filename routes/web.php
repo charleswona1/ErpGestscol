@@ -51,3 +51,6 @@ Route::post('/etablissement/modifEtablissement', [App\Http\Controllers\Etablisse
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/gestscol', [App\Http\Controllers\HomeController::class, 'home_gestscol'])->name('gestscol.home');
 Route::get('/configuration', [App\Http\Controllers\HomeController::class, 'home_configuration'])->name('configuration.home');
+
+
+Route::post('/classe/ajouterClasse', [App\Http\Controllers\ClasseController::class, 'store'])->name('classe.store');

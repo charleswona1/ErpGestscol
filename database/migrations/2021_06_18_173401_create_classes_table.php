@@ -17,7 +17,6 @@ class CreateClassesTable extends Migration
             $table->bigIncrements('id_classe');
             $table->unsignedBigInteger('id_niveau');
             $table->string('nom', 50);
-
             $table->foreign('id_niveau')->references('id_niveau')->on('niveau_scolaire');
             $table->unique(['id_classe', 'id_niveau']);
         });
