@@ -18,4 +18,5 @@ class classe extends Model
     {
         return $this->belongsTo('App\Models\niveau_scolaire', 'id_niveau', 'id_niveau');
     }
+
 }
