@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index() {
-    	return view('home');
+    	return view('administration.home');
     }
 
     public function home_gestscol() {

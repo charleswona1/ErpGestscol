@@ -7,7 +7,7 @@
   <title>School Engine</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="/assets1/vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/assets1/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="/assets1/vendors/flag-icon-css/css/flag-icon.min.css">
@@ -15,6 +15,7 @@
   <!-- End plugin css for this page -->
   <!-- Layout styles -->
   <link rel="stylesheet" href="/assets1/css/demo/style.css">
+  <link rel="stylesheet" href="/assets1/css/add.css">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="/assets1/images/favicon.png" />
 </head>
@@ -22,20 +23,97 @@
 <script src="/assets1/js/preloader.js"></script>
   <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
+        <aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
+      <div class="mdc-drawer__header">
+        <a href="/administrateur" class="brand-logo">
+      <center>
+          <img src="/assets1/images/admin.png" height="40px"alt="logo"> 
+      <h2 style="font-size:1.8em; color:white;">Administration</h2>
+      </center>
+        </a>
+      </div>
+      <div class="mdc-drawer__content">
+       <!-- <div class="user-info" style="text-align:center">
+          <p class="name">Gilles Fabrizio</p>
+          <p class="email">gillesfabrizio@gmail.com</p>
+        </div>  -->
+        <div class="mdc-list-group">
+          <nav class="mdc-list mdc-drawer-menu">
+            <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-drawer-link" href="{{route('administration.home')}}">
+                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">home</i>
+                Tableau de Bord
+              </a>
+            </div>
+            <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-drawer-link" href="{{route('administration.etablissement')}}">
+                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">business</i>
+        
+                Etablissements
+              </a>
+            </div>
+      <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-drawer-link" href="{{route('administration.utilisateurs')}}">
+                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">person</i>
+                Utilisateurs
+              </a>
+            </div>
+      <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-drawer-link" href="{{route('administration.licence')}}">
+                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">beenhere</i>
+                Licences
+              </a>
+            </div>
+      
+      <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="ui-sub-menu">
+                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">settings</i>
+                Configuration
+                <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+              </a>
+              <div class="mdc-expansion-panel" id="ui-sub-menu">
+                <nav class="mdc-list mdc-drawer-submenu">
+                  <!-- <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="config-admin.html">
+                      Comptes 
+                    </a>
+                  </div> -->
+          <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{{route('administration.configGroupe')}} ">
+                      Groupes
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{{route('administration.configParam')}}">
+                      Paramétrages
+                    </a>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </nav>
+        </div>
+    <br/>
+        <div class="profile-actions" > 
+        
+         <a href="javascript:;" style="margin:auto; font-size:0.9em; ">D&eacute;connexion</a>
+        </div>
+      </div>
+    </aside>
     <!-- partial -->
     <div class="main-wrapper mdc-drawer-app-content">
       <!-- partial:partials/_navbar.html -->
       <header class="mdc-top-app-bar">
         <div class="mdc-top-app-bar__row">
           <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <!-- <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button sidebar-toggler">menu</button> -->
+            <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button sidebar-toggler">menu</button>
             <span class="mdc-top-app-bar__title"> </span>
-			<!-- <a href="">
-				<i style="margin-right:30px;" class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">home</i>
-            </a> -->
-			<div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon search-text-field d-none d-md-flex">
+      <a href="home.html">
+        <i style="margin-right:30px;" class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">home</i>
+            </a>
+      <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon search-text-field d-none d-md-flex">
               
-			  <i class="material-icons mdc-text-field__icon">search</i>
+        <i class="material-icons mdc-text-field__icon">search</i>
               <input class="mdc-text-field__input" id="text-field-hero-input">
               <div class="mdc-notched-outline">
                 <div class="mdc-notched-outline__leading"></div>
@@ -71,7 +149,13 @@
                       <i class="mdi mdi-settings-outline text-primary"></i>                      
                     </div>
                     <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="item-subject font-weight-normal">D&eacute;connexion</h6>
+                      <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        <h6 class="item-subject font-weight-normal">D&eacute;connexion</h6>
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                          @csrf
+                      </form>
                     </div>
                   </li>
                 </ul>
@@ -158,7 +242,7 @@
               </button>
               <div class="mdc-menu mdc-menu-surface" tabindex="-1">
                 <h6 class="title"><i class="mdi mdi-email-outline mr-2 tx-16"></i> Messages</h6>
-                <ul class="mdc-list" role="menu"  aria-orientation="vertical">
+                <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
                   <li class="mdc-list-item" role="menuitem">
                     <div class="item-thumbnail">
                       <img src="/assets1/images/faces/face4.jpg" alt="user">
@@ -218,61 +302,28 @@
         </div>
       </header>
       <!-- partial -->
-      <div class="page-wrapper mdc-toolbar-fixed-adjust" style="text-align:center;">
-        <main class="content-wrapper">
-          <div class="mdc-layout-grid">
-            <div class="mdc-layout-grid__inner">
-              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet">
-                <div class="mdc-card info-card info-card--success">
-                  <div class="card-inner">
-                    <h5 class="card-title">Gestscol</h5>
-                    
-                    <a href=""><p class="tx-12 text-muted">Gestion Scolaire</p></a>
-                    <div class="card-icon-wrapper">
-                      <img src="/assets1/images/icones-gestscol.jpg" height="80px"alt="logo"> 
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet">
-                <div class="mdc-card info-card info-card--danger">
-                  <div class="card-inner">
-                    <h5 class="card-title">Caisse</h5>
-                    
-                    <a href=""><p class="tx-12 text-muted">Gestion de la Tr&eacute;sorerie</p></a>
-                    <div class="card-icon-wrapper">
-                      <img src="/assets1/images/icones-caisse.jpg" height="80px"alt="logo"> 
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet">
-                <div class="mdc-card info-card info-card--primary">
-                  <div class="card-inner">
-                    <h5 class="card-title">RH/Paye</h5>
-                    
-                    <a href=""><p class="tx-12 text-muted">Ressource humaine et salaire du personnel</p></a>
-                    <div class="card-icon-wrapper">
-                      <img src="/assets1/images/icones-Rh-Paie.jpg" height="80px"alt="logo"> 
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet">
-                <div class="mdc-card info-card info-card--info">
-                  <div class="card-inner">
-                    <h5 class="card-title">Comptabilit&eacute;</h5>
-                    
-                    <a href=""><p class="tx-12 text-muted">Comptabilit&eacute; g&eacute;n&eacute;rale</p></a>
-                    <div class="card-icon-wrapper">
-                      <i class="material-icons">credit_card</i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-             </div> 
-            
-			</div>
+    <div class="page-wrapper mdc-toolbar-fixed-adjust">
+        
+        @yield('content')
+
+         </div>
+    </div>
+  </div>
+  <!-- plugins:js -->
+  <script src="/assets1/vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="/assets1/js/material.js"></script>
+  <script src="/assets1/js/misc.js"></script>
+  
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <!-- End custom js for this page-->
+</body>
+</html>
+            </div>
           </div>
         </main>
         <!-- partial:partials/_footer.html -->
@@ -309,5 +360,4 @@
   <!-- End custom js for this page-->
 </body>
 </html> 
-<html></html> 
-<html></html> 
+<html></html>
