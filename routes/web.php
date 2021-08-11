@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('administration.login');
 });
 
 Route::get('/utilisateur/enregistrer', [App\Http\Controllers\UserController::class, 'createUser'])->name('user.add');
