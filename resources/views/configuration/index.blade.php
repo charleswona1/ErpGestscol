@@ -13,7 +13,7 @@
         <!-- End plugin css for this page -->
         <!-- Layout styles -->
 
-        <link rel="stylesheet" href="assets1/css/demo/sb-admin-2.min.css">
+        <link rel="stylesheet" href="assets1/css/demo/style.css">
         <!-- End layout styles -->
         <link rel="shortcut icon" href="assets/images/favicon.png" />
       </head>
