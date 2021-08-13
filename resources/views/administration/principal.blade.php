@@ -149,7 +149,7 @@
                       <i class="mdi mdi-settings-outline text-primary"></i>                      
                     </div>
                     <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                      <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();
+                      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         <h6 class="item-subject font-weight-normal">D&eacute;connexion</h6>
                       </a>
@@ -358,6 +358,7 @@
   <!-- Custom js for this page-->
   <script src="/assets1/js/dashboard.js"></script>
   <!-- End custom js for this page-->
+  <script type="text/javascript" src="/js/jquery3.1.min.js"></script>
 </body>
 </html> 
 <html></html>
