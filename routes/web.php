@@ -63,3 +63,103 @@ Route::get('/configuration', [App\Http\Controllers\HomeController::class, 'home_
 
 
 Route::post('/classe/ajouterClasse', [App\Http\Controllers\ClasseController::class, 'store'])->name('classe.store');
+
+
+/** ROUTES CONFIGURATION */
+
+Route::get('/configuration', function () {
+    return view('configuration.index');
+});
+
+Route::get('/configuration/dashboard', function () {
+    return view('configuration.content.dashboard');
+});
+
+/**Etablissement */
+Route::get('/configuration/profilE', function () {
+    return view('configuration.content.etablissement.profil');
+});
+
+Route::get('/configuration/editProfil', function () {
+    return view('configuration.content.etablissement.editProfil');
+});
+
+Route::get('/configuration/matricule', function () {
+    return view('configuration.content.etablissement.matricule');
+});
+
+Route::get('/configuration/editMatricule', function () {
+    return view('configuration.content.etablissement.editMatricule');
+});
+
+Route::get('/configuration/periode', function () {
+    return view('configuration.content.etablissement.periode');
+});
+
+Route::get('/configuration/editPeriode', function () {
+    return view('configuration.content.etablissement.editPeriode');
+});
+/**end */
+
+/**Utilisateur */
+Route::get('/configuration/utilisateur/profilU', function () {
+    return view('configuration.content.utilisateurs.profil');
+});
+
+Route::get('/configuration/utilisateur/editProfilU', function () {
+    return view('configuration.content.utilisateurs.editProfil');
+});
+
+Route::get('/configuration/utilisateur/groupe', function () {
+    return view('configuration.content.utilisateurs.groupes');
+});
+
+Route::get('/configuration/utilisateur/editGroupe', function () {
+    return view('configuration.content.utilisateurs.editGroupe');
+});
+
+Route::get('/configuration/utilisateur/parametrage', function () {
+    return view('configuration.content.utilisateurs.parametrage');
+});
+
+Route::get('/configuration/utilisateur/editParametrage', function () {
+    return view('configuration.content.utilisateurs.editParametrage');
+});
+/**end */
+
+/** Documentations */
+Route::get('/configuration/documentation/documents', function () {
+    return view('configuration.content.documentations.document');
+});
+
+Route::get('/configuration/documentation/editDocuments', function () {
+    return view('configuration.content.documentations.editDocument');
+});
+
+Route::get('/configuration/documentation/entete', function () {
+    return view('configuration.content.documentations.entete');
+});
+
+Route::get('/configuration/documentation/editEntete', function () {
+    return view('configuration.content.documentations.editEntete');
+});
+
+
+Route::get('/configuration/documentation/signature', function () {
+    return view('configuration.content.documentations.signature');
+});
+
+Route::get('/configuration/documentation/editSignature', function () {
+    return view('configuration.content.documentations.editSignature');
+});
+/**end */
+
+/**other menu */
+Route::get('/configuration/annee', function () {
+    return view('configuration.content.annee.annee');
+});
+
+Route::get('/configuration/module', function () {
+    return view('configuration.content.module.module');
+});
+/**end */
