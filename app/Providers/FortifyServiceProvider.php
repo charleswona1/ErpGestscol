@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use App\Models\admin;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -49,7 +50,8 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::registerView(function () {
-            return view('auth.register');
+            $admins = admin::all();
+            return view('administration.utilisateurs', $data = ['listAdmin'=>$admins]);
         });
 
         Fortify::requestPasswordResetLinkView(function () {
