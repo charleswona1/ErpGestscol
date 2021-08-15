@@ -17,11 +17,15 @@ Route::get('/', function () {
     return view('administration.login');
 });
 
-Route::get('/administration/home', 'App\Http\Controllers\HomeController@index');
+Route::get('/administration/home', 'App\Http\Controllers\HomeController@index')->middleware('auth');
 
-Route::get('/administrateur', [App\Http\Controllers\AdministrationController::class, 'getAcceuilAdmin'])->name('administration.admin');
-Route::get('/administrateur/home', [App\Http\Controllers\AdministrationController::class, 'home'])->name('administration.home');
-Route::get('/administrateur/etablissement', [App\Http\Controllers\AdministrationController::class, 'adminEtablissement'])->name('administration.etablissement');
+Route::get('/administrateur', [App\Http\Controllers\AdministrationController::class, 'getAcceuilAdmin'])->name('administration.admin')->middleware('auth');
+Route::get('/administrateur/home', [App\Http\Controllers\AdministrationController::class, 'home'])->name('administration.home')->middleware('auth');
+Route::get('/administrateur/etablissement', [App\Http\Controllers\AdministrationController::class, 'adminEtablissement'])->name('administration.etablissement')->middleware('auth');
+Route::get('/administrateur/profil/{id}', [App\Http\Controllers\AdministrationController::class, 'voir_profil'])->name('admin.voir_profil')->middleware('auth');
+Route::get('/administrateur/edit_admin/{id}', [App\Http\Controllers\AdministrationController::class, 'edit_profil'])->name('admin.edit_profil')->middleware('auth');
+Route::post('/administrateur/modif_admin', [App\Http\Controllers\AdministrationController::class, 'modif_admin'])->name('admin.modif')->middleware('auth');
+Route::post('/administrateur/delete_admin', [App\Http\Controllers\AdministrationController::class, 'delete_admin'])->name('admin.delete')->middleware('auth');
 //Route::get('/administrateur/register', [App\Http\Controllers\AdministrationController::class, 'adminUtilisateur'])->name('administration.utilisateurs');
 Route::get('/administrateur/licence', [App\Http\Controllers\AdministrationController::class, 'adminLicence'])->name('administration.licence');
 Route::get('/administrateur/conf_groupe', [App\Http\Controllers\AdministrationController::class, 'adminGroupeConfig'])->name('administration.configGroupe');
@@ -36,11 +40,6 @@ Route::get('/utilisateur/list', [App\Http\Controllers\UserController::class, 'li
 Route::get('/utilisateur/groupe', [App\Http\Controllers\UserController::class, 'groupUser'])->name('user.group');
 Route::get('/utilisateur/tableauBord', [App\Http\Controllers\UserController::class, 'UserTb'])->name('user.tb');
 
-
-Route::get('/administrateur/enregistrer', [App\Http\Controllers\AdminController::class, 'createAdmin'])->name('admin.add');
-Route::get('/administrateur/connecter', [App\Http\Controllers\AdminController::class, 'connectAdmin'])->name('admin.connect');
-Route::post('/administrateur/sauvegarder', [App\Http\Controllers\AdminController::class, 'saveAdmin'])->name('admin.save');
-Route::get('/administrateur/authentification', [App\Http\Controllers\AdminController::class, 'authAdmin'])->name('admin.auth');
 
 Route::get('/eleve/authenfication', [App\Http\Controllers\EleveController::class, 'authEleve'])->name('eleve.auth');
 Route::get('/eleve/addEleve', [App\Http\Controllers\EleveController::class, 'addEleve'])->name('eleve.add');

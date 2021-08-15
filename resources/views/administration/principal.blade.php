@@ -12,6 +12,7 @@
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="/assets1/vendors/flag-icon-css/css/flag-icon.min.css">
   <link rel="stylesheet" href="/assets1/vendors/jvectormap/jquery-jvectormap.css">
+
   <!-- End plugin css for this page -->
   <!-- Layout styles -->
   <link rel="stylesheet" href="/assets1/css/demo/style.css">
@@ -317,7 +318,7 @@
   <!-- inject:js -->
   <script src="/assets1/js/material.js"></script>
   <script src="/assets1/js/misc.js"></script>
-  
+  <script src="/js/mesScript.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->
@@ -359,6 +360,116 @@
   <script src="/assets1/js/dashboard.js"></script>
   <!-- End custom js for this page-->
   <script type="text/javascript" src="/js/jquery3.1.min.js"></script>
+
+  <script type="text/javascript">
+    
+
+    function modif_admin(id)
+    {
+      var nom, email, password, confirm_password, telephone, login, actif;
+      nom = $("#nom").val();
+      telephone = $("#telephone").val();
+      email = $("#email").val();
+      login = $("#login").val();
+      password = $("#password").val();
+      confirm_password = $("#confirm_password").val();
+
+      if ($('#enabled').is(":checked"))
+        actif = 1;
+      else
+        actif =0;
+      if (password != "") {
+          if (password != confirm_password) {
+          alert("mot de passe non concordant");
+        } else {
+          $.ajax({
+                url: "{{route('admin.modif')}}",
+                type: "POST",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{
+                    nom:nom,
+                    telephone:telephone,
+                    email:email,
+                    login:login,
+                    password:password,
+                    confirm_password:confirm_password,
+                    presence:1,
+                    id:id,
+                },
+
+                success:function(response){
+                    alert("administrateur modifié avec succes ");
+                    console.log(response);
+                },
+                error: function(response){
+                  alert("echec de modification");
+                    console.log(response);
+                }
+          });
+        }
+      } else {
+        if (password != confirm_password) {
+          alert("mot de passe non concordant");
+        } else {
+          $.ajax({
+                url: "{{route('admin.modif')}}",
+                type: "POST",
+                data:{
+                  "_token": "{{ csrf_token() }}",
+                    nom:nom,
+                    telephone:telephone,
+                    email:email,
+                    login:login,
+                    password:password,
+                    confirm_password:confirm_password,
+                    presence:0,
+                    id:id,
+                },
+
+                success:function(response){
+                    alert("region enregistre avec succes ");
+                    $('#exampleModal').modal('hide');
+                    console.log(response);
+                },
+                error: function(response){
+                  alert("Cette region existe deja");
+                    console.log(response);
+                }
+          });
+        }
+      }
+    }
+
+    function supprimer_admin(id){
+      var confirmation = confirm("Voulez-vous vraiment supprimer cette administrateur?");
+      if (confirmation) {
+        $.ajax({
+          url: "{{route('admin.delete')}}",
+          type: "POST",
+          data:{
+            "_token": "{{ csrf_token() }}",
+              id:id,
+          },
+
+          success:function(response){
+            if (response["status"] == 1) {
+              alert("administrateur supprimé avec succes ");
+              $("#admin"+response["ligneT"]).remove();
+            } else {
+              alert("erreur de suppression");
+            }
+             
+          },
+          error: function(response){
+            alert("erreur de suppression");
+              console.log(response);
+          }
+        });
+      }
+    }
+
+
+  </script>
 </body>
 </html> 
 <html></html>

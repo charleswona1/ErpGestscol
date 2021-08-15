@@ -25,25 +25,6 @@
 				  <br/>
                   <div class="template-demo">
                     <div class="mdc-layout-grid__inner">
-                      <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2-desktop">
-                        <div>
-                          <a href="index.html" class="brand-logo">
-							 <img src="/assets1/images/faces/profile.jpg" height="180px" width="180px"  alt="user" class="user">
-						  </a>
-						  <p>
-							<form>
-							  <div class="form-group">
-								<input type="file" class="form-control-file" id="exampleFormControlFile1">
-							  </div>
-							</form>	
-						  </p>
-                        </div>
-                      </div>
-					  
-					  
-					  
-					  
-					  
                       <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-5-desktop">
                         <div class="table-responsive">
 							<table class="mdc-data-table__table" aria-label="Dessert calories">
@@ -64,47 +45,10 @@
 										</div>
 									  </td>
 									  <td class="mdc-data-table__cell">
-										<input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="Nom complet" value="Gilles Fabrizio ZANETTIN" required>
+										<input type="text" class="form-control" style="width:100%" id="nom" placeholder="Nom complet" value="{{$admin->nom}}" />
 									  </td>									  
 									</tr>
-									<tr data-row-id="u0" class="mdc-data-table__row">
-									  <td class="mdc-data-table__cell" scope="row" id="u0">
-										<div class="widget-content p-0">
-											<div class="widget-content-wrapper">																		
-												<div class="widget-content-left flex2">
-													<div class="widget-heading font-weight-bold">Fonction 
-														&nbsp;<i class="fa fa-envelope-o text-link" style="cursor:pointer;" aria-hidden="true"></i>
-														<!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
-														&nbsp;<i class="fa fa-whatsapp text-link" style="cursor:pointer;" aria-hidden="true"></i>
-														&nbsp;<i class="fa fa-skype text-link" style="cursor:pointer;" aria-hidden="true"></i>
-													</div> 																			
-												</div>
-											</div>
-										</div>
-									  </td>
-									  <td class="mdc-data-table__cell">
-										<input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="Fonction" value="Responsable UX/UI Design du projet" required>
-									  </td>									  
-									</tr>
-									<tr data-row-id="u0" class="mdc-data-table__row">
-									  <td class="mdc-data-table__cell" scope="row" id="u0">
-										<div class="widget-content p-0">
-											<div class="widget-content-wrapper">																		
-												<div class="widget-content-left flex2">
-													<div class="widget-heading font-weight-bold">Sexe 
-														&nbsp;<i class="fa fa-envelope-o text-link" style="cursor:pointer;" aria-hidden="true"></i>
-														<!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
-														&nbsp;<i class="fa fa-whatsapp text-link" style="cursor:pointer;" aria-hidden="true"></i>
-														&nbsp;<i class="fa fa-skype text-link" style="cursor:pointer;" aria-hidden="true"></i>
-													</div> 																			
-												</div>
-											</div>
-										</div>
-									  </td>
-									  <td class="mdc-data-table__cell">
-										<input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="Sexe" value="Masculin" required>
-									  </td>								  
-									</tr>
+									
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
 										<div class="widget-content p-0">
@@ -121,7 +65,7 @@
 										</div>
 									  </td>
 									  <td class="mdc-data-table__cell">
-										<input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="Téléphone" value="+237 691 87 74 03" required>
+										<input type="text" class="form-control" style="width:100%" id="telephone" placeholder="Téléphone" value="+237 691 87 74 03" required>
 									  </td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
@@ -140,7 +84,7 @@
 										</div>
 									  </td>
 									  <td class="mdc-data-table__cell">
-										<input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="Email" value="gillesfabrizio@gmail" required>
+										<input type="text" class="form-control" style="width:100%" id="email" placeholder="Email" value="{{$admin->email}}" required />
 									  </td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
@@ -159,7 +103,7 @@
 										</div>
 									  </td>
 									  <td class="mdc-data-table__cell">
-										<input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="Login" value="Fabrizio-Kmer" required>
+										<input type="text" class="form-control" style="width:100%" id="login" placeholder="Login" value="" required />
 									  </td>
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
@@ -178,7 +122,7 @@
 										</div>
 									  </td>
 									  <td class="mdc-data-table__cell">
-										<input type="password" class="form-control" style="width:100%" id="validationCustom01" placeholder="Login" value="Fabrizio-Kmer" required>
+										<input type="password" class="form-control" style="width:100%" id="password" placeholder="Mot de passe" value="" required>
 									  </td>
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
@@ -197,7 +141,7 @@
 										</div>
 									  </td>
 									  <td class="mdc-data-table__cell">
-										<input type="password" class="form-control" style="width:100%" id="validationCustom01" placeholder="Login" value="Fabrizio-Kmer" required>
+										<input type="password" class="form-control" style="width:100%" id="confirm_password" placeholder="Confirmer Mot de passe" value="" required>
 									  </td>
 									</tr>
 									</tbody>
@@ -229,27 +173,14 @@
 							  <div class="mdc-switch__track"></div>
 							  <div class="mdc-switch__thumb-underlay">
 								<div class="mdc-switch__thumb">
-									<input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
+									@if($admin->enabled == 0)
+										<input type="checkbox" id="basic-switch" class="mdc-switch__native-control" id="enabled" role="switch" />
+									@else
+										<input type="checkbox" id="basic-switch" class="mdc-switch__native-control" id="enabled" role="switch" checked />
+									@endif
 								</div>
 							  </div>
 						  </td>									  
-									</tr>
-									<tr data-row-id="u0" class="mdc-data-table__row">
-									  <td class="mdc-data-table__cell" scope="row" id="u0">
-										<div class="widget-content p-0">
-											<div class="widget-content-wrapper">																		
-												<div class="widget-content-left flex2">
-													<div class="widget-heading font-weight-bold" style="width:30%;">Date et Heure de création 
-														&nbsp;<i class="fa fa-envelope-o text-link" style="cursor:pointer;" aria-hidden="true"></i>
-														<!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
-														&nbsp;<i class="fa fa-whatsapp text-link" style="cursor:pointer;" aria-hidden="true"></i>
-														&nbsp;<i class="fa fa-skype text-link" style="cursor:pointer;" aria-hidden="true"></i>
-													</div> 																			
-												</div>
-											</div>
-										</div>
-									  </td>
-									  <td class="mdc-data-table__cell">16-06-2021 00:14</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -317,8 +248,8 @@
 									<i class="material-icons mdc-button__icon">colorize</i>
 								  </button> -->
 								  
-									  <button class="mdc-button mdc-button--raised icon-button" >
-										&nbsp; <a href="utilisateur-profil.html"><i class="material-icons mdc-button__icon" style="color:white;">save</i> 
+									  <button class="mdc-button mdc-button--raised icon-button" onclick="modif_admin({{$admin->id}})">
+										&nbsp; <a><i class="material-icons mdc-button__icon" style="color:white;">save</i> 
 										&nbsp;<span style="color:white;">Enregistrer &nbsp; </span></a>
 									  </button>
 								   
