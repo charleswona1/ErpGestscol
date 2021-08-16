@@ -44,7 +44,7 @@ class AdministrationController extends Controller
 
             $licence = licence::where('id_licence', '=', $mod->id_licence)
                                 ->select('licence.creation_date', 'licence.expiration_date', 'licence.status', 'licence.numero')
-                                ->get()
+                                ->get();
         }
     	return view('administration.licences');
     }
