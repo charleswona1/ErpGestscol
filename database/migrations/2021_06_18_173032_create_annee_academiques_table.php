@@ -22,7 +22,6 @@ class CreateAnneeAcademiquesTable extends Migration
             $table->boolean('est_verrouiller');
             $table->boolean('est_cloturer');
             $table->boolean('par_defaut');
-
             $table->foreign('id_etablissement')->references('id_etablissement')->on('etablissement');
 
         });

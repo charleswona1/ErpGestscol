@@ -43,7 +43,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">Collège François Xavier VOGT</td>									  
+									  <td class="mdc-data-table__cell">{{ $etablissement[0]->nom }}</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -77,7 +77,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">CFXV</td>									  
+									  <td class="mdc-data-table__cell">{{ $etablissement[0]->abreviation }}</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -94,7 +94,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">Secondaire</td>									  
+									  <td class="mdc-data-table__cell">{{ $etablissement[0]->type_etablissement }}</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -111,7 +111,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">Yaoundé</td>									  
+									  <td class="mdc-data-table__cell">{{ $etablissement[0]->ville }}</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -128,7 +128,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">+237 650 02 78 95</td>									  
+									  <td class="mdc-data-table__cell">{{ $etablissement[0]->telephone }}</td>									  
 									</tr>		
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -152,7 +152,7 @@
 										<div class="widget-content p-0">
 											<div class="widget-content-wrapper">																		
 												<div class="widget-content-left flex2">
-													<div class="widget-heading font-weight-bold">Site web
+													<div class="widget-heading font-weight-bold">{{ $etablissement[0]->email }}
 														&nbsp;<i class="fa fa-envelope-o text-link" style="cursor:pointer;" aria-hidden="true"></i>
 														<!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
 														&nbsp;<i class="fa fa-whatsapp text-link" style="cursor:pointer;" aria-hidden="true"></i>
@@ -162,7 +162,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell"><a href="http://wwww.college-vogt.org">www.college-vogt.org</a></td>									  
+									  <td class="mdc-data-table__cell"><a href="http://wwww.college-vogt.org">{{ $etablissement[0]->site_web }}</a></td>									  
 									</tr>	
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -179,7 +179,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">Nsimeyong</a></td>									  
+									  <td class="mdc-data-table__cell">{{ $etablissement[0]->localisation }}</a></td>									  
 									</tr>										
 					            </tbody>
 							</table>

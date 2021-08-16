@@ -7,6 +7,7 @@ use App\Models\admin;
 use App\Models\module_etablissement;
 use App\Models\module;
 use App\Models\licence;
+use App\Models\etablissement;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use DB;
@@ -26,7 +27,8 @@ class AdministrationController extends Controller
 
     public function adminEtablissement()
     {
-    	return view('administration.etablissements');
+        $etablissements = etablissement::all();
+    	return view('administration.etablissements', compact('etablissements'));
     }
 
     public function adminUtilisateur()
