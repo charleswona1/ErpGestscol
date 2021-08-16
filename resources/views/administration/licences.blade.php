@@ -1,6 +1,7 @@
 @extends('administration.principal')
 
   @section('content')
+  <?php dd($modules) ?>
         <main class="content-wrapper">
           <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">   
