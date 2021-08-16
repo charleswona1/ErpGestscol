@@ -4,22 +4,10 @@
         <main class="content-wrapper">
           <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">   
-
-				
-				
-				
-				
-				
-				
-         
-						  
+	  
               <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                 <div class="mdc-card p-0">
 				
-				  
-				    
-            
-              
                 <div class="mdc-card">
                   <center><h6 class="card-title" style="color:grey;">Fiche de l'établissement </h6></center>
 				  <br/>
@@ -35,10 +23,6 @@
 						  </p>
                         </div>
                       </div>
-					  
-					  
-					  
-					  
 					  
                       <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-5-desktop">
                         <div class="table-responsive">

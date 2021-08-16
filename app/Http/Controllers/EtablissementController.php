@@ -42,31 +42,31 @@ class EtablissementController extends Controller
     		try {
 
     			$id_etablissement = DB::table('etablissement')->insertGetId([
-	                "nom" = $request->nom,
-					"abreviation" = $request->abreviation,
-					"type_etablissement" = $request->type_etablissement,
-					"type_apprenant" = $request->type_apprenant,
-					"ville" = $request->ville,
-					"boite_postale" = $request->boite_postale,
-					"email" = $request->email,
-					"telephone" = $request->telephone,
-					"fax" = $request->fax,
-					"site_web" = $request->site_web,
-					"localisation" = $request->localisation,
-					"logo" = $request->logo,
-					"creation_date" = date("Y-m-d"),
-					"nom_periode" = $request->nom_periode,
-					"adj_masculin_periode" = $request->adj_masculin_periode,
-					"adj_feminin_periode" = $request->adj_feminin_periode,
-					"nom_sous_periode" = $request->nom_sous_periode,
-					"adj_masculin_sous_periode" = $request->adj_masculin_sous_periode,
-					"adj_feminin_sous_periode" = $request->adj_feminin_sous_periode,
-					"nom_annee" = $request->nom_annee,
-					"adj_masculin_annee" = $request->adj_masculin_annee,
-					"adj_feminin_annee" = $request->adj_feminin_annee,
-					"resp1" = $request->resp1,
-					"resp2" = $request->resp2,
-					"resp3" = $request->resp3,
+	                "nom" => $request->nom,
+					"abreviation"=> $request->abreviation,
+					"type_etablissement"=> $request->type_etablissement,
+					"type_apprenant" => $request->type_apprenant,
+					"ville" => $request->ville,
+					"boite_postale" => $request->boite_postale,
+					"email" =>$request->email,
+					"telephone" => $request->telephone,
+					"fax"=>$request->fax,
+					"site_web" => $request->site_web,
+					"localisation" => $request->localisation,
+					"logo" => $request->logo,
+					"creation_date" => date("Y-m-d"),
+					"nom_periode" => $request->nom_periode,
+					"adj_masculin_periode" => $request->adj_masculin_periode,
+					"adj_feminin_periode"=> $request->adj_feminin_periode,
+					"nom_sous_periode"=>$request->nom_sous_periode,
+					"adj_masculin_sous_periode" => $request->adj_masculin_sous_periode,
+					"adj_feminin_sous_periode"=> $request->adj_feminin_sous_periode,
+					"nom_annee" => $request->nom_annee,
+					"adj_masculin_annee" => $request->adj_masculin_annee,
+					"adj_feminin_annee" => $request->adj_feminin_annee,
+					"resp1" => $request->resp1,
+					"resp2" => $request->resp2,
+					"resp3" => $request->resp3,
 	            ]);
 
 				$_SESSION["id_etablissement"] = $id_etablissement;
@@ -79,16 +79,16 @@ class EtablissementController extends Controller
     		}
 
     		$resultat = array(
-	    		'status' = $succesBD,
-	    		'message' = $message,
+	    		'status' => $succesBD,
+	    		'message' => $message,
 	    	);
     		
     		return response()->json($resultat);
     	} else {
 
     		$resultat = array(
-	    		'status' = $succesBD,
-	    		'message' = $message,
+	    		'status' =>$succesBD,
+	    		'message' => $message,
 	    	);
     		
     		return response()->json($resultat);
@@ -112,16 +112,16 @@ class EtablissementController extends Controller
     		}
 
     		$resultat = array(
-	    		'status' = $succesBD,
-	    		'message' = $message,
+	    		'status' => $succesBD,
+	    		'message' => $message,
 	    	);
     		
     		return response()->json($resultat);
     	} else {
 
     		$resultat = array(
-	    		'status' = $succesBD,
-	    		'message' = $message,
+	    		'status' => $succesBD,
+	    		'message' =>$message,
 	    	);
     		
     		return response()->json($resultat);
@@ -143,16 +143,16 @@ class EtablissementController extends Controller
     		}
 
     		$resultat = array(
-	    		'status' = $succesBD,
-	    		'message' = $message,
+	    		'status' => $succesBD,
+	    		'message' => $message,
 	    	);
     		
     		return response()->json($resultat);
     	} else {
 
     		$resultat = array(
-	    		'status' = $succesBD,
-	    		'message' = $message,
+	    		'status' => $succesBD,
+	    		'message' => $message,
 	    	);
     		
     		return response()->json($resultat);
