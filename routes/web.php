@@ -53,9 +53,11 @@ Route::post('/licence/modifLicence', [App\Http\Controllers\LicenceController::cl
 Route::post('/licence/supprimerLicence', [App\Http\Controllers\LicenceController::class, 'supLicence'])->name('licence.sup');
 
 Route::get('/etablissement', [App\Http\Controllers\EtablissementController::class, 'getEtablissement'])->name('etablissement.get');
+Route::get('/etablissement/showEtablissement/{id}', [App\Http\Controllers\EtablissementController::class, 'showEtablissement'])->name('etablissement.show');
+Route::get('/etablissement/EditEtablissement/{id}', [App\Http\Controllers\EtablissementController::class, 'EditEtablissement'])->name('etablissement.edit');
 Route::post('/etablissement/ajoutEtablissement', [App\Http\Controllers\EtablissementController::class, 'ajoutEtablissement'])->name('etablissement.ajout');
 Route::post('/etablissement/modifEtablissement', [App\Http\Controllers\EtablissementController::class, 'modifEtablissement'])->name('etablissement.modif');
-Route::post('/etablissement/modifEtablissement', [App\Http\Controllers\EtablissementController::class, 'modifEtablissement'])->name('etablissement.modif');
+Route::post('/etablissement/supprimerEtablissement', [App\Http\Controllers\EtablissementController::class, 'supprimerEtablissement'])->name('etablissement.supp');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/gestscol', [App\Http\Controllers\HomeController::class, 'home_gestscol'])->name('gestscol.home');

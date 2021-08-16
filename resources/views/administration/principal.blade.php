@@ -12,7 +12,7 @@
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="/assets1/vendors/flag-icon-css/css/flag-icon.min.css">
   <link rel="stylesheet" href="/assets1/vendors/jvectormap/jquery-jvectormap.css">
-
+@yield('css')
   <!-- End plugin css for this page -->
   <!-- Layout styles -->
   <link rel="stylesheet" href="/assets1/css/demo/style.css">
@@ -470,6 +470,7 @@
 
 
   </script>
+  @yield('script')
 </body>
 </html> 
 <html></html>

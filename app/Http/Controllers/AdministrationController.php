@@ -27,7 +27,8 @@ class AdministrationController extends Controller
 
     public function adminEtablissement()
     {
-    	return view('administration.etablissements');
+        $etablissements = etablissement::all();
+    	return view('administration.etablissements', compact('etablissements'));
     }
 
     public function adminUtilisateur()
