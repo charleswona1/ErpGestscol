@@ -31,7 +31,8 @@ class AdministrationController extends Controller
 
     public function adminUtilisateur()
     {
-    	return view('administration.utilisateurs');
+         $listAdmin = admin::all();
+    	return view('administration.utilisateurs', $data = ["listAdmin" => $listAdmin]);
     }
 
     public function adminLicence()
