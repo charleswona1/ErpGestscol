@@ -11,7 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Hash;
 use App\Models\admin;
+use Session;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -64,6 +66,17 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::verifyEmailView(function () {
             return view('auth.auth.verify');
+        });
+
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = admin::where('email', $request->email)
+            ->orWhere('login', $request->login)->first();
+
+            if ($user &&
+                Hash::check($request->password, $user->password)) {
+                Session::put('name', $user->nom);
+                return $user;
+            }
         });
     }
 }

@@ -1,18 +1,10 @@
 @extends('administration.principal')
 
   @section('content')
-  <?php dd($modules) ?>
+  <?php //dd($modules) ?>
         <main class="content-wrapper">
           <div class="mdc-layout-grid">
-            <div class="mdc-layout-grid__inner">   
-
-				
-				
-				
-				
-				
-				
-
+            <div class="mdc-layout-grid__inner">
 				
 			  <div class="fab">
 				<button class="mdc-button mdc-menu-button mdc-button--raised icon-button secondary-filled-button fab-icon">
@@ -189,6 +181,7 @@
 						</tr>
 					  </thead>
 					  <tbody class="mdc-data-table__content">
+					  	@foreach($modules as $module)
 						<tr data-row-id="u0" class="mdc-data-table__row">
 						  <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
 							<div class="mdc-checkbox mdc-data-table__row-checkbox">
@@ -207,7 +200,7 @@
                                                         <div class="widget-content-wrapper">
                                                             
                                                             <div class="widget-content-left flex2">
-                                                                <div class="widget-heading font-weight-bolder">Collège François Xavier VOGT
+                                                                <div class="widget-heading font-weight-bolder">{{$module['nom']}}
 																&nbsp;<i class="fa fa-envelope-o text-link" style="cursor:pointer;" aria-hidden="true"></i>
 																<!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
 																&nbsp;<i class="fa fa-whatsapp text-link" style="cursor:pointer;" aria-hidden="true"></i>
@@ -216,116 +209,31 @@
                                                             </div>
                                                         </div>
 						  </td>
-						  <td class="mdc-data-table__cell">Gestscol</td>
-						  <td class="mdc-data-table__cell">S2021-0003</td>
-						  <td class="mdc-data-table__cell">16-06-2021</td>
-						  <td class="mdc-data-table__cell">15-06-2022</td>
-						  <td class="mdc-data-table__cell">348 Jours</td>
+						  <td class="mdc-data-table__cell">{{$module['module']}}</td>
+						  <td class="mdc-data-table__cell">{{$module['numero_licence']}}</td>
+						  <td class="mdc-data-table__cell">{{$module['date_debut']}}</td>
+						  <td class="mdc-data-table__cell">{{$module['expiration']}}</td>
+						  <td class="mdc-data-table__cell">{{$module['nbreJ']}} Jours</td>
 						  <!-- <td class="mdc-data-table__cell mdc-data-table__cell--numeric">Tous</td> -->
 						  <td class="mdc-data-table__cell">
-							 <button class="mdc-button text-button--success">
-							  En cours
-							</button>
+						  	@if($module['status'] > 0)
+							 	<button class="mdc-button text-button--success">
+							  		En cours
+								</button>
+							@else
+								<button class="mdc-button text-button--success">
+							  		Terminé
+								</button>
+							@endif
 						  </td>
 						  <td class="mdc-data-table__cell">
-							<a href="licence-profil.html"><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">visibility</i></a>
-							<a href="licence-profiledit.html"><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">edit</i></a>
+							<a href="/administrateur/detail_licence/{{$module['id_mod']}}"><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">visibility</i></a>
+							<a href="/administrateur/modif_licence/{{$module['id_mod']}}"><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">edit</i></a>
 							<a href=""><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">print</i></a>
-							<a href=""><i class="material-icons mdc-text-field__icon" style="color:red; font-size:1.5em;">delete</i></a>
+							<a href="/administrateur/delete_licence/{{$module['id_mod']}}"><i class="material-icons mdc-text-field__icon" style="color:red; font-size:1.5em;">delete</i></a>
 						  </td>
 						</tr>
-						
-						<tr data-row-id="u0" class="mdc-data-table__row">
-						  <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
-							<div class="mdc-checkbox mdc-data-table__row-checkbox">
-							  <input type="checkbox" class="mdc-checkbox__native-control" aria-labelledby="u0"/>
-							  <div class="mdc-checkbox__background">
-								<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-								  <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
-								</svg>
-								<div class="mdc-checkbox__mixedmark"></div>
-							  </div>
-							  <div class="mdc-checkbox__ripple"></div>
-							</div>
-						  </td>
-						  <td class="mdc-data-table__cell" scope="row" id="u0">
-							<div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            
-                                                            <div class="widget-content-left flex2">
-                                                                <div class="widget-heading font-weight-bolder">Centre Communautaire de l'Enfance
-																&nbsp;<i class="fa fa-envelope-o text-link" style="cursor:pointer;" aria-hidden="true"></i>
-																<!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
-																&nbsp;<i class="fa fa-whatsapp text-link" style="cursor:pointer;" aria-hidden="true"></i>
-																&nbsp;<i class="fa fa-skype text-link" style="cursor:pointer;" aria-hidden="true"></i>
-																</div> 
-                                                            </div>
-                                                        </div>
-						  </td>
-						  <td class="mdc-data-table__cell">Caisse</td>
-						  <td class="mdc-data-table__cell">S2021-0002</td>
-						  <td class="mdc-data-table__cell">05-09-2020</td>
-						  <td class="mdc-data-table__cell">04-09-2021</td>
-						  <td class="mdc-data-table__cell">27 Jours</td>
-						  <!-- <td class="mdc-data-table__cell mdc-data-table__cell--numeric">Tous</td> -->
-						  <td class="mdc-data-table__cell">
-							 <button class="mdc-button text-button--success">
-							  En cours
-							</button>
-						  </td>
-						  <td class="mdc-data-table__cell">
-							<a href="utilisateur-profil.html"><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">visibility</i></a>
-							<a href=""><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">edit</i></a>
-							<a href=""><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">print</i></a>
-							<a href=""><i class="material-icons mdc-text-field__icon" style="color:red; font-size:1.5em;">delete</i></a>
-						  </td>
-						</tr>
-						
-						<tr data-row-id="u0" class="mdc-data-table__row">
-						  <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
-							<div class="mdc-checkbox mdc-data-table__row-checkbox">
-							  <input type="checkbox" class="mdc-checkbox__native-control" aria-labelledby="u0"/>
-							  <div class="mdc-checkbox__background">
-								<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-								  <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
-								</svg>
-								<div class="mdc-checkbox__mixedmark"></div>
-							  </div>
-							  <div class="mdc-checkbox__ripple"></div>
-							</div>
-						  </td>
-						  <td class="mdc-data-table__cell" scope="row" id="u0">
-							<div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            
-                                                            <div class="widget-content-left flex2">
-                                                                <div class="widget-heading font-weight-bolder">Centre Communautaire de l'Enfance
-																&nbsp;<i class="fa fa-envelope-o text-link" style="cursor:pointer;" aria-hidden="true"></i>
-																<!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
-																&nbsp;<i class="fa fa-whatsapp text-link" style="cursor:pointer;" aria-hidden="true"></i>
-																&nbsp;<i class="fa fa-skype text-link" style="cursor:pointer;" aria-hidden="true"></i>
-																</div> 
-                                                            </div>
-                                                        </div>
-						  </td>
-						  <td class="mdc-data-table__cell">Comptabilité</td>
-						  <td class="mdc-data-table__cell">P2020-0001</td>
-						  <td class="mdc-data-table__cell">05-05-2020</td>
-						  <td class="mdc-data-table__cell">04-05-2021</td>
-						  <td class="mdc-data-table__cell">O Jours</td>
-						  <!-- <td class="mdc-data-table__cell mdc-data-table__cell--numeric">Tous</td> -->
-						  <td class="mdc-data-table__cell">
-							 <button class="mdc-button text-button--secondary">
-							  Expirée
-							</button>
-						  </td>
-						  <td class="mdc-data-table__cell">
-							<a href="utilisateur-profil.html"><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">visibility</i></a>
-							<a href=""><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">edit</i></a>
-							<a href=""><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">print</i></a>
-							<a href=""><i class="material-icons mdc-text-field__icon" style="color:red; font-size:1.5em;">delete</i></a>
-						  </td>
-						</tr>
+						@endforeach
 						
 					  </tbody>
 					</table>

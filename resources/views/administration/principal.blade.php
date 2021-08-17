@@ -12,7 +12,7 @@
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="/assets1/vendors/flag-icon-css/css/flag-icon.min.css">
   <link rel="stylesheet" href="/assets1/vendors/jvectormap/jquery-jvectormap.css">
-@yield('css')
+
   <!-- End plugin css for this page -->
   <!-- Layout styles -->
   <link rel="stylesheet" href="/assets1/css/demo/style.css">
@@ -130,9 +130,9 @@
               <button class="mdc-button mdc-menu-button">
                 <span class="d-flex align-items-center">
                   <span class="figure">
-                    <img src="/assets1/images/faces/face1.jpg" alt="user" class="user">
+                    <img src="/assets1/images/faces/avatar.jpg" alt="user" class="user">
                   </span>
-                  <span class="user-name">Gilles Fabrizio ZANETTIN</span>
+                  <span class="user-name">{{ session()->get('name') }}</span>
                 </span>
               </button>
               <div class="mdc-menu mdc-menu-surface" tabindex="-1">
@@ -374,7 +374,7 @@
       password = $("#password").val();
       confirm_password = $("#confirm_password").val();
 
-      if ($('#enabled').is(":checked"))
+      if ($('#enabled').is("  :checked"))
         actif = 1;
       else
         actif =0;
@@ -470,7 +470,6 @@
 
 
   </script>
-  @yield('script')
 </body>
 </html> 
 <html></html>

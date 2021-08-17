@@ -24,6 +24,9 @@ Route::get('/administrateur/home', [App\Http\Controllers\AdministrationControlle
 Route::get('/administrateur/etablissement', [App\Http\Controllers\AdministrationController::class, 'adminEtablissement'])->name('administration.etablissement')->middleware('auth');
 Route::get('/administrateur/profil/{id}', [App\Http\Controllers\AdministrationController::class, 'voir_profil'])->name('admin.voir_profil')->middleware('auth');
 Route::get('/administrateur/edit_admin/{id}', [App\Http\Controllers\AdministrationController::class, 'edit_profil'])->name('admin.edit_profil')->middleware('auth');
+Route::get('/administrateur/detail_licence/{id}', [App\Http\Controllers\AdministrationController::class, 'detail_licence'])->name('admin.detail_licence')->middleware('auth');
+Route::get('/administrateur/modif_licence/{id}', [App\Http\Controllers\AdministrationController::class, 'modif_licence'])->name('admin.modif_licence')->middleware('auth');
+Route::post('/administrateur/delete_licence', [App\Http\Controllers\AdministrationController::class, 'delete_licence'])->name('admin.delete_licence')->middleware('auth');
 Route::post('/administrateur/modif_admin', [App\Http\Controllers\AdministrationController::class, 'modif_admin'])->name('admin.modif')->middleware('auth');
 Route::post('/administrateur/delete_admin', [App\Http\Controllers\AdministrationController::class, 'delete_admin'])->name('admin.delete')->middleware('auth');
 Route::get('/administrateur/register', [App\Http\Controllers\AdministrationController::class, 'adminUtilisateur'])->name('administration.utilisateurs');

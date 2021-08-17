@@ -3,34 +3,14 @@
   @section('content')
         <main class="content-wrapper">
           <div class="mdc-layout-grid">
-            <div class="mdc-layout-grid__inner">   
-
-				
-				
-				
-				
-				
-				
-         
-						  
+            <div class="mdc-layout-grid__inner">		  
               <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                 <div class="mdc-card p-0">
-				
-				  
-				    
-            
-              
                 <div class="mdc-card">
                   <center><h6 class="card-title" style="color:grey;">Fiche de Licence </h6></center>
 				  <br/>
                   <div class="template-demo">
                     <div class="mdc-layout-grid__inner">
-                      
-					  
-					  
-					  
-					  
-					  
                       <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                         <div class="table-responsive">
 							<table class="mdc-data-table__table" aria-label="Dessert calories">
@@ -50,7 +30,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">Collège François Xavier VOGT</td>									  
+									  <td class="mdc-data-table__cell">{{$module['nom']}}</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -67,7 +47,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">S2021-0003</td>									  
+									  <td class="mdc-data-table__cell">{{$module['numero_licence']}}</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -84,7 +64,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">16-06-2021</td>									  
+									  <td class="mdc-data-table__cell">{{$module['date_debut']}}</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -101,7 +81,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">15-06-2022</td>									  
+									  <td class="mdc-data-table__cell">{{$module['expiration']}}</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -120,7 +100,7 @@
 									  </td>
 									  <td class="mdc-data-table__cell">
 										<button class="mdc-button mdc-button--unelevated filled-button--warning" style="margin:none; font-size:0.9em;">
-											Gestscol
+											{{$module['module']}}
 										</button>
 									  </td>									  
 									</tr>
@@ -155,7 +135,11 @@
 										  <div class="mdc-switch__track"></div>
 										  <div class="mdc-switch__thumb-underlay">
 											<div class="mdc-switch__thumb">
-												<input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
+												@if($module['nbreJ'] > 0)
+													<input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
+												@else
+													<input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch">
+												@endif
 											</div>
 										  </div>
 									  </td>								  
@@ -176,9 +160,16 @@
 										</div>
 									  </td>
 									  <td class="mdc-data-table__cell">
-										  <button class="mdc-button mdc-button--unelevated filled-button--success" style="margin:none; font-size:0.9em;">
-											En cours
+									  	@if($module['nbreJ'] > 0)
+												<button class="mdc-button mdc-button--unelevated filled-button--success" style="margin:none; font-size:0.9em;">
+												En cours
+											  </button>
+										@else
+											
+										  <button class="mdc-button mdc-button--unelevated filled-button--error" style="margin:none; font-size:0.9em;">
+											en Arret
 										  </button>
+										@endif
 									  </td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
@@ -196,7 +187,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">16-06-2021 00:14</td>									  
+									  <td class="mdc-data-table__cell">{{$module['date_debut']}}</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -231,7 +222,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">348 Jours</td>									  
+									  <td class="mdc-data-table__cell">{{$module['nbreJ']}} Jours</td>									  
 									</tr>
 									
 									

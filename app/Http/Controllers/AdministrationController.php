@@ -57,11 +57,13 @@ class AdministrationController extends Controller
                                             ->get();
 
             $mod1['nom'] = $etablissement[0]->nom;
+            $mod1['id_mod'] = $mod->id;
             $mod1['module'] = $module[0]->nom;
             $mod1['numero_licence'] = $licence[0]->numero;
             $mod1['date_debut'] = $licence[0]->creation_date;
             $mod1['expiration'] = $licence[0]->expiration_date;
             $mod1['status'] = $licence[0]->status;
+            $mod1['nbreJ'] = round((strtotime($licence[0]->expiration_date) - strtotime($licence[0]->creation_date)) / (60 * 60 * 24));
 
             $listLicence[] = $mod1;
 
@@ -157,5 +159,45 @@ class AdministrationController extends Controller
         );
         
         return response()->json($resultat);
+    }
+
+    public function detail_licence($id)
+    {
+
+        $mod = module_etablissement::find($id);
+
+        $mod1 = array();
+
+        $module = module::where('id_module', '=', $mod->id_module)
+                        ->select('module.nom', 'module.status', 'module.code', 'module.description')
+                        ->get();
+
+        $licence = licence::where('id_licence', '=', $mod->id_licence)
+                            ->select('licence.creation_date', 'licence.expiration_date', 'licence.status', 'licence.numero')
+                            ->get();
+
+        $etablissement = etablissement::where('id_etablissement', '=', $mod->id_module)
+                                        ->select('nom')
+                                        ->get();
+
+        $mod1['nom'] = $etablissement[0]->nom;
+        $mod1['module'] = $module[0]->nom;
+        $mod1['numero_licence'] = $licence[0]->numero;
+        $mod1['date_debut'] = $licence[0]->creation_date;
+        $mod1['expiration'] = $licence[0]->expiration_date;
+        $mod1['status'] = $licence[0]->status;
+        $mod1['nbreJ'] = round((strtotime($licence[0]->expiration_date) - strtotime($licence[0]->creation_date)) / (60 * 60 * 24));
+
+        return view('administration.licence-profil', $data = ['module' => $mod1]);
+
+    }
+
+    public function delete_licence(request $request)
+    {
+
+    }
+
+    public function modif_licence($id){
+        
     }
 }
