@@ -18,7 +18,6 @@ class CreateGroupesTable extends Migration
             $table->unsignedBigInteger('id_annee_academique');
             $table->string('nom', 255);
             $table->integer('effectif');
-
             $table->foreign('id_annee_academique')->references('id_annee_academique')->on('annee_academique');
             $table->unique(['id_annee_academique', 'nom']);
         });

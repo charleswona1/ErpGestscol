@@ -49,6 +49,7 @@ class AdministrationController extends Controller
         $module_e = module_etablissement::all();
 
         $listLicence = array();
+        $mesmodules = array();
         foreach ($module_e as $mod) {
             $mod1 = array();
             $module = module::where('id_module', '=', $mod->id_module)
@@ -59,12 +60,12 @@ class AdministrationController extends Controller
                                 ->select('licence.creation_date', 'licence.expiration_date', 'licence.status', 'licence.numero')
                                 ->get();
 
-            $etablissement = etablissement::where('id_etablissement', '=', $mod->id_module)
+            $etablissement = etablissement::where('id_etablissement', '=', $mod->id_etablissement)
                                             ->select('nom')
                                             ->get();
 
             $mod1['nom'] = $etablissement[0]->nom;
-            $mod1['id_mod'] = $mod->id;
+            $mod1['id_mod'] = $mod->id_module;
             $mod1['module'] = $module[0]->nom;
             $mod1['numero_licence'] = $licence[0]->numero;
             $mod1['date_debut'] = $licence[0]->creation_date;
@@ -72,10 +73,12 @@ class AdministrationController extends Controller
             $mod1['status'] = $licence[0]->status;
             $mod1['nbreJ'] = round((strtotime($licence[0]->expiration_date) - strtotime($licence[0]->creation_date)) / (60 * 60 * 24));
 
-            $listLicence[] = $mod1;
-
-
+            $mesmodules[] = $mod1;
         }
+        $listLicence[] = $mesmodules;
+        $listLicence[] = module::all();
+        $listLicence[] = etablissement::all();
+
     	return view('administration.licences', $data = ['modules' => $listLicence]);
     }
 
@@ -168,6 +171,37 @@ class AdministrationController extends Controller
         return response()->json($resultat);
     }
 
+    public function save_licence(Request $request){
+        $validated = $request->validate([
+            'etablissement' => ['required'],
+            'module' => ['required'],
+            'date_debut' => ['required'],
+            'date_expiration' => ['required'],
+        ]);
+
+        $etablissement = etablissement::where('nom', '=', $request->etablissement)
+                        ->select('id_etablissement')
+                        ->get();
+
+        $module = module::where('nom', $request->module)
+                        ->select('id_module')
+                        ->get();
+
+        $licence = licence::all();
+
+        $module_e = new module_etablissement();
+        $module_e->id_module = $module[0]->id;
+        $module_e->id_etablissement = $etablissement[0]->id;
+        $module_e->id_licence = $licence[0]->id;
+        $module_e->date_expiration = $request->date_expiration;
+        $module_e->numero_licence = "test";
+
+        $module_e->save();
+
+        return 1;
+
+    }
+
     public function detail_licence($id)
     {
 
@@ -205,6 +239,6 @@ class AdministrationController extends Controller
     }
 
     public function modif_licence($id){
-        
+
     }
 }

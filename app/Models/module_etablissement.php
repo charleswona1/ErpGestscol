@@ -10,4 +10,5 @@ class module_etablissement extends Model
     use HasFactory;
 
     protected $table = 'module_etablissement';
+    protected $primaryKey = 'id_module';
 }

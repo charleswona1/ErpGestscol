@@ -3,34 +3,14 @@
   @section('content')
         <main class="content-wrapper">
           <div class="mdc-layout-grid">
-            <div class="mdc-layout-grid__inner">   
-
-				
-				
-				
-				
-				
-				
-         
-						  
+            <div class="mdc-layout-grid__inner">		  
               <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                 <div class="mdc-card p-0">
-				
-				  
-				    
-            
-              
                 <div class="mdc-card">
                   <center><h6 class="card-title" style="color:grey;">Modification de la Licence </h6></center>
 				  <br/>
                   <div class="template-demo">
                     <div class="mdc-layout-grid__inner">
-                      
-					  
-					  
-					  
-					  
-					  
                       <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                         <div class="table-responsive">
 							<table class="mdc-data-table__table" aria-label="Dessert calories">

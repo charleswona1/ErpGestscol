@@ -11,6 +11,7 @@
                     <i class="material-icons mdc-button__icon">&nbsp;add</i>&nbsp; Créer une Licence &nbsp;
                 </button>
 				<form class='cntt-wrapper'>
+					@csrf
 					<div id="fab-hdr">
 					   <h5 class="card-title card-padding pb-0">Formulaire de Licence</h5>
 					</div>
@@ -21,22 +22,18 @@
 						<td>
 						  <div class=class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
 							<div class="mdc-select demo-width-class" data-mdc-auto-init="MDCSelect">
-							  <input type="hidden" name="enhanced-select" required>
+							  <input type="hidden" name="enhanced-select" id="id_etablissement" required>
 							  <i class="mdc-select__dropdown-icon"></i>
 							  <div class="mdc-select__selected-text"></div>
 							  <div class="mdc-select__menu mdc-menu-surface demo-width-class">
 								<ul class="mdc-list">
 								  <!-- <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true">
 								  </li> -->
-								  <li class="mdc-list-item" data-value="grains">
-									Collège François Xavier VOGT
-								  </li>
-								  <li class="mdc-list-item" data-value="vegetables">
-									Centre Communautaire de l'Enfance
-								  </li>
-								  <li class="mdc-list-item" data-value="grains">
-									PREPAVOGT Mangement et Finances
-								  </li>
+								  	@foreach($modules[2] as $etablissement)
+									  <li class="mdc-list-item" data-value="{{$etablissement->id_etablissement}}">
+										{{$etablissement->nom}}
+									  </li>
+									@endforeach
 								</ul>
 							  </div>
 							  <span class="mdc-floating-label">Etablissement</span>
@@ -47,25 +44,18 @@
 						<td>
 							<div class=class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
 							<div class="mdc-select demo-width-class" data-mdc-auto-init="MDCSelect">
-							  <input type="hidden" name="enhanced-select" required>
+							  <input type="hidden" name="enhanced-select" id="id_module" required>
 							  <i class="mdc-select__dropdown-icon"></i>
 							  <div class="mdc-select__selected-text"></div>
 							  <div class="mdc-select__menu mdc-menu-surface demo-width-class">
 								<ul class="mdc-list">
 								  <!-- <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true">
 								  </li> -->
-								  <li class="mdc-list-item" data-value="grains">
-									Gestscol
-								  </li>
-								  <li class="mdc-list-item" data-value="vegetables">
-									Caisse
-								  </li>
-								  <li class="mdc-list-item" data-value="grains">
-									RH&Paye
-								  </li>
-								  <li class="mdc-list-item" data-value="grains">
-									Comptabilité
-								  </li>
+								  @foreach($modules[1] as $module)
+									  <li class="mdc-list-item" data-value="{{$module->id_module}}">
+										{{$module->nom}}
+									  </li>
+									@endforeach
 								</ul>
 							  </div>
 							  <span class="mdc-floating-label">Module</span>
@@ -77,14 +67,14 @@
 						</table>
 						<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6	">
                           <div class="mdc-text-field w-100">
-                            <input class="mdc-text-field__input" type="date-picker" id="text-field-hero-input" required>
+                            <input class="mdc-text-field__input" type="date" id="id_date_debut" required>
                             <div class="mdc-line-ripple"></div>
                             <label for="text-field-hero-input"  class="mdc-floating-label">Date début</label>
                           </div>
                         </div>
 						<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
                           <div class="mdc-text-field w-100">
-                            <input class="mdc-text-field__input" type="date-picker" id="text-field-hero-input" required>
+                            <input class="mdc-text-field__input" type="date" id="id_date_expiration" required>
                             <div class="mdc-line-ripple"></div>
                             <label for="text-field-hero-input"  class="mdc-floating-label">Date d'expiration</label>
                           </div>
@@ -111,7 +101,7 @@
                           </a>
                         </div>
 						<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
-                          <a href="utilisateurs.html"  class="mdc-button mdc-button--raised w-100">
+                          <a class="mdc-button mdc-button--raised w-100" onclick="saveLicence()">
                             Enregistrer
                           </a>
                         </div>
@@ -181,7 +171,7 @@
 						</tr>
 					  </thead>
 					  <tbody class="mdc-data-table__content">
-					  	@foreach($modules as $module)
+					  	@foreach($modules[0] as $module)
 						<tr data-row-id="u0" class="mdc-data-table__row">
 						  <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
 							<div class="mdc-checkbox mdc-data-table__row-checkbox">
