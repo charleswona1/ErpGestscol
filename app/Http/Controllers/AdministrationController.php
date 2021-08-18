@@ -11,6 +11,7 @@ use App\Models\etablissement;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use DB;
+use Faker\Factory as Faker;
 
 class AdministrationController extends Controller
 {
@@ -65,7 +66,7 @@ class AdministrationController extends Controller
                                             ->get();
 
             $mod1['nom'] = $etablissement[0]->nom;
-            $mod1['id_mod'] = $mod->id_module;
+            $mod1['id_mod'] = $mod->id_module.'_'.$mod->id_etablissement;
             $mod1['module'] = $module[0]->nom;
             $mod1['numero_licence'] = $licence[0]->numero;
             $mod1['date_debut'] = $licence[0]->creation_date;
@@ -172,6 +173,8 @@ class AdministrationController extends Controller
     }
 
     public function save_licence(Request $request){
+        $faker = \Faker\Factory::create();
+
         $validated = $request->validate([
             'etablissement' => ['required'],
             'module' => ['required'],
@@ -179,45 +182,67 @@ class AdministrationController extends Controller
             'date_expiration' => ['required'],
         ]);
 
-        $etablissement = etablissement::where('nom', '=', $request->etablissement)
-                        ->select('id_etablissement')
-                        ->get();
+        if (strcmp($request->date_debut, $request->date_expiration) > 0) {
+            return -2;
+        }
 
-        $module = module::where('nom', $request->module)
-                        ->select('id_module')
-                        ->get();
+        try {
+            
+            $etablissement = etablissement::where('id_etablissement', '=', $request->etablissement)
+                            ->select('id_etablissement')
+                            ->get();
 
-        $licence = licence::all();
+            $module = module::where('id_module', $request->module)
+                            ->select('id_module')
+                            ->get();
 
-        $module_e = new module_etablissement();
-        $module_e->id_module = $module[0]->id;
-        $module_e->id_etablissement = $etablissement[0]->id;
-        $module_e->id_licence = $licence[0]->id;
-        $module_e->date_expiration = $request->date_expiration;
-        $module_e->numero_licence = "test";
+            $numLicence = $faker->swiftBicNumber;
 
-        $module_e->save();
+            $licence=DB::table('licence')->insertGetId([
+                    'numero'=> $numLicence,
+                    'creation_date' => $request->date_debut,
+                    'expiration_date' => $request->date_expiration,
+                    'status' => false,
+                ]);
 
-        return 1;
+            $module_e = new module_etablissement();
+            $module_e->id_module = (int)$request->module;
+            $module_e->id_etablissement = (int)$request->etablissement;
+            $module_e->id_licence = $licence;
+            $module_e->date_expiration = $request->date_expiration;
+            $module_e->numero_licence = $numLicence;
+
+            $module_e->save();
+
+            return 1;
+
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+
+        
 
     }
 
     public function detail_licence($id)
     {
+        $ids = explode('_', $id);
 
-        $mod = module_etablissement::find($id);
+        $mod = module_etablissement::where('id_module', '=', $ids[0])
+                                    ->where('id_etablissement', '=', $ids[1])
+                                    ->get();
 
         $mod1 = array();
 
-        $module = module::where('id_module', '=', $mod->id_module)
+        $module = module::where('id_module', '=', $ids[0])
                         ->select('module.nom', 'module.status', 'module.code', 'module.description')
                         ->get();
 
-        $licence = licence::where('id_licence', '=', $mod->id_licence)
+        $licence = licence::where('id_licence', '=', $mod[0]->id_licence)
                             ->select('licence.creation_date', 'licence.expiration_date', 'licence.status', 'licence.numero')
                             ->get();
 
-        $etablissement = etablissement::where('id_etablissement', '=', $mod->id_module)
+        $etablissement = etablissement::where('id_etablissement', '=', $ids[1])
                                         ->select('nom')
                                         ->get();
 
@@ -235,10 +260,117 @@ class AdministrationController extends Controller
 
     public function delete_licence(request $request)
     {
+        $ids = explode('_', $request->id);
+        $succesBD = -1; 
+        $message = "";
+        $ligneT = -1;
 
+        try {
+            $mod = module_etablissement::where('id_module', '=', $ids[0])
+                                    ->where('id_etablissement', '=', $ids[1])
+                                    ->get();
+
+            $res = licence::where('id_licence', $mod[0]->id_licence)->delete();
+
+            $res = module_etablissement::where('id_module', $ids[0])
+                                        ->where('id_etablissement', '=', $ids[1])
+                                        ->delete();
+
+            $succesBD = 1;
+            $ligneT = $request->id;
+            $message = "succes de la requete";
+        } catch (Exception $e) {
+            $succesBD = 0;
+            $message = $e->getMessage();
+        }
+
+        $resultat = array(
+            'status' => $succesBD,
+            'message' => $message,
+            'ligneT'  => $ligneT,
+        );
+        
+        return response()->json($resultat);
     }
 
     public function modif_licence($id){
 
+        $ids = explode('_', $id);
+        $mod1 = array();
+
+        try {
+            $mod = module_etablissement::where('id_module', '=', $ids[0])
+                                    ->where('id_etablissement', '=', $ids[1])
+                                    ->get();
+
+            $mod1 = array();
+            $module = module::where('id_module', '=', $ids[0])
+                            ->select('module.id_module', 'module.nom', 'module.status', 'module.code', 'module.description')
+                            ->get();
+
+            $licence = licence::where('id_licence', '=', $mod[0]->id_licence)
+                                ->select('licence.creation_date', 'licence.expiration_date', 'licence.status', 'licence.numero')
+                                ->get();
+
+            $etablissement = etablissement::where('id_etablissement', '=', $ids[1])
+                                            ->select('nom')
+                                            ->get();
+
+            $mod1['nom'] = $etablissement[0]->nom;
+            $mod1['module'] = $module[0]->nom;
+            $mod1['module_id'] = $module[0]->id_module;
+            $mod1['numero_licence'] = $licence[0]->numero;
+            $mod1['date_debut'] = $licence[0]->creation_date;
+            $mod1['expiration'] = $licence[0]->expiration_date;
+            $mod1['status'] = $licence[0]->status;
+            $mod1['id'] = $id;
+            $mod1['nbreJ'] = round((strtotime($licence[0]->expiration_date) - strtotime($licence[0]->creation_date)) / (60 * 60 * 24));
+
+            $module1 = module::where('id_module', '<>', $ids[0])
+                            ->select('module.nom', 'module.id_module')
+                            ->get();
+
+            $niv = 0;
+            foreach ($module1 as $m) {
+                $mod1['module'.$niv] = $m->nom;
+                $mod1['module_id'.$niv] = $m->id_module;
+                $niv++;
+            }
+
+            $mod1['nbreM'] = $niv;
+
+            return view('administration.licence-profiledit', $data = ['module' => $mod1]);
+
+        } catch (Exception $e) {
+            return view('administration.licence-profiledit', $data = ['module' => $mod1]);
+        }
+
+        
+
+    }
+
+    public function modifier_licence(Request $request){
+
+        $ids = explode('_', $request->id);
+        try{
+
+            $mod = module_etablissement::where('id_module', '=', (int)$ids[0])
+                                        ->where('id_etablissement', '=', (int)$ids[1])
+                                        ->get();
+
+            $mod1 = array();
+
+            $affectedRows2 = DB::table('module_etablissement')
+                            ->where('id_module', $ids[0])
+                            ->where('id_etablissement', $ids[1])
+                            ->update(['date_expiration'=>$request->date_expiration, 'id_module'=>$request->module]);
+
+            $affectedRows2 = DB::table('licence')
+                            ->where('id_licence', $mod[0]->id_licence)
+                            ->update(['creation_date'=>$request->date_debut, 'expiration_date'=>$request->date_expiration, 'status'=>$request->status]);
+            return 1;
+        } catch (Exception $e) {
+           return $e->getMessage(); 
+        }
     }
 }

@@ -135,7 +135,7 @@
 										  <div class="mdc-switch__track"></div>
 										  <div class="mdc-switch__thumb-underlay">
 											<div class="mdc-switch__thumb">
-												@if($module['nbreJ'] > 0)
+												@if($module['status'] == 1)
 													<input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
 												@else
 													<input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch">

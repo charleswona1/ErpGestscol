@@ -2,6 +2,7 @@
 
   @section('content')
         <main class="content-wrapper">
+        	@csrf
           <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">		  
               <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
@@ -30,7 +31,7 @@
 											</div>
 										</div>
 									  </td>
-									   <td class="mdc-data-table__cell">Collège François Xavier VOGT</td>									  
+									   <td class="mdc-data-table__cell">{{$module['nom']}}</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -47,7 +48,7 @@
 											</div>
 										</div>
 									  </td>
-									   <td class="mdc-data-table__cell">S2021-0003</td>									  
+									   <td class="mdc-data-table__cell">{{$module['numero_licence']}}</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -65,7 +66,7 @@
 										</div>
 									  </td>
 									  <td class="mdc-data-table__cell">
-										<input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="date debut" value="16-06-2021" required>
+										<input type="text" class="form-control" style="width:100%" id="id_date_debut" placeholder="date debut" value="{{$module['date_debut']}}" required>
 									  </td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
@@ -84,7 +85,7 @@
 										</div>
 									  </td>
 									  <td class="mdc-data-table__cell">
-										<input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="date expiration" value="15-06-2022" required>
+										<input type="text" class="form-control" style="width:100%" id="id_date_fin" placeholder="date expiration" value="{{$module['expiration']}}" required>
 									  </td>								  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
@@ -103,12 +104,11 @@
 										</div>
 									  </td>
 									  <td class="mdc-data-table__cell">
-											<select class="mdl-selectfield__select" id="professsion1" name="professsion">
-											  <option value=""></option>
-											  <option value="option1" selected>Gestscol</option>
-											  <option value="option2">Caisse</option>
-											  <option value="option3" >RH&Paye</option>
-											  <option value="option4">Comptabilité</option>
+											<select class="mdl-selectfield__select" id="id_module" name="professsion">
+											  <option value="{{$module['module_id']}}" selected>{{$module['module']}}</option>
+											  @for($i=0; $i < $module['nbreM']; $i++)
+											  	<option value="{{$module['module_id'.$i]}}">{{$module['module'.$i]}}</option>
+											  @endfor
 											</select>
 										</td>									  
 									</tr>
@@ -117,27 +117,6 @@
 									</tr>	
 									</tbody>
 							</table>
-						<!--	</table>
-								</tbody>
-<tr>									  
-										<td class="mdc-data-table__cell">
-										<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
-                          <a href="utilisateur-profil.html" class="mdc-button mdc-button--label w-100">
-                            Annuler
-                          </a>
-						  </td>
-						  <td class="mdc-data-table__cell">
-                        </div>
-						<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
-                          <a href="utilisateur-profil.html"  class="mdc-button mdc-button--raised w-100">
-                            Mettre à jour
-                          </a>
-                        </div>
-										</td>
-									</tr>	
-									
-					            </tbody>
-							</table>  -->
 					      </div>
                         </div>
 						<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
@@ -164,7 +143,11 @@
 							  <div class="mdc-switch__track"></div>
 							  <div class="mdc-switch__thumb-underlay">
 								<div class="mdc-switch__thumb">
-									<input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
+									@if($module['status'] == 1)
+										<input type="checkbox" id="id_status" class="mdc-switch__native-control" role="switch" checked>
+									@else
+										<input type="checkbox" id="id_status" class="mdc-switch__native-control" role="switch">
+									@endif
 								</div>
 							  </div>
 						  </td>									  
@@ -184,7 +167,7 @@
 											</div>
 										</div>
 									  </td>
-									  <td class="mdc-data-table__cell">16-06-2021 00:14</td>									  
+									  <td class="mdc-data-table__cell">{{$module['date_debut']}}</td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -245,7 +228,7 @@
 								  </button> -->
 								  
 									  <button class="mdc-button mdc-button--raised icon-button" >
-										&nbsp; <a href="licence-profil.html"><i class="material-icons mdc-button__icon" style="color:white;">save</i> 
+										&nbsp; <a onclick="modifier_admin('{{$module['id']}}')"><i class="material-icons mdc-button__icon" style="color:white;">save</i> 
 										&nbsp;<span style="color:white;">Enregistrer &nbsp; </span></a>
 									  </button>
 								   
@@ -268,24 +251,7 @@
                     </div>
                   </div>
                 </div>
-				
-             
-            
-					
-                 
-                
               </div>
-            
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
           </div>
         </main>
 @endsection

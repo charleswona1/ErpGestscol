@@ -34,6 +34,7 @@ Route::get('/administrateur/licence', [App\Http\Controllers\AdministrationContro
 Route::get('/administrateur/conf_groupe', [App\Http\Controllers\AdministrationController::class, 'adminGroupeConfig'])->name('administration.configGroupe');
 Route::get('/administrateur/conf_param', [App\Http\Controllers\AdministrationController::class, 'adminParamConfig'])->name('administration.configParam');
 Route::post('/administrateur/save_licence', [App\Http\Controllers\AdministrationController::class, 'save_licence'])->name('admin.save_licence')->middleware('auth');
+Route::post('/administrateur/modifier_licence', [App\Http\Controllers\AdministrationController::class, 'modifier_licence'])->name('admin.modifier_licence')->middleware('auth');
 
 Route::get('/utilisateur/enregistrer', [App\Http\Controllers\UserController::class, 'createUser'])->name('user.add');
 Route::get('/utilisateur/connecter', [App\Http\Controllers\UserController::class, 'connectUser'])->name('user.connect');

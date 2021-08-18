@@ -500,22 +500,99 @@
           },
 
           success:function(response){
-            if (response["status"] == 1) {
-              alert("administrateur supprimé avec succes ");
-              $("#admin"+response["ligneT"]).remove();
+            if (response == 1) {
+              alert("licence enregistrée avec success");
+              $("#id_etablissement").val("");
+              $("#id_module").val("");
+              $("#id_date_debut").val("");
+              $("#id_date_expiration").val("");
+            }else if (response == -2) {
+              alert("la date d'expiration doit etre superieure a la date de debut");
             } else {
-              alert("erreur de suppression");
+              alert("ce module a déjà été affecté à cet établissement");
             }
              
           },
           error: function(response){
-            alert("erreur de suppression");
+            alert("erreur d'enregistrement");
               console.log(response);
           }
         }); 
 
       }
     } 
+
+
+    function modifier_admin(id) {
+      debugger;
+      var date_debut = $("#id_date_debut").val();
+      var date_expiration = $("#id_date_fin").val();
+      var module1 = $("#id_module option:selected" ).val();
+      var status = $("#id_status").attr("checked") ? 1 : 0;
+      var id1 = id;
+
+      if (date_debut > date_expiration) {
+        alert("date de debut doit etre superieure a la date de fin");
+        return;
+      }
+      
+      $.ajax({
+          url: "{{route('admin.modifier_licence')}}",
+          type: "POST",
+          data:{
+            "_token": "{{ csrf_token() }}",
+              date_debut:date_debut,
+              date_expiration:date_expiration,
+              module:module1,
+              status:status,
+              id:id,
+          },
+
+          success:function(response){
+            if (response == 1) {
+              alert("licence modifiée avec success");
+              window.location.href = '/administrateur/licence';
+            } else {
+              alert("ce module a déjà été affecté à cet établissement");
+            }
+             
+          },
+          error: function(response){
+            alert("erreur d'enregistrement");
+              console.log(response);
+          }
+        });
+
+    }
+
+    function delete_licence(id)
+    {
+      var confirmation = confirm("Voulez-vous vraiment supprimer cette licence?");
+        if (confirmation) {
+            $.ajax({
+                url: "{{ route('admin.delete_licence') }}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id: id,
+                },
+
+                success: function(response) {
+                    if (response["status"] == 1) {
+                        alert("licence supprimé avec succes ");
+                        $("#licence"+id).remove();
+                    } else {
+                        alert("erreur de suppression");
+                    }
+
+                },
+                error: function(response) {
+                    alert("erreur de suppression");
+                    console.log(response);
+                }
+            });
+        }
+    }
 </script>
 </body>
 @yield('script')
