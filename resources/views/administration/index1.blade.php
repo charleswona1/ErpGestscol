@@ -10,7 +10,7 @@
           <div class="mdc-card info-card info-card--success">
             <div class="card-inner">
               <h5 class="card-title">Total Etablissements</h5>
-               <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom">50</h5></a>
+               <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ $count_etablissemnt }}</h5></a>
               <a href=""><p class="tx-12 text-muted">65 Utilisateurs</p></a>
               <div class="card-icon-wrapper">
                 <i class="material-icons">dvr</i>
@@ -22,7 +22,7 @@
           <div class="mdc-card info-card info-card--danger">
             <div class="card-inner">
               <h5 class="card-title">Ecoles Primaires</h5>
-              <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom">05</h5></a>
+              <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ $primaire }}</h5></a>
               <a href=""><p class="tx-12 text-muted">10 Utilisateurs</p></a>
               <div class="card-icon-wrapper">
                 <i class="material-icons">credit_card</i>
@@ -34,7 +34,7 @@
           <div class="mdc-card info-card info-card--primary">
             <div class="card-inner">
               <h5 class="card-title">Secondaires</h5>
-              <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom">35</h5></a>
+              <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ $secondaire }}</h5></a>
               <a href=""><p class="tx-12 text-muted">45 Utilisateurs</p></a>
               <div class="card-icon-wrapper">
                 <i class="material-icons">credit_card</i>
@@ -46,7 +46,7 @@
           <div class="mdc-card info-card info-card--info">
             <div class="card-inner">
               <h5 class="card-title">Universit&eacute;s</h5>
-              <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom">10</h5></a>
+              <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ $universite }}</h5></a>
               <a href=""><p class="tx-12 text-muted">10 Utilisateurs</p></a>
               <div class="card-icon-wrapper">
                 <i class="material-icons">credit_card</i>

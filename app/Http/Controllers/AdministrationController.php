@@ -17,7 +17,14 @@ class AdministrationController extends Controller
 
     public function getAcceuilAdmin()
     {
-    	return view('administration.index1');
+        $count_etablissemnt = DB::table('etablissement')->count();
+       $primaire =  DB::table('etablissement')->where('type_etablissement', 'Primaire')->count();
+       $secondaire =  DB::table('etablissement')->where('type_etablissement', 'Secondaire')->count();
+       $universite =  DB::table('etablissement')->where('type_etablissement', 'Université')->count();
+
+        // dd($count_etablissemnt);
+
+    	return view('administration.index1', compact('count_etablissemnt','primaire','secondaire','universite'));
     }
 
     public function home()
