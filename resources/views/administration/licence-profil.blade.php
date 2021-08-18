@@ -256,10 +256,6 @@
                       <button class="mdc-button mdc-button--raised icon-button filled-button--light">
                         <i class="material-icons mdc-button__icon">print</i>
                       </button>
-                      
-                      <a href="javascript:;" class="mdc-button mdc-button--raised icon-button">
-                        <i class="material-icons mdc-button__icon">get_app</i>
-                      </a>
                     </div>
                   </section>
                 </div>

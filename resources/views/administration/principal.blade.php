@@ -468,6 +468,43 @@
       }
     }
 
+    function saveLicence(){
+      var etablissement = $("#id_etablissement").val();
+      var module1 = $("#id_module").val();
+      var date_debut = $("#id_date_debut").val();
+      var date_expiration = $("#id_date_expiration").val();
+
+      if (etablissement != null && $.trim(etablissement) != "" && module1 != null && $.trim(module1) != "" && date_debut != null && $.trim(date_debut) != "" && date_expiration != null && $.trim(date_expiration) != "") {
+
+       $.ajax({
+          url: "{{route('admin.save_licence')}}",
+          type: "POST",
+          data:{
+            "_token": "{{ csrf_token() }}",
+              etablissement:etablissement,
+              module:module1,
+              date_debut:date_debut,
+              date_expiration:date_expiration,
+          },
+
+          success:function(response){
+            if (response["status"] == 1) {
+              alert("administrateur supprimé avec succes ");
+              $("#admin"+response["ligneT"]).remove();
+            } else {
+              alert("erreur de suppression");
+            }
+             
+          },
+          error: function(response){
+            alert("erreur de suppression");
+              console.log(response);
+          }
+        }); 
+
+      }
+    }
+
 
   </script>
 </body>
