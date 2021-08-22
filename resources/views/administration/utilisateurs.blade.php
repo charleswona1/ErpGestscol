@@ -12,7 +12,7 @@
                         class="mdc-button mdc-menu-button mdc-button--raised icon-button secondary-filled-button fab-icon">
                         <i class="material-icons mdc-button__icon">&nbsp;person_add</i>&nbsp; Ajouter Utilisateur &nbsp;
                     </button>
-                    <form class='cntt-wrapper' method="POST" action="{{ route('register') }}" id="form_admin">
+                    <form class='cntt-wrapper' method="POST" action="{{ route('admin.register') }}" id="form_admin">
                         @csrf
                         <div id="fab-hdr">
                             <h5 class="card-title card-padding pb-0">Formulaire de Création d'un utilisateur</h5>
@@ -296,30 +296,27 @@
                                             </td>
                                         </tr>
                                     @endforeach
-
-
-
                                 </tbody>
                             </table>
-
-
-
-
-
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
             </div>
         </div>
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <p><strong>erreur!!!!</strong></p>
+                <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+                </ul>
+            </div>
+        @endif
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
     </main>
 @endsection

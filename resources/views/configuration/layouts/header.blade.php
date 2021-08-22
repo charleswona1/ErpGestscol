@@ -24,9 +24,9 @@
           <button class="mdc-button mdc-menu-button">
             <span class="d-flex align-items-center">
               <span class="figure">
-                <img src="{{ asset('assets1/images/faces/face1.jpg') }}" alt="user" class="user">
+                <img src="/assets1/images/faces/avatar.jpg" alt="user" class="user">
               </span>
-              <span class="user-name">Gilles Fabrizio ZANETTIN</span>
+              <span class="user-name">{{auth()->guard('users')->user()->nom }}</span>
             </span>
           </button>
           <div class="mdc-menu mdc-menu-surface" tabindex="-1">
@@ -41,10 +41,18 @@
               </li>
               <li class="mdc-list-item" role="menuitem">
                 <div class="item-thumbnail item-thumbnail-icon-only">
-                  <i class="mdi mdi-settings-outline text-primary"></i>                      
+                    <i class="mdi mdi-settings-outline text-primary"></i>
                 </div>
                 <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                  <h6 class="item-subject font-weight-normal">D&eacute;connexion</h6>
+                    <a class="dropdown-item" onclick="if(confirm('êtes-vous sure de vouloir vous déconnecter ??')){
+                        $('#logout-form').submit();
+                    }">
+                        <h6 class="item-subject font-weight-normal">D&eacute;connexion</h6>
+                    </a>
+                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST"
+                        class="d-none">
+                        @csrf
+                    </form>
                 </div>
               </li>
             </ul>

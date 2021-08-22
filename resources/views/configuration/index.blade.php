@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="assets1/css/demo/style.css">
         <!-- End layout styles -->
         <link rel="shortcut icon" href="assets/images/favicon.png" />
+        <link rel="stylesheet" href="/css/bootstrap.css">
       </head>
 <body>
 <script src="assets/js/preloader.js"></script>
@@ -26,45 +27,65 @@
               <div class="stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-1-tablet"></div>
               <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-6-tablet">
                 <div class="mdc-card">
-                  <form>
+                  @if($errors->any())
+                    <div class="alert alert-danger">
+                      <p><strong>erreur!!!!</strong></p>
+                      <ul>
+                        @foreach($errors->all() as $error)
+                          <li>{{$error}}</li>
+                        @endforeach
+                      </ul>
+                    </div>
+                  @endif
+                  @if(session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
+                  @endif
+                  <form class='cntt-wrapper' method="POST" action="{{ route('user.authentification') }}" id="form_user">
+                    @csrf
                     <div class="mdc-layout-grid">
                       <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                           <div class="mdc-text-field w-100">
-                            <input class="mdc-text-field__input" id="text-field-hero-input">
+                            <input class="mdc-text-field__input @error('login') is-invalid @enderror" id="text-field-hero-input" name="login" value="{{ old('login') }}" required autocomplete="login" autofocus>
                             <div class="mdc-line-ripple"></div>
                             <label for="text-field-hero-input" class="mdc-floating-label">Login</label>
                           </div>
+                          @error('login')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
                         </div>
                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                           <div class="mdc-text-field w-100">
-                            <input class="mdc-text-field__input" type="password" id="text-field-hero-input">
+                            <input class="mdc-text-field__input @error('password') is-invalid @enderror" type="password" id="text-field-hero-input" name="password">
                             <div class="mdc-line-ripple"></div>
                             <label for="text-field-hero-input" class="mdc-floating-label">Mots de Passe</label>
                           </div>
+                          
+                              @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                                </span>
+                              @enderror
                         </div>
 						<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                           <div class="mdc-text-field w-100">
                             <div class="mdc-select demo-width-class" data-mdc-auto-init="MDCSelect">
-							  <input type="hidden" name="enhanced-select">
+							  <input type="hidden" name="etablissement" id="etablissement">
 							  <i class="mdc-select__dropdown-icon"></i>
 							  <div class="mdc-select__selected-text"></div>
 							  <div class="mdc-select__menu mdc-menu-surface demo-width-class">
 								<ul class="mdc-list">
 								  <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true">
 								  </li>
-								  <li class="mdc-list-item" data-value="grains">
-									Coll&egrave;ge Francois Xavier VOGT
-								  </li>
-								  <li class="mdc-list-item" data-value="vegetables">
-									Institut Victor Hugo
-								  </li>
-								  <li class="mdc-list-item" data-value="grains">
-									Coll&egrave;ge de la Retraite
-								  </li>
-								  <li class="mdc-list-item" data-value="vegetables">
-									Ecole Sainte Th&eacute;cr&egrave;se de Mballa IV
-								  </li>
+                  @foreach($ecoles as $ecole)
+                    <li class="mdc-list-item" data-value="{{$ecole->id_etablissement}}">
+                      {{$ecole->nom}}
+                    </li>
+                  @endforeach
 								</ul>
 							  </div>
 							  <span class="mdc-floating-label">Etablissement</span>
@@ -98,7 +119,8 @@
                           <a href="#">Mots de passe oubli&eacute;</a>
                         </div>
                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                          <a href="/configuration/dashboard" class="mdc-button mdc-button--dark w-100">
+                          <a class="mdc-button mdc-button--dark w-100" onclick="event.preventDefault();
+                                                     document.getElementById('form_user').submit();">
                             Se connecter
                           </a>
                         </div>

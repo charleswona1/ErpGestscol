@@ -17,6 +17,16 @@ Route::get('/', function () {
     return view('administration.login');
 });
 
+/** admin login */
+    Route::get('/', [App\Http\Controllers\AdministrationController::class, 'adminLogin1'])->name('admin.login');
+        
+    Route::post('/', [App\Http\Controllers\AdministrationController::class, 'adminLogin'])->name('admin.authentification');
+
+    Route::post('/admin/register', [App\Http\Controllers\AdministrationController::class, 'adminRegister'])->name('admin.register');
+
+    Route::post('/admin/logout', [App\Http\Controllers\AdministrationController::class, 'adminLogout'])->name('admin.logout');
+/** */
+
 Route::get('/administration/home', 'App\Http\Controllers\HomeController@index')->middleware('auth');
 
 Route::get('/administrateur', [App\Http\Controllers\AdministrationController::class, 'getAcceuilAdmin'])->name('administration.admin')->middleware('auth');
@@ -36,47 +46,8 @@ Route::get('/administrateur/conf_param', [App\Http\Controllers\AdministrationCon
 Route::post('/administrateur/save_licence', [App\Http\Controllers\AdministrationController::class, 'save_licence'])->name('admin.save_licence')->middleware('auth');
 Route::post('/administrateur/modifier_licence', [App\Http\Controllers\AdministrationController::class, 'modifier_licence'])->name('admin.modifier_licence')->middleware('auth');
 
-Route::get('/utilisateur/enregistrer', [App\Http\Controllers\UserController::class, 'createUser'])->name('user.add');
-Route::get('/utilisateur/connecter', [App\Http\Controllers\UserController::class, 'connectUser'])->name('user.connect');
-Route::post('/utilisateur/sauvegarder', [App\Http\Controllers\UserController::class, 'saveUser'])->name('user.save');
-Route::get('/utilisateur/authentification', [App\Http\Controllers\UserController::class, 'authUser'])->name('user.auth');
-Route::get('/utilisateur/usr', [App\Http\Controllers\UserController::class, 'getUser'])->name('user.getUser');
-Route::get('/utilisateur/list', [App\Http\Controllers\UserController::class, 'listUser'])->name('user.list');
-Route::get('/utilisateur/groupe', [App\Http\Controllers\UserController::class, 'groupUser'])->name('user.group');
-Route::get('/utilisateur/tableauBord', [App\Http\Controllers\UserController::class, 'UserTb'])->name('user.tb');
-
-
-Route::get('/eleve/authenfication', [App\Http\Controllers\EleveController::class, 'authEleve'])->name('eleve.auth');
-Route::get('/eleve/addEleve', [App\Http\Controllers\EleveController::class, 'addEleve'])->name('eleve.add');
-Route::post('/eleve/ajoutEleve', [App\Http\Controllers\EleveController::class, 'ajoutEleve'])->name('eleve.ajout');
-
-Route::get('/enseignant/addEnseignant', [App\Http\Controllers\EnseignantController::class, 'addEnseignant'])->name('enseignant.add');
-
-Route::get('/licence', [App\Http\Controllers\LicenceController::class, 'getLicence'])->name('licence.get');
-Route::post('/licence/ajoutLicence', [App\Http\Controllers\LicenceController::class, 'ajoutLicence'])->name('licence.ajout');
-Route::post('/licence/modifLicence', [App\Http\Controllers\LicenceController::class, 'modifLicence'])->name('licence.modif');
-Route::post('/licence/supprimerLicence', [App\Http\Controllers\LicenceController::class, 'supLicence'])->name('licence.sup');
-
-Route::get('/etablissement', [App\Http\Controllers\EtablissementController::class, 'getEtablissement'])->name('etablissement.get');
-Route::get('/etablissement/showEtablissement/{id}', [App\Http\Controllers\EtablissementController::class, 'showEtablissement'])->name('etablissement.show');
-Route::get('/etablissement/EditEtablissement/{id}', [App\Http\Controllers\EtablissementController::class, 'EditEtablissement'])->name('etablissement.edit');
-Route::post('/etablissement/ajoutEtablissement', [App\Http\Controllers\EtablissementController::class, 'ajoutEtablissement'])->name('etablissement.ajout');
-Route::post('/etablissement/modifEtablissement', [App\Http\Controllers\EtablissementController::class, 'modifEtablissement'])->name('etablissement.modif');
-Route::post('/etablissement/supprimerEtablissement', [App\Http\Controllers\EtablissementController::class, 'supprimerEtablissement'])->name('etablissement.supp');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/gestscol', [App\Http\Controllers\HomeController::class, 'home_gestscol'])->name('gestscol.home');
-Route::get('/configuration', [App\Http\Controllers\HomeController::class, 'home_configuration'])->name('configuration.home');
-
-
-Route::post('/classe/ajouterClasse', [App\Http\Controllers\ClasseController::class, 'store'])->name('classe.store');
-
 
 /** ROUTES CONFIGURATION */
-
-Route::get('/configuration', function () {
-    return view('configuration.index');
-});
 
 Route::get('/configuration/dashboard', function () {
     return view('configuration.content.dashboard');
@@ -170,3 +141,5 @@ Route::get('/configuration/module', function () {
     return view('configuration.content.module.module');
 });
 /**end */
+
+require __DIR__.'/user.php';
