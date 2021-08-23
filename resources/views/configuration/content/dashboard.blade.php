@@ -65,7 +65,7 @@
                 <div>
                     <i class="material-icons refresh-icon">refresh</i>
                     <i class="material-icons options-icon ml-2">more_vert</i>
-                    
+
                 </div>
               </div>
               <div class="d-block d-sm-flex justify-content-between align-items-center">
@@ -83,7 +83,7 @@
                         <li class="mdc-list-item" role="menuitem">
                           <h6 class="item-subject font-weight-normal">Toutes</h6>
                         </li>
-                       
+
                         <!-- <li class="mdc-list-divider"></li>
                         <li class="mdc-list-item" role="menuitem">
                           <h6 class="item-subject font-weight-normal">Save As..</h6>
@@ -127,17 +127,17 @@
                                 <td style="font-size:0.9em; font-weight:bold;">15</td>
                                 <td style="font-size:0.9em; font-weight:bold;">14</td>
                                 <td style="font-size:0.9em; font-weight:bold;">01</td>
-                                
+
                             </tr>
                         </tfoot>
                       </table>
                     </div>
                 </div>
-                <!--<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet"> 
+                <!--<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
                   <div id="revenue-map" class="revenue-world-map"></div>
                 </div> -->
               </div>
-            </div> 
+            </div>
           </div>
         <!-- <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
             <div class="mdc-card bg-success text-white">
@@ -177,8 +177,8 @@
                 </div>
             </div>
           </div>
-      
-         
+
+
         </div>
       </div>
     </main>

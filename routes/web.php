@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 /** admin login */
     Route::get('/', [App\Http\Controllers\AdministrationController::class, 'adminLogin1'])->name('admin.login');
-        
+
     Route::post('/', [App\Http\Controllers\AdministrationController::class, 'adminLogin'])->name('admin.authentification');
 
     Route::post('/admin/register', [App\Http\Controllers\AdministrationController::class, 'adminRegister'])->name('admin.register');
@@ -46,4 +46,104 @@ Route::get('/administrateur/conf_param', [App\Http\Controllers\AdministrationCon
 Route::post('/administrateur/save_licence', [App\Http\Controllers\AdministrationController::class, 'save_licence'])->name('admin.save_licence')->middleware('auth');
 Route::post('/administrateur/modifier_licence', [App\Http\Controllers\AdministrationController::class, 'modifier_licence'])->name('admin.modifier_licence')->middleware('auth');
 
+<<<<<<< HEAD
 require __DIR__.'/user.php';
+=======
+
+/** ROUTES CONFIGURATION */
+
+Route::get('/configuration/dashboard', function () {
+    return view('configuration.content.dashboard');
+});
+
+/**Etablissement */
+
+Route::get('/configuration/profilE/{id}', [App\Http\Controllers\EtablissementController::class, 'profilEtablissement']);
+Route::post('/configuration/addDocument', [App\Http\Controllers\DocumentController::class, 'addDocument'])->name('document.ajout');
+
+
+Route::get('/configuration/editProfil', function () {
+    return view('configuration.content.etablissement.editProfil');
+});
+
+Route::get('/configuration/matricule', function () {
+    return view('configuration.content.etablissement.matricule');
+});
+
+Route::get('/configuration/editMatricule', function () {
+    return view('configuration.content.etablissement.editMatricule');
+});
+
+Route::get('/configuration/periode', function () {
+    return view('configuration.content.etablissement.periode');
+});
+
+Route::get('/configuration/editPeriode', function () {
+    return view('configuration.content.etablissement.editPeriode');
+});
+/**end */
+
+/**Utilisateur */
+Route::get('/configuration/utilisateur/profilU', function () {
+    return view('configuration.content.utilisateurs.profil');
+});
+
+Route::get('/configuration/utilisateur/editProfilU', function () {
+    return view('configuration.content.utilisateurs.editProfil');
+});
+
+Route::get('/configuration/utilisateur/groupe', function () {
+    return view('configuration.content.utilisateurs.groupes');
+});
+
+Route::get('/configuration/utilisateur/editGroupe', function () {
+    return view('configuration.content.utilisateurs.editGroupe');
+});
+
+Route::get('/configuration/utilisateur/parametrage', function () {
+    return view('configuration.content.utilisateurs.parametrage');
+});
+
+Route::get('/configuration/utilisateur/editParametrage', function () {
+    return view('configuration.content.utilisateurs.editParametrage');
+});
+/**end */
+
+/** Documentations */
+Route::get('/configuration/documentation/documents/{id}',  [App\Http\Controllers\DocumentController::class, 'getDocument']);
+Route::get('/configuration/documentation/deleteDocument/{id}',  [App\Http\Controllers\DocumentController::class, 'deleteDocument'])->name('delete.docu');
+
+Route::get('/configuration/documentation/editDocuments', function () {
+    return view('configuration.content.documentations.editDocument');
+});
+
+Route::get('/configuration/documentation/entete', function () {
+    return view('configuration.content.documentations.entete');
+});
+
+Route::get('/configuration/documentation/editEntete', function () {
+    return view('configuration.content.documentations.editEntete');
+});
+
+
+Route::get('/configuration/documentation/signature', function () {
+    return view('configuration.content.documentations.signature');
+});
+
+Route::get('/configuration/documentation/editSignature', function () {
+    return view('configuration.content.documentations.editSignature');
+});
+/**end */
+
+/**other menu */
+Route::get('/configuration/annee', function () {
+    return view('configuration.content.annee.annee');
+});
+
+Route::get('/configuration/module', function () {
+    return view('configuration.content.module.module');
+});
+/**end */
+
+require __DIR__.'/user.php';
+>>>>>>> 679d1e2865839cd4573d6cd8d580bfb71d1922ca

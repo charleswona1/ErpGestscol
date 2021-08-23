@@ -19,7 +19,7 @@
         @yield('style')
         <link rel="stylesheet" href="{{ asset('assets1/css/demo/style.css') }}">
         <!-- End layout styles -->
-      
+
         <link rel="shortcut icon" href="{{ asset('assets1/images/favicon.png') }}" />
         </head>
 <body>
@@ -32,8 +32,7 @@
     @yield('content')
     </div>
 
-
-</div> 
+</div>
 </body>
 <script src="{{ asset('assets1/js/preloader.js') }}"></script>
 
@@ -52,4 +51,5 @@
 <script src="{{ asset('assets1/js/dashboard.js') }}"></script>
 
 @yield('script')
+
 </html>

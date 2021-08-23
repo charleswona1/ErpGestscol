@@ -17,7 +17,7 @@
       </head>
 <body>
 <script src="assets/js/preloader.js"></script>
-    
+
 <div class="body-wrapper">
     <div class="main-wrapper">
       <div class="page-wrapper full-page-wrapper d-flex align-items-center justify-content-center">
@@ -64,7 +64,7 @@
                             <div class="mdc-line-ripple"></div>
                             <label for="text-field-hero-input" class="mdc-floating-label">Mots de Passe</label>
                           </div>
-                          
+
                               @error('password')
                                 <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
@@ -93,7 +93,7 @@
                           </div>
                         </div>
 						<div class=class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-							
+
 							</div>
 						  </div>
                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
@@ -119,8 +119,9 @@
                           <a href="#">Mots de passe oubli&eacute;</a>
                         </div>
                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                          <a class="mdc-button mdc-button--dark w-100" onclick="event.preventDefault();
-                                                     document.getElementById('form_user').submit();">
+                          <a class="mdc-button mdc-button--dark w-100"
+                            onclick="event.preventDefault();
+                            document.getElementById('form_user').submit();">
                             Se connecter
                           </a>
                         </div>

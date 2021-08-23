@@ -8,15 +8,16 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 	/** user login for configuration */
 		Route::get('/configuration', [App\Http\Controllers\ConfigurationController::class, 'userLogin1'])->name('user.login');
-					
+
 		Route::post('/configuration', [App\Http\Controllers\ConfigurationController::class, 'userLogin'])->name('user.authentification');
 
-		Route::get('/configuration/home', [App\Http\Controllers\ConfigurationController::class, 'configurationHome'])->name('user.home');
+		Route::get('/configuration/home/{id}', [App\Http\Controllers\ConfigurationController::class, 'configurationHome'])->name('user.home');
 
 		Route::post('/user/register', [App\Http\Controllers\ConfigurationController::class, 'userRegister'])->name('user.register');
 
 		Route::post('/user/logout', [App\Http\Controllers\ConfigurationController::class, 'userLogout'])->name('user.logout');
 	/** */
+<<<<<<< HEAD
 
 	/** ROUTES CONFIGURATION */
 
@@ -128,3 +129,5 @@ Route::get('/configuration/module', function () {
     return view('configuration.content.module.module');
 });
 /**end */
+=======
+>>>>>>> 679d1e2865839cd4573d6cd8d580bfb71d1922ca
