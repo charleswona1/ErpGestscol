@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class profil extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'id_profil';
+    protected $table = "profil";
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

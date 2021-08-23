@@ -1,7 +1,10 @@
-<?php 
+<?php
 
-	use Illuminate\Support\Facades\Route;
-	use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+use App\Models\etablissement;
+use App\Models\profil;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 	/** user login for configuration */
 		Route::get('/configuration', [App\Http\Controllers\ConfigurationController::class, 'userLogin1'])->name('user.login');
@@ -14,3 +17,114 @@
 
 		Route::post('/user/logout', [App\Http\Controllers\ConfigurationController::class, 'userLogout'])->name('user.logout');
 	/** */
+
+	/** ROUTES CONFIGURATION */
+
+Route::get('/configuration/dashboard', function () {
+    return view('configuration.content.dashboard');
+});
+
+/**Etablissement */
+Route::get('/configuration/profilE', function () {
+	$etablissement = etablissement::find(Session::get('idEtabl'));
+	$modules = $etablissement->modules;
+    return view('configuration.content.etablissement.profil', $data = ['etablissement'=>$etablissement, 'modules'=>$modules]);
+});
+
+Route::get('/configuration/editProfil', function () {
+    return view('configuration.content.etablissement.editProfil');
+});
+
+Route::get('/configuration/matricule', function () {
+    return view('configuration.content.etablissement.matricule');
+});
+
+Route::get('/configuration/editMatricule', function () {
+    return view('configuration.content.etablissement.editMatricule');
+});
+
+Route::get('/configuration/periode', function () {
+    return view('configuration.content.etablissement.periode');
+});
+
+Route::get('/configuration/editPeriode', function () {
+    return view('configuration.content.etablissement.editPeriode');
+});
+/**end */
+
+/**Utilisateur */
+Route::get('/configuration/utilisateur/profilU', function () {
+    $users = etablissement::find(Session::get('idEtabl'))->users()->select('id_profil', 'nom', 'login', 'creation_date', 'enabled', 'telephone', 'users.id_user')->get();
+    $resultat = array();
+    foreach ($users as $user) {
+        $res = array();
+        $profil = profil::find($user->id_profil);
+        $res['nom'] = $user->nom;
+        $res['login'] = $user->login;
+        $res['date'] = $user->creation_date;
+        $res['enable'] = $user->enabled;
+        $res['telephone'] = $user->telephone;
+        $res['groupe'] = $profil->libelle;
+
+        $resultat[] = $res;
+    }
+    return view('configuration.content.utilisateurs.profil', $data = ["users" => $resultat]);
+});
+
+Route::get('/configuration/utilisateur/editProfilU', function () {
+    return view('configuration.content.utilisateurs.editProfil');
+});
+
+Route::get('/configuration/utilisateur/groupe', function () {
+    return view('configuration.content.utilisateurs.groupes');
+});
+
+Route::get('/configuration/utilisateur/editGroupe', function () {
+    return view('configuration.content.utilisateurs.editGroupe');
+});
+
+Route::get('/configuration/utilisateur/parametrage', function () {
+    return view('configuration.content.utilisateurs.parametrage');
+});
+
+Route::get('/configuration/utilisateur/editParametrage', function () {
+    return view('configuration.content.utilisateurs.editParametrage');
+});
+/**end */
+
+/** Documentations */
+Route::get('/configuration/documentation/documents', function () {
+    return view('configuration.content.documentations.document');
+});
+
+Route::get('/configuration/documentation/editDocuments', function () {
+    return view('configuration.content.documentations.editDocument');
+});
+
+Route::get('/configuration/documentation/entete', function () {
+    return view('configuration.content.documentations.entete');
+});
+
+Route::get('/configuration/documentation/editEntete', function () {
+    return view('configuration.content.documentations.editEntete');
+});
+
+
+Route::get('/configuration/documentation/signature', function () {
+    return view('configuration.content.documentations.signature');
+});
+
+Route::get('/configuration/documentation/editSignature', function () {
+    return view('configuration.content.documentations.editSignature');
+});
+/**end */
+
+/**other menu */
+Route::get('/configuration/annee', function () {
+    return view('configuration.content.annee.annee');
+});
+
+Route::get('/configuration/module', function () {
+    return view('configuration.content.module.module');
+});
+/**end */

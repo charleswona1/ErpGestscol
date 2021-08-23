@@ -38,7 +38,7 @@ class ConfigurationController extends Controller
 
         Auth::guard('users')->login($model);
 
-       Session::put('idEtabl', $request->ecole);
+       Session::put('idEtabl', $request->etablissement);
         
 
         return redirect()->route('user.home')->with('success', 'Bienvenu Mr ou Mme '.$model->nom);

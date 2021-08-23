@@ -10,15 +10,6 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-
-
-
-
-
-
-
-
-
                     <div class="fab">
                         <button
                             class="mdc-button mdc-menu-button mdc-button--dark icon-button secondary-filled-button fab-icon">
@@ -246,192 +237,72 @@
                                         </tr>
                                     </thead>
                                     <tbody class="mdc-data-table__content">
-                                        <tr data-row-id="u0" class="mdc-data-table__row">
-                                            <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
-                                                <div class="mdc-checkbox mdc-data-table__row-checkbox">
-                                                    <input type="checkbox" class="mdc-checkbox__native-control"
-                                                        aria-labelledby="u0" />
-                                                    <div class="mdc-checkbox__background">
-                                                        <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                                                            <path class="mdc-checkbox__checkmark-path" fill="none"
-                                                                d="M1.73,12.91 8.1,19.28 22.79,4.59" />
-                                                        </svg>
-                                                        <div class="mdc-checkbox__mixedmark"></div>
+                                        @foreach($users as $user)
+                                            <tr data-row-id="u0" class="mdc-data-table__row">
+                                                <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
+                                                    <div class="mdc-checkbox mdc-data-table__row-checkbox">
+                                                        <input type="checkbox" class="mdc-checkbox__native-control"
+                                                            aria-labelledby="u0" />
+                                                        <div class="mdc-checkbox__background">
+                                                            <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                                                <path class="mdc-checkbox__checkmark-path" fill="none"
+                                                                    d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+                                                            </svg>
+                                                            <div class="mdc-checkbox__mixedmark"></div>
+                                                        </div>
+                                                        <div class="mdc-checkbox__ripple"></div>
                                                     </div>
-                                                    <div class="mdc-checkbox__ripple"></div>
-                                                </div>
-                                            </td>
-                                            <td class="mdc-data-table__cell" scope="row" id="u0">
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
+                                                </td>
+                                                <td class="mdc-data-table__cell" scope="row" id="u0">
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
 
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading font-weight-bolder">Père Georges
-                                                                LISOME
-                                                                &nbsp;<i class="fa fa-envelope-o text-link"
-                                                                    style="cursor:pointer;" aria-hidden="true"></i>
-                                                                <!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
-                                                                &nbsp;<i class="fa fa-whatsapp text-link"
-                                                                    style="cursor:pointer;" aria-hidden="true"></i>
-                                                                &nbsp;<i class="fa fa-skype text-link"
-                                                                    style="cursor:pointer;" aria-hidden="true"></i>
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading font-weight-bolder">{{$user['nom']}}
+                                                                    &nbsp;<i class="fa fa-envelope-o text-link"
+                                                                        style="cursor:pointer;" aria-hidden="true"></i>
+                                                                    <!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
+                                                                    &nbsp;<i class="fa fa-whatsapp text-link"
+                                                                        style="cursor:pointer;" aria-hidden="true"></i>
+                                                                    &nbsp;<i class="fa fa-skype text-link"
+                                                                        style="cursor:pointer;" aria-hidden="true"></i>
+                                                                </div>
                                                             </div>
-                                                            <div class="widget-subheading text-muted opacity-7">Principal
+                                                        </div>
+                                                </td>
+                                                <td class="mdc-data-table__cell">{{$user['login']}}</td>
+                                                <td class="mdc-data-table__cell">{{$user['telephone']}}</td>
+                                                <td class="mdc-data-table__cell">{{$user['date']}}</td>
+                                                <td class="mdc-data-table__cell">{{$user['groupe']}}</td>
+                                                <!-- <td class="mdc-data-table__cell mdc-data-table__cell--numeric">Tous</td> -->
+                                                <td class="mdc-data-table__cell">
+                                                    <div class="mdc-switch mdc-switch--success" data-mdc-auto-init="MDCSwitch">
+                                                        <div class="mdc-switch__track"></div>
+                                                        <div class="mdc-switch__thumb-underlay">
+                                                            <div class="mdc-switch__thumb">
+                                                                @if($user['groupe'] == 1)
+                                                                    <input type="checkbox" id="basic-switch"
+                                                                    class="mdc-switch__native-control" role="switch" checked>
+                                                                @else
+                                                                    <input type="checkbox" id="basic-switch"
+                                                                    class="mdc-switch__native-control" role="switch">
+                                                                @endif
                                                             </div>
                                                         </div>
-                                                    </div>
-                                            </td>
-                                            <td class="mdc-data-table__cell">Georges</td>
-                                            <td class="mdc-data-table__cell">+237 691 87 74 03</td>
-                                            <td class="mdc-data-table__cell">16-06-2021 00:14</td>
-                                            <td class="mdc-data-table__cell">Administrateur</td>
-                                            <!-- <td class="mdc-data-table__cell mdc-data-table__cell--numeric">Tous</td> -->
-                                            <td class="mdc-data-table__cell">
-                                                <div class="mdc-switch mdc-switch--success" data-mdc-auto-init="MDCSwitch">
-                                                    <div class="mdc-switch__track"></div>
-                                                    <div class="mdc-switch__thumb-underlay">
-                                                        <div class="mdc-switch__thumb">
-                                                            <input type="checkbox" id="basic-switch"
-                                                                class="mdc-switch__native-control" role="switch" checked>
-                                                        </div>
-                                                    </div>
-                                            </td>
-                                            <td class="mdc-data-table__cell">
-                                                <a href="utilisateur-profil.html"><i
-                                                        class="material-icons mdc-text-field__icon"
-                                                        style="color:black; font-size:1.5em;">visibility</i></a>
-                                                        <a href="/configuration/utilisateur/editProfilU"><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">edit</i></a>
+                                                </td>
+                                                <td class="mdc-data-table__cell">
+                                                    <a href="utilisateur-profil.html"><i
+                                                            class="material-icons mdc-text-field__icon"
+                                                            style="color:black; font-size:1.5em;">visibility</i></a>
+                                                            <a href="/configuration/utilisateur/editProfilU"><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">edit</i></a>
 
-                                                <a href=""><i class="material-icons mdc-text-field__icon"
-                                                        style="color:black; font-size:1.5em;">print</i></a>
-                                                <a href=""><i class="material-icons mdc-text-field__icon"
-                                                        style="color:red; font-size:1.5em;">delete</i></a>
-                                            </td>
-                                        </tr>
-
-                                        <tr data-row-id="u0" class="mdc-data-table__row">
-                                            <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
-                                                <div class="mdc-checkbox mdc-data-table__row-checkbox">
-                                                    <input type="checkbox" class="mdc-checkbox__native-control"
-                                                        aria-labelledby="u0" />
-                                                    <div class="mdc-checkbox__background">
-                                                        <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                                                            <path class="mdc-checkbox__checkmark-path" fill="none"
-                                                                d="M1.73,12.91 8.1,19.28 22.79,4.59" />
-                                                        </svg>
-                                                        <div class="mdc-checkbox__mixedmark"></div>
-                                                    </div>
-                                                    <div class="mdc-checkbox__ripple"></div>
-                                                </div>
-                                            </td>
-                                            <td class="mdc-data-table__cell" scope="row" id="u1">
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading font-weight-bolder">Romeo NKE
-                                                                &nbsp;<i class="fa fa-envelope-o text-link"
-                                                                    style="cursor:pointer;" aria-hidden="true"></i>
-                                                                <!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
-                                                                &nbsp;<i class="fa fa-whatsapp text-link"
-                                                                    style="cursor:pointer;" aria-hidden="true"></i>
-                                                                &nbsp;<i class="fa fa-skype text-link"
-                                                                    style="cursor:pointer;" aria-hidden="true"></i>
-                                                            </div>
-                                                            <div class="widget-subheading text-muted opacity-7">Responsable
-                                                                Informatique</div>
-                                                        </div>
-                                                    </div>
-                                            </td>
-                                            <td class="mdc-data-table__cell">rom64</td>
-                                            <td class="mdc-data-table__cell">+237 655 56 04 04</td>
-                                            <td class="mdc-data-table__cell">05-08-2021 08:42</td>
-                                            <td class="mdc-data-table__cell">Administrateur</td>
-                                            <!-- <td class="mdc-data-table__cell mdc-data-table__cell--numeric">Tous</td> -->
-                                            <td class="mdc-data-table__cell">
-                                                <div class="mdc-switch mdc-switch--success" data-mdc-auto-init="MDCSwitch">
-                                                    <div class="mdc-switch__track"></div>
-                                                    <div class="mdc-switch__thumb-underlay">
-                                                        <div class="mdc-switch__thumb">
-                                                            <input type="checkbox" id="basic-switch"
-                                                                class="mdc-switch__native-control" role="switch" checked>
-                                                        </div>
-                                                    </div>
-                                            </td>
-                                            <td class="mdc-data-table__cell">
-                                                <a href=""><i class="material-icons mdc-text-field__icon"
-                                                        style="color:black; font-size:1.5em;">visibility</i></a>
-                                                <a href="/configuration/utilisateur/editProfilU"><i
-                                                        class="material-icons mdc-text-field__icon"
-                                                        style="color:black; font-size:1.5em;">edit</i></a>
-                                                <a href=""><i class="material-icons mdc-text-field__icon"
-                                                        style="color:black; font-size:1.5em;">print</i></a>
-                                                <a href=""><i class="material-icons mdc-text-field__icon"
-                                                        style="color:red; font-size:1.5em;">delete</i></a>
-                                            </td>
-                                        </tr>
-                                        <tr data-row-id="u0" class="mdc-data-table__row">
-                                            <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
-                                                <div class="mdc-checkbox mdc-data-table__row-checkbox">
-                                                    <input type="checkbox" class="mdc-checkbox__native-control"
-                                                        aria-labelledby="u0" />
-                                                    <div class="mdc-checkbox__background">
-                                                        <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                                                            <path class="mdc-checkbox__checkmark-path" fill="none"
-                                                                d="M1.73,12.91 8.1,19.28 22.79,4.59" />
-                                                        </svg>
-                                                        <div class="mdc-checkbox__mixedmark"></div>
-                                                    </div>
-                                                    <div class="mdc-checkbox__ripple"></div>
-                                                </div>
-                                            </td>
-                                            <td class="mdc-data-table__cell" scope="row" id="u1">
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading font-weight-bolder">Salomé NGA MANI
-                                                                &nbsp;<i class="fa fa-envelope-o text-link"
-                                                                    style="cursor:pointer;" aria-hidden="true"></i>
-                                                                <!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
-                                                                &nbsp;<i class="fa fa-whatsapp text-link"
-                                                                    style="cursor:pointer;" aria-hidden="true"></i>
-                                                                &nbsp;<i class="fa fa-skype text-link"
-                                                                    style="cursor:pointer;" aria-hidden="true"></i>
-                                                            </div>
-                                                            <div class="widget-subheading text-muted opacity-7">Sécrétaire
-                                                                du Principal</div>
-                                                        </div>
-                                                    </div>
-                                            </td>
-                                            <td class="mdc-data-table__cell">saloms85</td>
-                                            <td class="mdc-data-table__cell">+237 678 15 24 75</td>
-                                            <td class="mdc-data-table__cell">02-08-2021 18:06</td>
-                                            <td class="mdc-data-table__cell">Sécrétaire</td>
-                                            <!-- <td class="mdc-data-table__cell mdc-data-table__cell--numeric">Tous</td> -->
-                                            <td class="mdc-data-table__cell">
-                                                <div class="mdc-switch mdc-switch--success" data-mdc-auto-init="MDCSwitch">
-                                                    <div class="mdc-switch__track"></div>
-                                                    <div class="mdc-switch__thumb-underlay">
-                                                        <div class="mdc-switch__thumb">
-                                                            <input type="checkbox" id="basic-switch"
-                                                                class="mdc-switch__native-control" role="switch">
-                                                        </div>
-                                                    </div>
-                                            </td>
-                                            <td class="mdc-data-table__cell">
-                                                <a href=""><i class="material-icons mdc-text-field__icon"
-                                                        style="color:black; font-size:1.5em;">visibility</i></a>
-                                                <a href="/configuration/utilisateur/editProfilU"><i
-                                                        class="material-icons mdc-text-field__icon"
-                                                        style="color:black; font-size:1.5em;">edit</i></a>
-                                                <a href=""><i class="material-icons mdc-text-field__icon"
-                                                        style="color:black; font-size:1.5em;">print</i></a>
-                                                <a href=""><i class="material-icons mdc-text-field__icon"
-                                                        style="color:red; font-size:1.5em;">delete</i></a>
-                                            </td>
-                                        </tr>
-
+                                                    <a href=""><i class="material-icons mdc-text-field__icon"
+                                                            style="color:black; font-size:1.5em;">print</i></a>
+                                                    <a href=""><i class="material-icons mdc-text-field__icon"
+                                                            style="color:red; font-size:1.5em;">delete</i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
 
