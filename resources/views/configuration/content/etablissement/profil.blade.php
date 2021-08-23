@@ -5,22 +5,8 @@
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
                 <div class="mdc-layout-grid__inner">
-
-
-
-
-
-
-
-
-
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <div class="mdc-card p-0">
-
-
-
-
-
                             <div class="mdc-card">
                                 <center>
                                     <h6 class="card-title" style="color:grey;">Fiche de l'établissement </h6>
@@ -31,7 +17,7 @@
                                         <div
                                             class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2-desktop">
                                             <div>
-                                                <a href="index.html" class="brand-logo">
+                                                <a href="" class="brand-logo">
                                                     <img src="{{ asset('assets1/images/faces/logo.jpg') }}" height="180px" width="180px"
                                                         alt="user" class="user">
                                                 </a>
@@ -40,6 +26,7 @@
                                                 </p>
                                             </div>
                                         </div>
+
                                         <div
                                             class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-5-desktop">
                                             <div class="table-responsive">
@@ -67,7 +54,7 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="mdc-data-table__cell">Collège François Xavier VOGT
+                                                            <td class="mdc-data-table__cell">{{ $etablissement[0]->nom }}
                                                             </td>
                                                         </tr>
                                                         <tr data-row-id="u0" class="mdc-data-table__row">
@@ -92,7 +79,7 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="mdc-data-table__cell">Père Georges Lissoumé</td>
+                                                            <td class="mdc-data-table__cell">{{ $etablissement[0]->resp1 }}</td>
                                                         </tr>
                                                         <tr data-row-id="u0" class="mdc-data-table__row">
                                                             <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -116,7 +103,7 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="mdc-data-table__cell">CFXV</td>
+                                                            <td class="mdc-data-table__cell">{{ $etablissement[0]->abreviation }}</td>
                                                         </tr>
                                                         <tr data-row-id="u0" class="mdc-data-table__row">
                                                             <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -140,7 +127,7 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="mdc-data-table__cell">Secondaire</td>
+                                                            <td class="mdc-data-table__cell">{{ $etablissement[0]->type_etablissement }}</td>
                                                         </tr>
                                                         <tr data-row-id="u0" class="mdc-data-table__row">
                                                             <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -164,7 +151,7 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="mdc-data-table__cell">Yaoundé</td>
+                                                            <td class="mdc-data-table__cell">{{ $etablissement[0]->ville }}</td>
                                                         </tr>
                                                         <tr data-row-id="u0" class="mdc-data-table__row">
                                                             <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -188,7 +175,7 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="mdc-data-table__cell">+237 650 02 78 95</td>
+                                                            <td class="mdc-data-table__cell">{{ $etablissement[0]->telephone }}</td>
                                                         </tr>
                                                         <tr data-row-id="u0" class="mdc-data-table__row">
                                                             <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -212,7 +199,7 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="mdc-data-table__cell">contact@college-vogt</td>
+                                                            <td class="mdc-data-table__cell">{{ $etablissement[0]->email }}</td>
                                                         </tr>
                                                         <tr data-row-id="u0" class="mdc-data-table__row">
                                                             <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -237,7 +224,7 @@
                                                                 </div>
                                                             </td>
                                                             <td class="mdc-data-table__cell"><a
-                                                                    href="http://wwww.college-vogt.org">www.college-vogt.org</a>
+                                                                    href="http://wwww.college-vogt.org">{{ $etablissement[0]->site_web }}</a>
                                                             </td>
                                                         </tr>
                                                         <tr data-row-id="u0" class="mdc-data-table__row">
@@ -262,7 +249,7 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="mdc-data-table__cell">Nsimeyong</a></td>
+                                                            <td class="mdc-data-table__cell">{{ $etablissement[0]->localisation }}</a></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -324,7 +311,7 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="mdc-data-table__cell">16-06-2021 00:14</td>
+                                                            <td class="mdc-data-table__cell">{{ $etablissement[0]->creation_date }}</td>
                                                         </tr>
                                                         <tr data-row-id="u0" class="mdc-data-table__row">
                                                             <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -426,10 +413,10 @@
                                                     <section class="mdc-card__supporting-text">
                                                         <div class="template-demo">
 
-                                                            <button
+                                                            {{-- <button
                                                                 class="mdc-button mdc-button--raised icon-button filled-button--secondary">
                                                                 <i class="material-icons mdc-button__icon">delete</i>
-                                                            </button>
+                                                            </button> --}}
                                                             <!--<button class="mdc-button mdc-button--raised icon-button filled-button--success">
                                     <i class="material-icons mdc-button__icon">colorize</i>
                                   </button> -->
@@ -462,24 +449,7 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
                     </div>
-
-
-
-
-
-
-
-
-
-
-
                 </div>
         </main>
         <!-- partial:../../partials/_footer.html -->

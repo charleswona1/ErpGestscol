@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 /** admin login */
     Route::get('/', [App\Http\Controllers\AdministrationController::class, 'adminLogin1'])->name('admin.login');
-        
+
     Route::post('/', [App\Http\Controllers\AdministrationController::class, 'adminLogin'])->name('admin.authentification');
 
     Route::post('/admin/register', [App\Http\Controllers\AdministrationController::class, 'adminRegister'])->name('admin.register');
@@ -54,9 +54,10 @@ Route::get('/configuration/dashboard', function () {
 });
 
 /**Etablissement */
-Route::get('/configuration/profilE', function () {
-    return view('configuration.content.etablissement.profil');
-});
+
+Route::get('/configuration/profilE/{id}', [App\Http\Controllers\EtablissementController::class, 'profilEtablissement']);
+Route::post('/configuration/addDocument', [App\Http\Controllers\DocumentController::class, 'addDocument'])->name('document.ajout');
+
 
 Route::get('/configuration/editProfil', function () {
     return view('configuration.content.etablissement.editProfil');
@@ -106,9 +107,8 @@ Route::get('/configuration/utilisateur/editParametrage', function () {
 /**end */
 
 /** Documentations */
-Route::get('/configuration/documentation/documents', function () {
-    return view('configuration.content.documentations.document');
-});
+Route::get('/configuration/documentation/documents/{id}',  [App\Http\Controllers\DocumentController::class, 'getDocument']);
+Route::get('/configuration/documentation/deleteDocument/{id}',  [App\Http\Controllers\DocumentController::class, 'deleteDocument'])->name('delete.docu');
 
 Route::get('/configuration/documentation/editDocuments', function () {
     return view('configuration.content.documentations.editDocument');

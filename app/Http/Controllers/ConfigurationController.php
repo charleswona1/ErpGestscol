@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -30,7 +31,7 @@ class ConfigurationController extends Controller
             $errors = ['error' => 'Login ou Mot de passe incorrect'];
             return redirect()->back()->withErrors($errors);
         }
-            
+
         if(!Hash::check($request->password, $model->password)){
             $errors = ['error' => 'Login ou Mot de passe incorrect'];
             return redirect()->back()->withErrors($errors);
@@ -38,15 +39,14 @@ class ConfigurationController extends Controller
 
         Auth::guard('users')->login($model);
 
-       Session::put('idEtabl', $request->ecole);
-        
+        Session::put('idEtabl', $request->ecole);
+        Cookie::queue(Cookie::make('name', $request->etablissement));
+        return redirect()->route('user.home',$request->etablissement)->with('success', 'Bienvenu Mr ou Mme '.$model->nom);
 
-        return redirect()->route('user.home')->with('success', 'Bienvenu Mr ou Mme '.$model->nom);
- 
     }
 
     public function userRegister(Request $request){
-        
+
         $request->validate([
             'nom' => ['required', 'string', 'max:255'],
             'login' => ['required', 'unique:admin', 'max:255',  Rule::unique(admin::class),],
@@ -86,7 +86,7 @@ class ConfigurationController extends Controller
         return redirect()->route('user.login')->with('success', 'Déconnexion reussie');
     }
 
-    public function configurationHome(){
-        return view('configuration.content.dashboard');
+    public function configurationHome($id_etablissement){
+        return view('configuration.content.dashboard', compact('id_etablissement'));
     }
 }

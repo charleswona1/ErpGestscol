@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class document extends Model
 {
     use HasFactory;
+    public $guarded = [];
+    public $timestamps = false;
+    protected $table = 'document';
 }

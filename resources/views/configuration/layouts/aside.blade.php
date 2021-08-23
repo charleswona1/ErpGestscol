@@ -2,7 +2,7 @@
     <div class="mdc-drawer__header">
       <a href="/configuration/dashboard" class="brand-logo">
           <center>
-        <img src="{{ asset('assets1/images/configurations.png') }}" height="40px"alt="logo"> 
+        <img src="{{ asset('assets1/images/configurations.png') }}" height="40px"alt="logo">
         <h2 style="font-size:1.8em; color:white;">Configuration</h2>
         </center>
       </a>
@@ -29,7 +29,8 @@
             <div class="mdc-expansion-panel" id="sample-page-submenu">
               <nav class="mdc-list mdc-drawer-submenu">
                 <div class="mdc-list-item mdc-drawer-item">
-                  <a class="mdc-drawer-link" href="/configuration/profilE">
+
+                <a class="mdc-drawer-link" href="/configuration/profilE/{{ Cookie::get('name') }}">
                     Profil
                   </a>
                 </div>
@@ -72,7 +73,7 @@
               </nav>
             </div>
           </div>
-          
+
           <div class="mdc-list-item mdc-drawer-item">
             <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="ui1-sub-menu">
               <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">folder</i>
@@ -82,7 +83,7 @@
             <div class="mdc-expansion-panel" id="ui1-sub-menu">
               <nav class="mdc-list mdc-drawer-submenu">
               <div class="mdc-list-item mdc-drawer-item">
-                  <a class="mdc-drawer-link" href="/configuration/documentation/documents">
+                  <a class="mdc-drawer-link" href="/configuration/documentation/documents/{{ Cookie::get('name') }}">
                     Documents
                   </a>
                 </div>
@@ -99,14 +100,14 @@
               </nav>
             </div>
           </div>
-          
+
           <div class="mdc-list-item mdc-drawer-item">
             <a class="mdc-drawer-link" href="/configuration/annee">
               <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">event_available</i>
               Années Scolaires
             </a>
           </div>
-          
+
           <div class="mdc-list-item mdc-drawer-item">
             <a class="mdc-drawer-link" href="/configuration/module">
               <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">widgets</i>
@@ -201,8 +202,8 @@
         </nav>
       </div>
       <br/>
-      <div class="profile-actions" > 
-              
+      <div class="profile-actions" >
+
        <a href="javascript:;" style="margin:auto; font-size:0.9em; ">D&eacute;connexion</a>
       </div>
      <!-- <div class="mdc-card premium-card">
