@@ -39,9 +39,10 @@ class ConfigurationController extends Controller
 
         Auth::guard('users')->login($model);
 
-        Session::put('idEtabl', $request->ecole);
-        Cookie::queue(Cookie::make('name', $request->etablissement));
-        return redirect()->route('user.home',$request->etablissement)->with('success', 'Bienvenu Mr ou Mme '.$model->nom);
+        Session::put('idEtabl', $request->etablissement);
+        $id_etabl = Session::get('idEtabl');
+        // Cookie::queue(Cookie::make('name', $request->etablissement));
+        return redirect()->route('user.home',$id_etabl)->with('success', 'Bienvenu Mr ou Mme '.$model->nom);
 
     }
 
