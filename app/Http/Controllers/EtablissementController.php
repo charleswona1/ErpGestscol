@@ -103,6 +103,8 @@ class EtablissementController extends Controller
         $succesBD = -1;
         $message = "";
         if ($request->session()->get("user_id") == "") {
+
+
             try {
                 $affectedRows2 = DB::table('etablissement')->where('id_etablissement', $request->id)->update([
                     "nom" => $request->nom,
@@ -114,7 +116,8 @@ class EtablissementController extends Controller
                     "boite_postale" => $request->boite_postale,
                     "fax" => $request->fax,
                     "site_web" => $request->site_web,
-                    "localisation" => $request->localisation
+                    "localisation" => $request->localisation,
+                    "logo" =>$input['file'],
                 ]);
                 $succesBD = 1;
                 $message = "Etablissement mise a jour";
@@ -186,30 +189,45 @@ class EtablissementController extends Controller
 
     public function editEtablissementProfil(Request $request){
         try {
-            dd(Session::get('idEtabl'));
+
             $request->validate([
-                'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             if ($request->file('file')) {
                 $image = $request->file('file');
                 $input['file'] = time() . '.' . $image->getClientOriginalExtension();
                 $imgFile = \Intervention\Image\Facades\Image::make($image->getRealPath());
                 $imgFile->save(public_path('logos_etablissements/'. $input['file']));
+                $affectedRows2 = DB::table('etablissement')->where('id_etablissement', Session::get('idEtabl'))->update([
+                    "nom" => $request->nom,
+                    "resp1"=> $request->resp1,
+                    "abreviation" => $request->abreviation,
+                    "type_etablissement" => $request->type_etablissement,
+                    "ville" => $request->ville,
+                    "boite_postale" => $request->boite_postale,
+                    "telephone" => $request->telephone,
+                    "email" => $request->email,
+                    "site_web" => $request->site_web,
+                    "localisation" => $request->localisation,
+                    "logo" =>$input['file'],
+                ]);
             }
-            $affectedRows2 = DB::table('etablissement')->where('id_etablissement', Session::get('idEtabl'))->update([
-                "nom" => $request->nom,
-                "resp1"=> $request->resp1,
-                "abreviation" => $request->abreviation,
-                "type_etablissement" => $request->type_etablissement,
-                "ville" => $request->ville,
-                "boite_postale" => $request->boite_postale,
-                "telephone" => $request->telephone,
-                "email" => $request->email,
-                "site_web" => $request->site_web,
-                "localisation" => $request->localisation,
-                "logo" =>$input['file'],
-            ]);
-            return route('/configuration/showProfil');
+            else{
+                $affectedRows2 = DB::table('etablissement')->where('id_etablissement', Session::get('idEtabl'))->update([
+                    "nom" => $request->nom,
+                    "resp1"=> $request->resp1,
+                    "abreviation" => $request->abreviation,
+                    "type_etablissement" => $request->type_etablissement,
+                    "ville" => $request->ville,
+                    "boite_postale" => $request->boite_postale,
+                    "telephone" => $request->telephone,
+                    "email" => $request->email,
+                    "site_web" => $request->site_web,
+                    "localisation" => $request->localisation,
+                ]);
+            }
+
+            return redirect()->route('show_etablissement')->with('success','Product successfully added.');
         }  catch (Exception $e) {
             echo 'and the error is: ',  $e->getMessage(), "\n";
             return response()->json(['error' =>  $e->getMessage()]);

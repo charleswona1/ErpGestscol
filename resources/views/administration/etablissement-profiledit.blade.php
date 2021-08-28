@@ -34,14 +34,14 @@
 				<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop">
 				  <div>
 					<a href="index.html" class="brand-logo">
-					   <img src="/assets1/images/faces/logo.jpg" height="180px" width="180px"  alt="user" class="user">
+					   <img src="{{  asset($etablissement[0]->logo?'logos_etablissements/'.$etablissement[0]->logo:'assets1/images/faces/logo.jpg') }}" height="180px" width="180px"  alt="user" class="user">
 					</a>
 					<p>
-					  <form>
+					  {{-- <form>
 						<div class="form-group">
 						  <input type="file" class="form-control-file" id="exampleFormControlFile1">
 						</div>
-					  </form>
+					  </form> --}}
 					</p>
 				  </div>
 				</div>

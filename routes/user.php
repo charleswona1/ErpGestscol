@@ -34,7 +34,7 @@ Route::get('/configuration/dashboard', function () {
 Route::get('/configuration/profilE', [App\Http\Controllers\EtablissementController::class, 'profilEtablissement']);
 
 
-Route::get('/configuration/showProfil', [App\Http\Controllers\EtablissementController::class, 'showEtablissementProfil']);
+Route::get('/configuration/showProfil', [App\Http\Controllers\EtablissementController::class, 'showEtablissementProfil'])->name('show_etablissement');
 
 Route::post('/configuration/modifierProfil', [App\Http\Controllers\EtablissementController::class, 'editEtablissementProfil']);
 

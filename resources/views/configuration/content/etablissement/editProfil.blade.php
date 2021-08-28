@@ -16,6 +16,7 @@
             <div class="mdc-card">
               <center><h6 class="card-title" style="color:grey;">Modification de l'Etablissement </h6></center>
               <br/>
+
               <div class="template-demo">
                   <form method="POST" action="/configuration/modifierProfil" id="upload-file-form" enctype="multipart/form-data">
                     @csrf
@@ -28,7 +29,7 @@
                         </a>
                       <p>
                           <div class="form-group">
-                            <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
+                            <input type="file" name="file"  class="form-control-file" id="exampleFormControlFile1">
                           </div>
                       </p>
                     </div>
