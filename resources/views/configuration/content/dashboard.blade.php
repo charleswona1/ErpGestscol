@@ -1,6 +1,7 @@
 @extends('configuration.home')
 
 @section('content')
+
 <div class="page-wrapper mdc-toolbar-fixed-adjust">
     <main class="content-wrapper">
       <div class="mdc-layout-grid">

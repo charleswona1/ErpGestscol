@@ -29,6 +29,7 @@
     @include('configuration.layouts.aside')
     <div class="main-wrapper mdc-drawer-app-content">
     @include('configuration.layouts.header')
+    @include('configuration.flash-message')
     @yield('content')
     </div>
 

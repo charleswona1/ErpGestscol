@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/logos_etablissements
 /storage/*.key
 /vendor
 .env

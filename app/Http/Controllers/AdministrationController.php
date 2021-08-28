@@ -37,7 +37,7 @@ class AdministrationController extends Controller
             $errors = ['error' => 'Login ou Mot de passe incorrect'];
             return redirect()->back()->withErrors($errors);
         }
-            
+
         if(!Hash::check($request->password, $model->password)){
             $errors = ['error' => 'Login ou Mot de passe incorrect'];
             return redirect()->back()->withErrors($errors);
@@ -46,14 +46,14 @@ class AdministrationController extends Controller
         Auth::guard('admins')->login($model);
 
         //Session::put('nom', $model->nom);
-        
+
 
         return redirect()->route('administration.home')->with('success', 'Bienvenu Mr ou Mme '.$model->nom);
- 
+
     }
 
     public function adminRegister(Request $request){
-        
+
         $request->validate([
             'nom' => ['required', 'string', 'max:255'],
             'login' => ['required', 'unique:admin', 'max:255',  Rule::unique(admin::class),],
@@ -203,7 +203,7 @@ class AdministrationController extends Controller
         } catch (Exception $e) {
             return $e->getMessage();
         }
-        
+
         }else{
             $validated = $request->validate([
                 'nom' => ['string', 'max:255'],
@@ -227,7 +227,7 @@ class AdministrationController extends Controller
 
     public function delete_admin(Request $request)
     {
-        $succesBD = -1; 
+        $succesBD = -1;
         $message = "";
         $ligneT = -1;
 
@@ -246,7 +246,7 @@ class AdministrationController extends Controller
             'message' => $message,
             'ligneT'  => $ligneT,
         );
-        
+
         return response()->json($resultat);
     }
 
@@ -265,7 +265,7 @@ class AdministrationController extends Controller
         }
 
         try {
-            
+
             $etablissement = etablissement::where('id_etablissement', '=', $request->etablissement)
                             ->select('id_etablissement')
                             ->get();
@@ -298,7 +298,7 @@ class AdministrationController extends Controller
             return $e->getMessage();
         }
 
-        
+
 
     }
 
@@ -339,7 +339,7 @@ class AdministrationController extends Controller
     public function delete_licence(request $request)
     {
         $ids = explode('_', $request->id);
-        $succesBD = -1; 
+        $succesBD = -1;
         $message = "";
         $ligneT = -1;
 
@@ -367,7 +367,7 @@ class AdministrationController extends Controller
             'message' => $message,
             'ligneT'  => $ligneT,
         );
-        
+
         return response()->json($resultat);
     }
 
@@ -423,7 +423,7 @@ class AdministrationController extends Controller
             return view('administration.licence-profiledit', $data = ['module' => $mod1]);
         }
 
-        
+
 
     }
 
@@ -448,7 +448,14 @@ class AdministrationController extends Controller
                             ->update(['creation_date'=>$request->date_debut, 'expiration_date'=>$request->date_expiration, 'status'=>$request->status]);
             return 1;
         } catch (Exception $e) {
-           return $e->getMessage(); 
+           return $e->getMessage();
         }
+    }
+
+    public function adminVoirEtablissement($id)
+    {
+        $etablissement = etablissement::where('id_etablissement', $id)->get();
+
+        return view('administration.etablissement-profil', compact('etablissement'));
     }
 }

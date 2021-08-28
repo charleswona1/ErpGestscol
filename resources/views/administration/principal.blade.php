@@ -512,16 +512,16 @@
             } else {
               alert("ce module a déjà été affecté à cet établissement");
             }
-             
+
           },
           error: function(response){
             alert("erreur d'enregistrement");
               console.log(response);
           }
-        }); 
+        });
 
       }
-    } 
+    }
 
 
     function modifier_admin(id) {
@@ -536,7 +536,7 @@
         alert("date de debut doit etre superieure a la date de fin");
         return;
       }
-      
+
       $.ajax({
           url: "{{route('admin.modifier_licence')}}",
           type: "POST",
@@ -556,7 +556,7 @@
             } else {
               alert("ce module a déjà été affecté à cet établissement");
             }
-             
+
           },
           error: function(response){
             alert("erreur d'enregistrement");

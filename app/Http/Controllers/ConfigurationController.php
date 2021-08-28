@@ -91,3 +91,4 @@ class ConfigurationController extends Controller
         return view('configuration.content.dashboard', compact('id_etablissement'));
     }
 }
+
