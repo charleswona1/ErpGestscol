@@ -60,10 +60,10 @@ Route::post('/configuration/utilisateur/force_supprimer_user', [App\Http\Control
 /**end */
 
 /** Documentations */
-<<<<<<< HEAD
 Route::get('/configuration/documentation/documents', function () {
     return view('configuration.content.documentations.document');
-=======
+});
+
 Route::get('/configuration/documentation/documents/{id}', [App\Http\Controllers\DocumentController::class, 'getDocument']);
 
 Route::post('/configuration/addDocument', [App\Http\Controllers\DocumentController::class, 'addDocument'])->name('document.ajout');
@@ -98,6 +98,6 @@ Route::get('/configuration/annee', function () {
 
 Route::get('/configuration/module', function () {
     return view('configuration.content.module.module');
->>>>>>> 8d7b7908378e08cd6031d9ad1a67144fae1b1eb9
 });
-/**end */
+
+?>
