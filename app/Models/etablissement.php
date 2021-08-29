@@ -31,4 +31,9 @@ class etablissement extends Model
     {
         return $this->hasMany(annee_academique::class);
     }
+
+    public function admin()
+    {
+        return $this->belongsToMany(admin::class, 'admin_etablissement', 'id_etablissement', 'id_admin');
+    }
 }

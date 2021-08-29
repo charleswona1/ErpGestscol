@@ -20,7 +20,7 @@
                         <table class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
 						<tr>
 						<td>
-						  <div class=class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+						  <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
 							<div class="mdc-select demo-width-class" data-mdc-auto-init="MDCSelect">
 							  <input type="hidden" name="enhanced-select" id="id_etablissement" required>
 							  <i class="mdc-select__dropdown-icon"></i>
@@ -42,7 +42,7 @@
 						  </div>
 						</td>
 						<td>
-							<div class=class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+							<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
 							<div class="mdc-select demo-width-class" data-mdc-auto-init="MDCSelect">
 							  <input type="hidden" name="enhanced-select" id="id_module" required>
 							  <i class="mdc-select__dropdown-icon"></i>
@@ -205,14 +205,24 @@
 						  <td class="mdc-data-table__cell">{{$module['nbreJ']}} Jours</td>
 						  <!-- <td class="mdc-data-table__cell mdc-data-table__cell--numeric">Tous</td> -->
 						  <td class="mdc-data-table__cell">
-						  	@if($module['status'] > 0)
-							 	<button class="mdc-button text-button--success">
+						  	@if($module['nbreJ'] > 0 && $module['nbreJ'] < 10 && $module['status'] > 0)
+							 	<button class="mdc-button text-button--warning">
 							  		En cours
 								</button>
-							@else
+							@elseif($module['status'] > 0 && $module['nbreJ'] > 0)
 								<button class="mdc-button text-button--success">
+							  		En cours
+								</button>
+							@elseif($module['status'] == 0 && $module['nbreJ'] > 0)
+								<button class="mdc-button text-button--info">
+							  		Bloquée 
+								</button>
+							@elseif($module['nbreJ'] <= 0 )
+								<button class="mdc-button text-button--danger">
 							  		Terminé
 								</button>
+							@else
+								{{$module['status']}}  {{$module['nbreJ']}}
 							@endif
 						  </td>
 						  <td class="mdc-data-table__cell">

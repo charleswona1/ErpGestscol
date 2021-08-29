@@ -221,14 +221,14 @@
 								<div class="template-demo">
 								  
 								  <button class="mdc-button mdc-button--raised icon-button filled-button--secondary">
-									&nbsp; <a href="licence-profil.html" style="color:white;"><i class="material-icons mdc-button__icon">close</i> &nbsp;Annuler &nbsp;</a>
+									&nbsp; <a href="{{route('administration.licence')}}" style="color:white;"><i class="material-icons mdc-button__icon">close</i> &nbsp;Annuler &nbsp;</a>
 								  </button>
 								  <!--<button class="mdc-button mdc-button--raised icon-button filled-button--success">
 									<i class="material-icons mdc-button__icon">colorize</i>
 								  </button> -->
 								  
 									  <button class="mdc-button mdc-button--raised icon-button" >
-										&nbsp; <a onclick="modifier_admin('{{$module['id']}}')"><i class="material-icons mdc-button__icon" style="color:white;">save</i> 
+										&nbsp; <a onclick="modifier_licence('{{$module['id']}}')"><i class="material-icons mdc-button__icon" style="color:white;">save</i> 
 										&nbsp;<span style="color:white;">Enregistrer &nbsp; </span></a>
 									  </button>
 								   
@@ -241,13 +241,9 @@
 								</div>
 							  </section>
 							</div>
-							
 					      </div>
-				
                         </div>
                       </div>
-                      
-                      
                     </div>
                   </div>
                 </div>

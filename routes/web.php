@@ -39,6 +39,7 @@ Route::get('/administrateur/modif_licence/{id}', [App\Http\Controllers\Administr
 Route::post('/administrateur/delete_licence', [App\Http\Controllers\AdministrationController::class, 'delete_licence'])->name('admin.delete_licence')->middleware('auth');
 Route::post('/administrateur/modif_admin', [App\Http\Controllers\AdministrationController::class, 'modif_admin'])->name('admin.modif')->middleware('auth');
 Route::post('/administrateur/delete_admin', [App\Http\Controllers\AdministrationController::class, 'delete_admin'])->name('admin.delete')->middleware('auth');
+Route::post('/administrateur/force_delete_admin', [App\Http\Controllers\AdministrationController::class, 'force_delete_admin'])->name('admin.delete_force')->middleware('auth');
 Route::get('/administrateur/register', [App\Http\Controllers\AdministrationController::class, 'adminUtilisateur'])->name('administration.utilisateurs');
 Route::get('/administrateur/licence', [App\Http\Controllers\AdministrationController::class, 'adminLicence'])->name('administration.licence');
 Route::get('/administrateur/conf_groupe', [App\Http\Controllers\AdministrationController::class, 'adminGroupeConfig'])->name('administration.configGroupe');
@@ -46,9 +47,6 @@ Route::get('/administrateur/conf_param', [App\Http\Controllers\AdministrationCon
 Route::post('/administrateur/save_licence', [App\Http\Controllers\AdministrationController::class, 'save_licence'])->name('admin.save_licence')->middleware('auth');
 Route::post('/administrateur/modifier_licence', [App\Http\Controllers\AdministrationController::class, 'modifier_licence'])->name('admin.modifier_licence')->middleware('auth');
 
-<<<<<<< HEAD
-require __DIR__.'/user.php';
-=======
 
 /** ROUTES CONFIGURATION */
 
@@ -66,10 +64,6 @@ Route::get('/configuration/editProfil', function () {
     return view('configuration.content.etablissement.editProfil');
 });
 
-Route::get('/configuration/matricule', function () {
-    return view('configuration.content.etablissement.matricule');
-});
-
 Route::get('/configuration/editMatricule', function () {
     return view('configuration.content.etablissement.editMatricule');
 });
@@ -81,12 +75,11 @@ Route::get('/configuration/periode', function () {
 Route::get('/configuration/editPeriode', function () {
     return view('configuration.content.etablissement.editPeriode');
 });
+
+
 /**end */
 
 /**Utilisateur */
-Route::get('/configuration/utilisateur/profilU', function () {
-    return view('configuration.content.utilisateurs.profil');
-});
 
 Route::get('/configuration/utilisateur/editProfilU', function () {
     return view('configuration.content.utilisateurs.editProfil');
@@ -146,4 +139,3 @@ Route::get('/configuration/module', function () {
 /**end */
 
 require __DIR__.'/user.php';
->>>>>>> 679d1e2865839cd4573d6cd8d580bfb71d1922ca

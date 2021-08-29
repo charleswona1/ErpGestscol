@@ -48,4 +48,14 @@ class admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function droit_admin()
+    {
+        return $this->belongsToMany(droit_admin::class, 'admin_acces', 'id_admin', 'id_droit');
+    }
+
+    public function etablissement()
+    {
+        return $this->belongsToMany(etablissement::class, 'admin_etablissement', 'id_admin', 'id_etablissement');
+    }
 }

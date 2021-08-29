@@ -199,9 +199,11 @@
                   <section class="mdc-card__supporting-text">
                     <div class="template-demo">
                       
+					@if($admin->id_admin != auth()->guard('admins')->user()->id_admin)
                       <button class="mdc-button mdc-button--raised icon-button filled-button--secondary">
-                         <a href="/administrateur/delete_admin/{{$admin->id_admin}}" class="mdc-button mdc-button--raised icon-button"><i class="material-icons mdc-button__icon">delete</i></a>
+                         <a onclick="supprimer_admin({{ $admin->id_admin }}, 2)" class="mdc-button mdc-button--raised icon-button"><i class="material-icons mdc-button__icon">delete</i></a>
                       </button>
+					@endif
                       <!--<button class="mdc-button mdc-button--raised icon-button filled-button--success">
                         <i class="material-icons mdc-button__icon">colorize</i>
                       </button> -->

@@ -154,7 +154,7 @@
                                         </div>
                                         <div
                                             class="item-content d-flex align-items-start flex-column justify-content-center">
-                                            <h6 class="item-subject font-weight-normal">Profile</h6>
+                                            <a href="/administrateur/profil/{{auth()->guard('admins')->user()->id_admin}}"><h6 class="item-subject font-weight-normal">Profile</h6></a>
                                         </div>
                                     </li>
                                     <li class="mdc-list-item" role="menuitem">
@@ -199,7 +199,7 @@
                                         <div
                                             class="item-content d-flex align-items-start flex-column justify-content-center">
                                             <h6 class="item-subject font-weight-normal">Mise &agrave; jour</h6>
-                                        </div>
+                                        </div>²
                                     </li>
                                 </ul>
                             </div>
@@ -379,6 +379,7 @@
 <script type="text/javascript">
     function modif_admin(id) {
         var nom, email, password, confirm_password, telephone, login, actif;
+        var choix_etabl = new Array();
         nom = $("#nom").val();
         telephone = $("#telephone").val();
         email = $("#email").val();
@@ -386,29 +387,39 @@
         password = $("#password").val();
         confirm_password = $("#confirm_password").val();
 
-        if ($('#enabled').is("  :checked"))
+
+        $('#multiselect :selected').each(function(){
+            choix_etabl.push($(this).val());
+        });
+
+        console.log(choix_etabl);
+
+        if ($('#activation').is("  :checked"))
             actif = 1;
         else
             actif = 0;
+
+        console.log('test '+actif);
         if (password != "") {
+            console.log("oui");
             if (password != confirm_password) {
                 alert("mot de passe non concordant");
             } else {
                 $.ajax({
                     url: "{{ route('admin.modif') }}",
-                    type: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
+                    type: "POST",   
                     data: {
+                        "_token": "{{ csrf_token() }}",
                         nom: nom,
                         telephone: telephone,
                         email: email,
                         login: login,
+                        activation: actif,
                         password: password,
-                        confirm_password: confirm_password,
+                        password_confirmation: confirm_password,
                         presence: 1,
                         id: id,
+                        choix_e: choix_etabl,
                     },
 
                     success: function(response) {
@@ -422,6 +433,7 @@
                 });
             }
         } else {
+            console.log("non");
             if (password != confirm_password) {
                 alert("mot de passe non concordant");
             } else {
@@ -434,19 +446,18 @@
                         telephone: telephone,
                         email: email,
                         login: login,
-                        password: password,
-                        confirm_password: confirm_password,
+                        activation: actif,
                         presence: 0,
                         id: id,
+                        choix_e: choix_etabl,
                     },
 
                     success: function(response) {
-                        alert("region enregistre avec succes ");
-                        $('#exampleModal').modal('hide');
+                        alert("administrateur modifié avec succes ");
                         console.log(response);
                     },
                     error: function(response) {
-                        alert("Cette region existe deja");
+                        alert("echec de modification");
                         console.log(response);
                     }
                 });
@@ -454,7 +465,7 @@
         }
     }
 
-    function supprimer_admin(id) {
+    function supprimer_admin(id, niv) {
         var confirmation = confirm("Voulez-vous vraiment supprimer cette administrateur?");
         if (confirmation) {
             $.ajax({
@@ -467,10 +478,37 @@
 
                 success: function(response) {
                     if (response["status"] == 1) {
-                        alert("administrateur supprimé avec succes ");
-                        $("#admin" + response["ligneT"]).remove();
+                        if(niv == 1){
+                            alert("administrateur supprimé avec succes ");
+                            $("#admin" + response["ligneT"]).remove();
+                        } else {
+                            window.location.href = "/administrateur/register";
+                        }
+                    } else if(response["status"] == 2){
+                        confirmation = confirm("Cette administrateur a plusieurs attribution voulez-vous cas meme le supprimer annuler la suppression");
+                        if(confirmation){
+                            $.ajax({
+                                url: "{{ route('admin.delete_force') }}",
+                                type: "POST",
+                                data: {
+                                    "_token": "{{ csrf_token() }}",
+                                    id: id,
+                                },
+                                success: function(response){
+                                    if (response["status"] == 1) {
+                                        if(niv == 1){
+                                            alert("administrateur supprimé avec succes ");
+                                            $("#admin" + response["ligneT"]).remove();
+                                        } else {
+                                            window.location.href = "/administrateur/register";
+                                        }
+                                    }
+                                }
+                            });
+                        }
                     } else {
                         alert("erreur de suppression");
+                        console.log(response);
                     }
 
                 },
@@ -481,6 +519,8 @@
             });
         }
     }
+    
+
     function saveLicence(){
       var etablissement = $("#id_etablissement").val();
       var module1 = $("#id_module").val();
@@ -524,12 +564,18 @@
     } 
 
 
-    function modifier_admin(id) {
-      debugger;
+    function modifier_licence(id) {
       var date_debut = $("#id_date_debut").val();
       var date_expiration = $("#id_date_fin").val();
       var module1 = $("#id_module option:selected" ).val();
-      var status = $("#id_status").attr("checked") ? 1 : 0;
+      var status = 0;
+
+      if ($('#id_status').is("  :checked"))
+            status = 1;
+        else
+            status = 0;
+
+      console.log(status);
       var id1 = id;
 
       if (date_debut > date_expiration) {

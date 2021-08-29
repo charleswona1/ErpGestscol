@@ -56,7 +56,7 @@
 										</div>
 									  </td>
 									  <td class="mdc-data-table__cell">
-										<input type="text" class="form-control" style="width:100%" id="telephone" placeholder="Téléphone" value="+237 691 87 74 03" required>
+										<input type="text" class="form-control" style="width:100%" id="telephone" placeholder="Téléphone" value="{{$admin->telephone}}" required>
 									  </td>									  
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
@@ -77,25 +77,6 @@
 									  <td class="mdc-data-table__cell">
 										<input type="text" class="form-control" style="width:100%" id="email" placeholder="Email" value="{{$admin->email}}" required />
 									  </td>									  
-									</tr>
-									<tr data-row-id="u0" class="mdc-data-table__row">
-									  <td class="mdc-data-table__cell" scope="row" id="u0">
-										<div class="widget-content p-0">
-											<div class="widget-content-wrapper">																		
-												<div class="widget-content-left flex2">
-													<div class="widget-heading font-weight-bold">Login
-														&nbsp;<i class="fa fa-envelope-o text-link" style="cursor:pointer;" aria-hidden="true"></i>
-														<!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
-														&nbsp;<i class="fa fa-whatsapp text-link" style="cursor:pointer;" aria-hidden="true"></i>
-														&nbsp;<i class="fa fa-skype text-link" style="cursor:pointer;" aria-hidden="true"></i>
-													</div> 																			
-												</div>
-											</div>
-										</div>
-									  </td>
-									  <td class="mdc-data-table__cell">
-										<input type="text" class="form-control" style="width:100%" id="login" placeholder="Login" value="" required />
-									  </td>
 									</tr>
 									<tr data-row-id="u0" class="mdc-data-table__row">
 									  <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -165,9 +146,9 @@
 							  <div class="mdc-switch__thumb-underlay">
 								<div class="mdc-switch__thumb">
 									@if($admin->enabled == 0)
-										<input type="checkbox" id="basic-switch" class="mdc-switch__native-control" id="enabled" role="switch" />
+										<input type="checkbox" id="activation" class="mdc-switch__native-control" id="enabled" role="switch" />
 									@else
-										<input type="checkbox" id="basic-switch" class="mdc-switch__native-control" id="enabled" role="switch" checked />
+										<input type="checkbox" id="activation" class="mdc-switch__native-control" id="enabled" role="switch" checked />
 									@endif
 								</div>
 							  </div>
@@ -206,13 +187,10 @@
 										</div>
 									  </td>
 									  <td class="mdc-data-table__cell">
-										<select id="multiselect" multiple="multiple" style="height:130px;">
-										  <option selected>Collège François Xavier Vogt</option>
-										  <option selected>Prépavogt IRCOM</option>
-										  <option selected>Prépavogt MF</option>
-										  <option selected>CETIC Jeanne Alegue</option>
-										  <option selected>Centre Communautaire de l'Enfance</option>
-										  <option selected>Lycée Technique d'Obala</option>
+										<select id="multiselect" multiple="multiple" style="height:100px; width: 100px;">
+											@foreach($etablissement as $et)
+										  		<option value="{{$et->id_etablissement}}">{{$et->nom}}</option>
+											@endforeach
 										</select>										 
 									  </td>									  
 									</tr>
@@ -238,8 +216,9 @@
 								  <!--<button class="mdc-button mdc-button--raised icon-button filled-button--success">
 									<i class="material-icons mdc-button__icon">colorize</i>
 								  </button> -->
+
 								  
-									  <button class="mdc-button mdc-button--raised icon-button" onclick="modif_admin({{$admin->id}})">
+									  <button class="mdc-button mdc-button--raised icon-button" onclick="modif_admin({{$admin->id_admin}})">
 										&nbsp; <a><i class="material-icons mdc-button__icon" style="color:white;">save</i> 
 										&nbsp;<span style="color:white;">Enregistrer &nbsp; </span></a>
 									  </button>

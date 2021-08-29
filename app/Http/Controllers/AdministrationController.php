@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\admin;
+use App\Models\admin_etablissement;
 use App\Models\module_etablissement;
 use App\Models\module;
 use App\Models\licence;
 use App\Models\etablissement;
+use App\Models\etablissement_user;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use DB;
+use Exception;
 use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 //use Illuminate\Support\Facades\Session;
@@ -180,34 +184,42 @@ class AdministrationController extends Controller
     public function edit_profil($id)
     {
         $admin = admin::find($id);
-        return view('administration.utilisateur-profiledit', $data = ['admin' => $admin]);
+        $etablissement = etablissement::all();
+        return view('administration.utilisateur-profiledit', $data = ['admin' => $admin, 'etablissement'=> $etablissement]);
     }
 
     public function modif_admin(Request $request)
     {
-        if($request->index_pass == 1){
+        if($request->presence == 1){
             $validated = $request->validate([
             'nom' => ['string', 'max:255'],
-            'login' => ['unique:admin', 'max:255',  Rule::unique(admin::class)],
             'telephone' => ['max:30'],
             'email' => [
                 'string',
                 'email',
                 'max:255',
             ],
-            'password' => ['confirmed', Password::min(8)],
+            'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:8'
         ]);
         try {
-           $affectedRows2 = DB::table('admin')->where('id_admin', $request->id)->update(['nom'=>$request->nom, 'login'=>$request->login, 'telephone'=>$request->telephone, 'email'=>$request->email, 'password'=>Hash::make($request->password)]);
+           $affectedRows2 = DB::table('admin')->where('id_admin', $request->id)->update(['nom'=>$request->nom, 'telephone'=>$request->telephone, 'enabled'=>$request->activation, 'email'=>$request->email, 'password'=>Hash::make($request->password)]);
+           if(is_array($request->choix_e)){
+               foreach ($request->choix_e as $value) {
+                  $etabl_admin = new admin_etablissement();
+                  $etabl_admin->id_etablissement = $value;
+                  $etabl_admin->id_admin = $request->id;
+                  $etabl_admin->save();
+               }
+           }
            return 1;
         } catch (Exception $e) {
             return $e->getMessage();
         }
         
-        }else{
+        } else {
             $validated = $request->validate([
                 'nom' => ['string', 'max:255'],
-                'login' => ['unique:admin', 'max:255',  Rule::unique(admin::class)],
                 'telephone' => ['max:30'],
                 'email' => [
                     'string',
@@ -215,15 +227,23 @@ class AdministrationController extends Controller
                     'max:255',
                 ],
             ]);
-        }
 
         try {
-           $affectedRows2 = DB::table('admin')->where('id_admin', $request->id)->update(['nom'=>$request->nom, 'login'=>$request->login, 'telephone'=>$request->telephone, 'email'=>$request->email]);
-           return 1;
+           $affectedRows2 = DB::table('admin')->where('id_admin', $request->id)->update(['nom'=>$request->nom, 'telephone'=>$request->telephone, 'enabled'=>$request->activation, 'email'=>$request->email]);
+           if(is_array($request->choix_e)){
+                foreach ($request->choix_e as $value) {
+                    $etabl_admin = new admin_etablissement();
+                    $etabl_admin->id_etablissement = $value;
+                    $etabl_admin->id_admin = $request->id;
+                    $etabl_admin->save();
+                }
+            }
+           return 2;
         } catch (Exception $e) {
             return $e->getMessage();
         }
     }
+}
 
     public function delete_admin(Request $request)
     {
@@ -236,7 +256,42 @@ class AdministrationController extends Controller
             $succesBD = 1;
             $ligneT = $request->id;
             $message = "succes de la requete";
-        } catch (Exception $e) {
+        } catch (QueryException $e) {
+            if($e->getCode() == '23000'){
+                $succesBD = 2;
+                $message = $e->getMessage();
+            } else {
+                $succesBD = 0;
+                $message = $e->getMessage();
+            }
+            
+        }
+
+        $resultat = array(
+            'status' => $succesBD,
+            'message' => $message,
+            'ligneT'  => $ligneT,
+        );
+        
+        return response()->json($resultat);
+    }
+
+    public function force_delete_admin(Request $request) {
+
+        $succesBD = -1; 
+        $message = "";
+        $ligneT = -1;
+
+        try {
+            $admin = admin::find($request->id);
+
+            $admin_access = DB::table("admin_acces")->where("id_admin", $request->id)->delete();
+            $admin_etabl =  DB::table("admin_etablissement")->where("id_admin", $request->id)->delete();
+            $res = admin::where('id_admin', $request->id)->delete();
+            $succesBD = 1;
+            $ligneT = $request->id;
+            $message = "succes de la requete";
+        } catch (QueryException $e) {
             $succesBD = 0;
             $message = $e->getMessage();
         }
