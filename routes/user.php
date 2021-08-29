@@ -96,10 +96,11 @@ Route::get('/configuration/utilisateur/editParametrage', function () {
 /**end */
 
 /** Documentations */
-Route::get('/configuration/documentation/documents', function () {
-    return view('configuration.content.documentations.document');
-});
+Route::get('/configuration/documentation/documents/{id}', [App\Http\Controllers\DocumentController::class, 'getDocument']);
 
+Route::post('/configuration/addDocument', [App\Http\Controllers\DocumentController::class, 'addDocument'])->name('document.ajout');
+
+Route::get('/configuration/documentation/deleteDocument/{id}',  [App\Http\Controllers\DocumentController::class, 'deleteDocument'])->name('delete.docu');
 Route::get('/configuration/documentation/editDocuments', function () {
     return view('configuration.content.documentations.editDocument');
 });

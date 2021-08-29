@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\document;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class DocumentController extends Controller
 {
     public function getDocument($id){
-        $documents = document::where('id_etablissement', $id)->get();
+        $documents = document::where('id_etablissement', Session::get('idEtabl'))->get();
+
         return view('configuration.content.documentations.document', compact('documents'));
     }
 
@@ -17,12 +19,13 @@ class DocumentController extends Controller
         $message = "";
         try {
         $document = new document();
-        $document->id_etablissement = $request->id_etablissemnt;
-        $document->sign_bulg = $request->intitule;
-        $document->ligne1_diplome = $request->ligne1;
-        $document->ligne2_diplome = $request->ligne2;
-        $document->ligne3_diplome = $request->ligne3;
-        $document->ligne4_diplome = $request->ligne4;
+        $document->id_etablissement = Session::get('idEtabl');
+        $document->intitule = $request->intitule;
+        $document->ligne1 = $request->ligne1;
+        $document->ligne2 = $request->ligne2;
+        $document->ligne3 = $request->ligne3;
+        $document->ligne4 = $request->ligne4;
+        $document->creation_date = date("Y-m-d");
         $document->save();
 
         $resultat = array(
@@ -38,10 +41,9 @@ class DocumentController extends Controller
     public function deleteDocument($id){
         $message = "";
         try {
-            $res = document::where('id_etablissement', $id)->delete();
+            $res = document::where('id_document', $id)->delete();
             $resultat = array(
-                'resultat' => $res,
-                'message' => "succes",
+                'message' => "success",
             );
             return response()->json($resultat);
         } catch (Exception $e) {

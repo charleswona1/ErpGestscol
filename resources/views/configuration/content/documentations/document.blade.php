@@ -21,8 +21,7 @@
                             </div>
                             <div class="mdc-layout-grid">
                                 <div class="mdc-layout-grid__inner">
-                                    <input class="mdc-text-field__input" type="hidden" id="id_etab"
-                                        value="{{ Cookie::get('name') }}">
+                                    <input class="mdc-text-field__input" type="hidden" id="id_etab">
                                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6	">
                                         <div class="mdc-text-field w-100">
                                             <input class="mdc-text-field__input" type="date-picker" id="intitule" required>
@@ -159,7 +158,7 @@
                                     <tbody class="mdc-data-table__content">
                                         @foreach ($documents as $document)
                                             <tr data-row-id="u0" class="mdc-data-table__row"
-                                                id="document_{{ $document->id }}">
+                                                id="document_{{ $document->id_document }}">
                                                 <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
                                                     <div class="mdc-checkbox mdc-data-table__row-checkbox">
                                                         <input type="checkbox" class="mdc-checkbox__native-control"
@@ -180,7 +179,7 @@
 
                                                             <div class="widget-content-left flex2">
                                                                 <div class="widget-heading font-weight-bolder">
-                                                                    {{ $document->sign_bulg }}
+                                                                    {{ $document->intitule }}
                                                                     &nbsp;<i class="fa fa-envelope-o text-link"
                                                                         style="cursor:pointer;" aria-hidden="true"></i>
                                                                     <!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
@@ -192,7 +191,7 @@
                                                             </div>
                                                         </div>
                                                 </td>
-                                                <td class="mdc-data-table__cell">05/08/2021 11:02</td>
+                                                <td class="mdc-data-table__cell">{{ $document->creation_date }}</td>
                                                 <!-- <td class="mdc-data-table__cell mdc-data-table__cell--numeric">Tous</td> -->
                                                 <td class="mdc-data-table__cell">
                                                     <div class="mdc-switch mdc-switch--success"
@@ -214,7 +213,8 @@
                                                             class="material-icons mdc-text-field__icon"
                                                             style="color:black; font-size:1.5em;">edit</i></a>
                                                     <!-- <a href=""><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">print</i></a> -->
-                                                    <a href=""><i class="material-icons mdc-text-field__icon"
+                                                    <a onclick="supprimerDocument({{ $document->id_document }})">
+                                                        <i class="material-icons mdc-text-field__icon"
                                                             style="color:red; font-size:1.5em;">delete</i></a>
                                                 </td>
                                             </tr>
@@ -238,7 +238,6 @@
 @section('script')
     <script>
         function ajouterDocument() {
-            var id = $("#id_etab").val()
             var intitule = $("#intitule").val()
             var ligne1 = $("#ligne1").val()
             var ligne2 = $("#ligne2").val()
@@ -249,7 +248,6 @@
                 type: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}",
-                    id_etablissemnt: id,
                     intitule: intitule,
                     ligne1: ligne1,
                     ligne2: ligne2,
@@ -280,7 +278,7 @@
 
                                                             <div class="widget-content-left flex2">
                                                                 <div class="widget-heading font-weight-bolder">
-                                                                    ${response.array.sign_bulg}
+                                                                    ${response.array.intitule}
                                                                     &nbsp;<i class="fa fa-envelope-o text-link"
                                                                         style="cursor:pointer;" aria-hidden="true"></i>
                                                                     <!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
@@ -292,7 +290,7 @@
                                                             </div>
                                                         </div>
                                                 </td>
-                                                <td class="mdc-data-table__cell">05/08/2021 11:02</td>
+                                                <td class="mdc-data-table__cell">${response.array.creation_date}</td>
                                                 <!-- <td class="mdc-data-table__cell mdc-data-table__cell--numeric">Tous</td> -->
                                                 <td class="mdc-data-table__cell">
                                                     <div class="mdc-switch mdc-switch--success"
@@ -329,6 +327,29 @@
                 },
                 error: function(err) {
                     console.log(err)
+                }
+            });
+        }
+
+        function supprimerDocument(id) {
+
+            url = "/configuration/documentation/deleteDocument/" + id;
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function(response) {
+                    console.log(response)
+                    if (response) {
+                        $("#document_" + id).remove();
+                        alert(response.message)
+
+                    }
                 }
             });
         }
