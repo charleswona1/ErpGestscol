@@ -278,7 +278,7 @@
                                         </div>
                                     </div>
                                   </td>
-                                  <td class="mdc-data-table__cell">16-06-2021 00:14</td>
+                                  <td class="mdc-data-table__cell">{{ $etablissement[0]->creation_date }}</td>
                                 </tr>
                                 <tr data-row-id="u0" class="mdc-data-table__row">
                                   <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -358,9 +358,9 @@
                           <section class="mdc-card__supporting-text">
                             <div class="template-demo">
 
-                              <button class="mdc-button mdc-button--raised icon-button filled-button--secondary">
-                                &nbsp; <a href="" style="color:white;"><i class="material-icons mdc-button__icon">close</i> &nbsp;Annuler &nbsp;</a>
-                              </button>
+                              <a href="/configuration/profilE" style="color:white;" class="mdc-button mdc-button--raised icon-button filled-button--secondary">
+                                &nbsp; <i class="material-icons mdc-button__icon">close</i> &nbsp;Annuler &nbsp;
+                              </a>
                               <!--<button class="mdc-button mdc-button--raised icon-button filled-button--success">
                                 <i class="material-icons mdc-button__icon">colorize</i>
                               </button> -->

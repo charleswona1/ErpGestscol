@@ -18,7 +18,7 @@
                                             class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2-desktop">
                                             <div>
                                                 <a href="" class="brand-logo">
-                                                    <img src="{{ asset('assets1/images/faces/logo.jpg') }}" height="180px"
+                                                    <img src="{{ asset($etablissement[0]->logo?'logos_etablissements/'.$etablissement[0]->logo:'assets1/images/faces/logo.jpg') }}" height="180px"
                                                         width="180px" alt="user" class="user">
                                                 </a>
                                                 <p>
@@ -423,11 +423,9 @@
 
 
 
-                                                            <button
-                                                                class="mdc-button mdc-button--raised icon-button filled-button--info">
-                                                                <a href="/configuration/showProfil"><i
-                                                                        class="material-icons mdc-button__icon">edit</i></a>
-                                                            </button>
+                                                            <a  href="/configuration/showProfil" class="mdc-button mdc-button--raised icon-button filled-button--info">
+                                                                <i class="material-icons mdc-button__icon">edit</i>
+                                                            </a>
 
                                                             <button
                                                                 class="mdc-button mdc-button--raised icon-button filled-button--light">

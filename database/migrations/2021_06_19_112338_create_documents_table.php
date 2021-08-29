@@ -16,35 +16,26 @@ class CreateDocumentsTable extends Migration
         Schema::create('document', function (Blueprint $table) {
             $table->bigIncrements('id_document');
             $table->unsignedBigInteger('id_etablissement');
-            $table->string('ligne1_eng', 255)->nullable();
-            $table->string('ligne2_eng', 255)->nullable();
-            $table->string('ligne3_eng', 255)->nullable();
-            $table->string('ligne1_end', 255)->nullable();
-            $table->string('ligne2_end', 255)->nullable();
-            $table->string('ligne3_end', 255)->nullable();
-            $table->string('ligne1_certsco', 255)->nullable();
-            $table->string('ligne2_certsco', 255)->nullable();
-            $table->string('ligne3_certsco', 255)->nullable();
-            $table->string('ligne4_certsco', 255)->nullable();
-            $table->string('ligne1_certrad', 255)->nullable();
-            $table->string('ligne2_certrad', 255)->nullable();
-            $table->string('ligne3_certrad', 255)->nullable();
-            $table->string('ligne4_certrad', 255)->nullable();
-            $table->string('ligne1_diplome', 255)->nullable();
-            $table->string('ligne2_diplome', 255)->nullable();
-            $table->string('ligne3_diplome', 255)->nullable();
-            $table->string('ligne4_diplome', 255)->nullable();
+            $table->string('intitule', 255)->nullable();
+            $table->string('ligne1', 255)->nullable();
+            $table->string('ligne2', 255)->nullable();
+            $table->string('ligne3', 255)->nullable();
+            $table->string('ligne4', 255)->nullable();
+            $table->string('ligne5', 255)->nullable();
+            $table->string('ligne6', 255)->nullable();
             $table->string('sign_bulg', 255)->nullable();
             $table->string('sign_bulm', 255)->nullable();
             $table->string('sign_buld', 255)->nullable();
             $table->string('sign_app', 255)->nullable();
             $table->string('nom_principal', 255)->nullable();
             $table->string('prefix_mat', 255)->nullable();
+            $table->string('prefix2_mat', 255)->nullable();
             $table->string('suffix_mat', 255)->nullable();
             $table->string('pos_mat', 255)->nullable();
-            
-
+            $table->boolean('possede_entete')->nullable();
             $table->foreign('id_etablissement')->references('id_etablissement')->on('etablissement');
+            $table->dateTime('creation_date');
+
         });
     }
 
