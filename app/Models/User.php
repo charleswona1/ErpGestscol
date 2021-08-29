@@ -52,7 +52,7 @@ class User extends Authenticatable
 
     public function etablissement()
     {
-        return $this->belongsToMany(etablissement::class, 'etablissement_user', 'id_user', 'id_etablissement');
+        return $this->belongsToMany(etablissement::class, 'etablissement_user', 'id_user', 'id_etablissement'); 
     }
 
     public function profil(){

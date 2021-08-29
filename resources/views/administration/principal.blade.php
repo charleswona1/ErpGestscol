@@ -401,7 +401,6 @@
 
         console.log('test '+actif);
         if (password != "") {
-            console.log("oui");
             if (password != confirm_password) {
                 alert("mot de passe non concordant");
             } else {
@@ -466,7 +465,7 @@
     }
 
     function supprimer_admin(id, niv) {
-        var confirmation = confirm("Voulez-vous vraiment supprimer cette administrateur?");
+        var confirmation = confirm("Voulez-vous vraiment supprimer cet administrateur?");
         if (confirmation) {
             $.ajax({
                 url: "{{ route('admin.delete') }}",
@@ -485,7 +484,7 @@
                             window.location.href = "/administrateur/register";
                         }
                     } else if(response["status"] == 2){
-                        confirmation = confirm("Cette administrateur a plusieurs attribution voulez-vous cas meme le supprimer annuler la suppression");
+                        confirmation = confirm("Cet administrateur a plusieurs attribution voulez-vous cas meme le supprimer annuler la suppression");
                         if(confirmation){
                             $.ajax({
                                 url: "{{ route('admin.delete_force') }}",
@@ -552,16 +551,16 @@
             } else {
               alert("ce module a déjà été affecté à cet établissement");
             }
-             
+
           },
           error: function(response){
             alert("erreur d'enregistrement");
               console.log(response);
           }
-        }); 
+        });
 
       }
-    } 
+    }
 
 
     function modifier_licence(id) {
@@ -582,7 +581,7 @@
         alert("date de debut doit etre superieure a la date de fin");
         return;
       }
-      
+
       $.ajax({
           url: "{{route('admin.modifier_licence')}}",
           type: "POST",
@@ -602,7 +601,7 @@
             } else {
               alert("ce module a déjà été affecté à cet établissement");
             }
-             
+
           },
           error: function(response){
             alert("erreur d'enregistrement");

@@ -30,7 +30,7 @@
               <nav class="mdc-list mdc-drawer-submenu">
                 <div class="mdc-list-item mdc-drawer-item">
 
-                <a class="mdc-drawer-link" href="/configuration/profilE/{{ Cookie::get('name') }}">
+                <a class="mdc-drawer-link" href="/configuration/profilE">
                     Profil
                   </a>
                 </div>
@@ -83,7 +83,7 @@
             <div class="mdc-expansion-panel" id="ui1-sub-menu">
               <nav class="mdc-list mdc-drawer-submenu">
               <div class="mdc-list-item mdc-drawer-item">
-                  <a class="mdc-drawer-link" href="/configuration/documentation/documents/{{ Cookie::get('name') }}">
+                  <a class="mdc-drawer-link" href="/configuration/documentation/documents/{{ Session::get('idEtabl')  }}">
                     Documents
                   </a>
                 </div>

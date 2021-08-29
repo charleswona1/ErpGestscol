@@ -10,22 +10,8 @@
     <main class="content-wrapper">
       <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner">   
-
-            
-            
-            
-            
-            
-            
-     
-                      
           <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
             <div class="mdc-card p-0">
-            
-              
-                
-        
-          
             <div class="mdc-card">
               <center><h6 class="card-title" style="color:grey;">Modification du Profile </h6></center>
               <br/>
@@ -45,11 +31,7 @@
                       </p>
                     </div>
                   </div>
-                  
-                  
-                  
-                  
-                  
+    
                   <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-5-desktop">
                     <div class="table-responsive">
                         <table class="mdc-data-table__table" aria-label="Dessert calories">
@@ -70,7 +52,7 @@
                                     </div>
                                   </td>
                                   <td class="mdc-data-table__cell">
-                                    <input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="Nom complet" value="Père Georges LISOME" required>
+                                    <input type="text" class="form-control" style="width:100%" id="id_nom" placeholder="Nom complet" value="{{$user['nom']}}" required>
                                   </td>									  
                                 </tr>
                                 <tr data-row-id="u0" class="mdc-data-table__row">
@@ -89,28 +71,8 @@
                                     </div>
                                   </td>
                                   <td class="mdc-data-table__cell">
-                                    <input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="Fonction" value="Principal" required>
-                                  </td>									  
-                                </tr>
-                                <tr data-row-id="u0" class="mdc-data-table__row">
-                                  <td class="mdc-data-table__cell" scope="row" id="u0">
-                                    <div class="widget-content p-0">
-                                        <div class="widget-content-wrapper">																		
-                                            <div class="widget-content-left flex2">
-                                                <div class="widget-heading font-weight-bold">Sexe 
-                                                    &nbsp;<i class="fa fa-envelope-o text-link" style="cursor:pointer;" aria-hidden="true"></i>
-                                                    <!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
-                                                    &nbsp;<i class="fa fa-whatsapp text-link" style="cursor:pointer;" aria-hidden="true"></i>
-                                                    &nbsp;<i class="fa fa-skype text-link" style="cursor:pointer;" aria-hidden="true"></i>
-                                                </div> 																			
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <input type="text" class="form-control" style="width:100%" id="id_groupe" placeholder="Fonction" value="{{$user['groupe']}}" required>
                                   </td>
-                                  <td class="mdc-data-table__cell">
-                                    <input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="Sexe" value="Masculin" required>
-                                  </td>								  
-                                </tr>
                                 <tr data-row-id="u0" class="mdc-data-table__row">
                                   <td class="mdc-data-table__cell" scope="row" id="u0">
                                     <div class="widget-content p-0">
@@ -127,7 +89,7 @@
                                     </div>
                                   </td>
                                   <td class="mdc-data-table__cell">
-                                    <input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="Téléphone" value="+237 691 87 74 03" required>
+                                    <input type="text" class="form-control" style="width:100%" id="id_tel" placeholder="Téléphone" value="{{$user['telephone']}}" required>
                                   </td>									  
                                 </tr>
                                 <tr data-row-id="u0" class="mdc-data-table__row">
@@ -146,27 +108,8 @@
                                     </div>
                                   </td>
                                   <td class="mdc-data-table__cell">
-                                    <input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="Email" value="georges_lisoume@gmail" required>
+                                    <input type="text" class="form-control" style="width:100%" id="id_email" placeholder="Email" value="{{$user['email']}}" required>
                                   </td>									  
-                                </tr>
-                                <tr data-row-id="u0" class="mdc-data-table__row">
-                                  <td class="mdc-data-table__cell" scope="row" id="u0">
-                                    <div class="widget-content p-0">
-                                        <div class="widget-content-wrapper">																		
-                                            <div class="widget-content-left flex2">
-                                                <div class="widget-heading font-weight-bold">Login
-                                                    &nbsp;<i class="fa fa-envelope-o text-link" style="cursor:pointer;" aria-hidden="true"></i>
-                                                    <!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
-                                                    &nbsp;<i class="fa fa-whatsapp text-link" style="cursor:pointer;" aria-hidden="true"></i>
-                                                    &nbsp;<i class="fa fa-skype text-link" style="cursor:pointer;" aria-hidden="true"></i>
-                                                </div> 																			
-                                            </div>
-                                        </div>
-                                    </div>
-                                  </td>
-                                  <td class="mdc-data-table__cell">
-                                    <input type="text" class="form-control" style="width:100%" id="validationCustom01" placeholder="Login" value="Georges" required>
-                                  </td>
                                 </tr>
                                 <tr data-row-id="u0" class="mdc-data-table__row">
                                   <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -184,7 +127,7 @@
                                     </div>
                                   </td>
                                   <td class="mdc-data-table__cell">
-                                    <input type="password" class="form-control" style="width:100%" id="validationCustom01" placeholder="Login" value="Fabrizio-Kmer" required>
+                                    <input type="password" class="form-control" style="width:100%" id="id_pass" placeholder="Mots de Passe" value="" required>
                                   </td>
                                 </tr>
                                 <tr data-row-id="u0" class="mdc-data-table__row">
@@ -203,7 +146,7 @@
                                     </div>
                                   </td>
                                   <td class="mdc-data-table__cell">
-                                    <input type="password" class="form-control" style="width:100%" id="validationCustom01" placeholder="Login" value="Fabrizio-Kmer" required>
+                                    <input type="password" class="form-control" style="width:100%" id="id_confirm" placeholder="Login" value="" required>
                                   </td>
                                 </tr>
                                 </tbody>
@@ -231,14 +174,18 @@
                                     </div>
                                   </td>
                                   <td class="mdc-data-table__cell">
-                         <div class="mdc-switch mdc-switch--success" data-mdc-auto-init="MDCSwitch">
-                          <div class="mdc-switch__track"></div>
-                          <div class="mdc-switch__thumb-underlay">
-                            <div class="mdc-switch__thumb">
-                                <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch" checked>
-                            </div>
-                          </div>
-                      </td>									  
+                                    <div class="mdc-switch mdc-switch--success" data-mdc-auto-init="MDCSwitch">
+                                      <div class="mdc-switch__track"></div>
+                                      <div class="mdc-switch__thumb-underlay">
+                                        <div class="mdc-switch__thumb">
+                                          @if($user['enable'] != 0)
+                                            <input type="checkbox" id="id_enable" class="mdc-switch__native-control" role="switch" checked>
+                                          @else
+                                            <input type="checkbox" id="id_enable" class="mdc-switch__native-control" role="switch">
+                                          @endif
+                                        </div>
+                                      </div>
+                                  </td>									  
                                 </tr>
                                 <tr data-row-id="u0" class="mdc-data-table__row">
                                   <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -255,7 +202,7 @@
                                         </div>
                                     </div>
                                   </td>
-                                  <td class="mdc-data-table__cell">16-06-2021 00:14</td>									  
+                                  <td class="mdc-data-table__cell">{{$user['date']}}</td>									  
                                 </tr>
                                 <tr data-row-id="u0" class="mdc-data-table__row">
                                   <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -273,35 +220,13 @@
                                     </div>
                                   </td>
                                   <td class="mdc-data-table__cell" style="width:100%;">
-                                        <select class="mdl-selectfield__select" id="professsion1" name="Administrateur">
-                                          <option value="option1" selected>Administrateur</option>
-                                          <option value="option1">Surveillant</option>
-                                          <option value="option2">Sécrétaire</option>
+                                        <select class="mdl-selectfield__select" id="id_list_groupe" name="Administrateur">
+                                          <option value="0" selected>Changer le groupe</option>
+                                          @foreach($profils as $profil)
+                                            <option value="{{$profil->id_profil}}">{{$profil->libelle}}</option>
+                                          @endforeach
                                         </select>
                                     </td>									  
-                                </tr>
-                                <tr data-row-id="u0" class="mdc-data-table__row">
-                                  <td class="mdc-data-table__cell" scope="row" id="u0">
-                                    <div class="widget-content p-0">
-                                        <div class="widget-content-wrapper">																		
-                                            <div class="widget-content-left flex2">
-                                                <div class="widget-heading font-weight-bold">Modules
-                                                    &nbsp;<i class="fa fa-envelope-o text-link" style="cursor:pointer;" aria-hidden="true"></i>
-                                                    <!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
-                                                    &nbsp;<i class="fa fa-whatsapp text-link" style="cursor:pointer;" aria-hidden="true"></i>
-                                                    &nbsp;<i class="fa fa-skype text-link" style="cursor:pointer;" aria-hidden="true"></i>
-                                                </div> 																			
-                                            </div>
-                                        </div>
-                                    </div>
-                                  </td>
-                                  <td class="mdc-data-table__cell">
-                                    <select id="multiselect" multiple="multiple" style="height:50px;width:100%;">
-                                      <option selected>Gestscol</option>
-                                      <option selected>Caisse</option>
-                                    </select>										 
-                                  </td>	
-                                                                    
                                 </tr>
                                 
                                 <tr data-row-id="u0" class="mdc-data-table__row">
@@ -327,7 +252,7 @@
                               </button> -->
                               
                                   <button class="mdc-button mdc-button--success icon-button" >
-                                    &nbsp; <a href="utilisateur-profil.html"><i class="material-icons mdc-button__icon" style="color:white;">save</i> 
+                                    &nbsp; <a onclick="saveProfil({{$user['id']}})"><i class="material-icons mdc-button__icon" style="color:white;">save</i> 
                                     &nbsp;<span style="color:white;">Enregistrer &nbsp; </span></a>
                                   </button>
                                
@@ -350,13 +275,102 @@
                 </div>
               </div>
             </div>
-            
-         
-        
-                
-             
-            
           </div>
+
+          <script type="text/javascript">
+            function saveProfil(id){
+              var nom, tel, email, pass, confirm, enable, groupe;
+              nom = $("#id_nom").val();
+              tel = $("#id_tel").val();
+              email = $("#id_email").val();
+              pass = $("#id_pass").val();
+              confirm = $("#id_confirm").val();
+              groupe = $("#id_list_groupe option:selected").val();
+
+              if ($('#id_enable').is(":checked"))
+                enable = 1;
+              else
+                enable = 0;
+
+              console.log(nom+" "+tel+" "+email);
+              if(groupe == 0){
+                presence2 = 0;
+              } else {
+                presence2 = 1;
+              }
+
+              if(pass != ""){
+
+                if (pass != confirm) {
+                alert("mot de passe non concordant");
+                  } else {
+                      $.ajax({
+                          url: "{{ route('user.modif') }}",
+                          type: "POST",   
+                          data: {
+                              "_token": "{{ csrf_token() }}",
+                              nom: nom,
+                              tel: tel,
+                              email: email,
+                              activation: enable,
+                              password: pass,
+                              password_confirmation: confirm,
+                              presence: 1,
+                              presence2: presence2,
+                              groupe: groupe,
+                              id: id,
+                          },
+
+                          success: function(response) {
+                              alert("utilisateur modifié avec succes ");
+                              window.location.href = "/configuration/utilisateur/profilU";
+                              console.log(response);
+                          },
+                          error: function(response) {
+                              alert("echec de modification");
+                              console.log(response);
+                          }
+                      });
+                  }
+
+              } else {
+
+                if (pass != confirm) {
+                  alert("mot de passe non concordant");
+                } else {
+                    $.ajax({
+                    url: "{{ route('user.modif') }}",
+                    type: "POST",   
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        nom: nom,
+                        tel: tel,
+                        email: email,
+                        activation: enable,
+                        presence: 0,
+                        presence2: presence2,
+                        groupe: groupe,
+                        id: id,
+                    },
+
+                    success: function(response) {
+                        alert("utilisateur modifié avec succes ");
+                        window.location.href = "/configuration/utilisateur/profilU";
+                        console.log(response);
+                    },
+                    error: function(response) {
+                        alert("echec de modification");
+                        console.log(response);
+                    }
+                  });
+                }
+
+                
+
+              }
+
+            }
+          </script>
         
         
         

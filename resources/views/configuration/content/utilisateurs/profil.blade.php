@@ -201,7 +201,7 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="mdc-data-table__table" aria-label="Dessert calories">
+                                <table class="mdc-data-table__table" aria-label="Dessert calories" >
                                     <thead>
                                         <tr class="mdc-data-table__header-row">
                                             <th class="mdc-data-table__header-cell mdc-data-table__header-cell--checkbox"
@@ -238,7 +238,7 @@
                                     </thead>
                                     <tbody class="mdc-data-table__content">
                                         @foreach($users as $user)
-                                            <tr data-row-id="u0" class="mdc-data-table__row">
+                                            <tr data-row-id="u0" class="mdc-data-table__row" id="user{{$user['id']}}">
                                                 <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
                                                     <div class="mdc-checkbox mdc-data-table__row-checkbox">
                                                         <input type="checkbox" class="mdc-checkbox__native-control"
@@ -280,7 +280,7 @@
                                                         <div class="mdc-switch__track"></div>
                                                         <div class="mdc-switch__thumb-underlay">
                                                             <div class="mdc-switch__thumb">
-                                                                @if($user['groupe'] == 1)
+                                                                @if($user['enable'] == 1)
                                                                     <input type="checkbox" id="basic-switch"
                                                                     class="mdc-switch__native-control" role="switch" checked>
                                                                 @else
@@ -291,15 +291,17 @@
                                                         </div>
                                                 </td>
                                                 <td class="mdc-data-table__cell">
-                                                    <a href="utilisateur-profil.html"><i
-                                                            class="material-icons mdc-text-field__icon"
-                                                            style="color:black; font-size:1.5em;">visibility</i></a>
-                                                            <a href="/configuration/utilisateur/editProfilU"><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">edit</i></a>
+                                                    <a href="/configuration/utilisateur/voir_profil/{{$user['id']}}">
+                                                        <i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">visibility</i></a>
+                                                    <a href="/configuration/utilisateur/modif_profil/{{$user['id']}}">
+                                                    <i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">edit</i></a>
 
                                                     <a href=""><i class="material-icons mdc-text-field__icon"
                                                             style="color:black; font-size:1.5em;">print</i></a>
-                                                    <a href=""><i class="material-icons mdc-text-field__icon"
+                                                    @if($user['id'] != auth()->guard('users')->user()->id_user)
+                                                        <a onclick="delete_user({{$user['id']}})"><i class="material-icons mdc-text-field__icon"
                                                             style="color:red; font-size:1.5em;">delete</i></a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -313,6 +315,65 @@
                 </div>
             </div>
         </main>
+
+        <script type="text/javascript">
+            function delete_user(id){
+
+                var confirmation = confirm("Voulez-vous vraiment supprimer cet utilisateur?");
+                if (confirmation) {
+                    $.ajax({
+                        url: "{{ route('user.delete') }}",
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            id: id,
+                        },
+
+                        success: function(response) {
+                            if (response["status"] == 1) {
+                                if(niv == 1){
+                                    alert("utilisateur supprimé avec succes ");
+                                    $("#user"+id).remove();
+                                } else {
+                                    window.location.href = "/administrateur/register";
+                                }
+                            } else if(response["status"] == 2){
+                                confirmation = confirm("Cet utilisateur a plusieurs attributions voulez-vous cas meme le supprimer ou annuler la suppression");
+                                if(confirmation){
+                                    $.ajax({
+                                        url: "{{ route('user.delete_force') }}",
+                                        type: "POST",
+                                        data: {
+                                            "_token": "{{ csrf_token() }}",
+                                            id: id,
+                                        },
+                                        success: function(response){
+                                            if (response["status"] == 1) {
+                                                if(niv == 1){
+                                                    alert("utilisateur supprimé avec succes ");
+                                                    $("#user"+id).remove();
+                                                } else {
+                                                    window.location.href = "/administrateur/register";
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+                            } else {
+                                alert("erreur de suppression");
+                                console.log(response);
+                            }
+
+                        },
+                        error: function(response) {
+                            alert("erreur de suppression");
+                            console.log(response);
+                        }
+                    });
+                }
+
+            }
+        </script>
         <!-- partial:../../partials/_footer.html -->
 
         <!-- partial -->

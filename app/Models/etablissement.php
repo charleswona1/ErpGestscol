@@ -12,6 +12,8 @@ class etablissement extends Model
     protected $primaryKey = 'id_etablissement';
     protected $table = 'etablissement';
 
+    protected $guarded = ['*'];
+
     public function document()
     {
         return $this->hasOne(document::class);
@@ -35,5 +37,10 @@ class etablissement extends Model
     public function admin()
     {
         return $this->belongsToMany(admin::class, 'admin_etablissement', 'id_etablissement', 'id_admin');
+    }
+
+    public function profils()
+    {
+        return $this->hasMany(profil::class);
     }
 }

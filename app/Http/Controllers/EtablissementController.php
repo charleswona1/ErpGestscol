@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\etablissement;
 use Carbon\Carbon;
 use DB;
+use Exception;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Cookie;
 
 class EtablissementController extends Controller
@@ -22,7 +24,6 @@ class EtablissementController extends Controller
     }
     public function ajoutEtablissement(Request $request)
     {
-        session_start();
 
         $succesBD = -1;
         $message = "";
@@ -55,24 +56,41 @@ class EtablissementController extends Controller
                     "creation_date" => Carbon::now()->format('Y-m-d')
                 ]);
 
-                $_SESSION["id_etablissement"] = $id_etablissement;
+                $array =[
+                    "id"=> $id_etablissement,
+                    "nom" => $request->nom,
+                    "telephone" => $request->telephone,
+                    "email" => $request->email,
+                    "abreviation" => $request->abreviation,
+                    "type_etablissement" => $request->type_etablissement,
+                    "ville" => $request->ville,
+                    "boite_postale" => $request->boite_postale,
+                    "fax" => $request->fax,
+                    "site_web" => $request->site_web,
+                    "localisation" => $request->localisation,
+                    "creation_date" => Carbon::now()->format('Y-m-d')
+                ];
+                 $_SESSION["id_etablissement"] = $id_etablissement;
                 $succesBD = 1;
-                $message = "Etablissement Enregistrer avec succés...";
+                $message = "Etablissement Enregistrer avec succès...";
+
                 $resultat = array(
-                    'status' => $succesBD,
+                    'status' => $array,
                     'message' => $message,
                 );
 
                 return response()->json($resultat);
             } catch (Exception $e) {
                 $succesBD = 0;
+                echo 'and the error is: ',  $e->getMessage(), "\n";
+
                 $message = $e->getMessage();
             }
         } else {
 
             $resultat = array(
                 'status' => $succesBD,
-                'message' => $message,
+                'error' => "le nom de létablissement doit étre unique",
             );
 
             return response()->json($resultat);
@@ -85,6 +103,8 @@ class EtablissementController extends Controller
         $succesBD = -1;
         $message = "";
         if ($request->session()->get("user_id") == "") {
+
+
             try {
                 $affectedRows2 = DB::table('etablissement')->where('id_etablissement', $request->id)->update([
                     "nom" => $request->nom,
@@ -96,7 +116,8 @@ class EtablissementController extends Controller
                     "boite_postale" => $request->boite_postale,
                     "fax" => $request->fax,
                     "site_web" => $request->site_web,
-                    "localisation" => $request->localisation
+                    "localisation" => $request->localisation,
+                    "logo" =>$input['file'],
                 ]);
                 $succesBD = 1;
                 $message = "Etablissement mise a jour";
@@ -153,9 +174,63 @@ class EtablissementController extends Controller
         }
     }
 
-    public function profilEtablissement($id)
+    public function profilEtablissement()
     {
-        $etablissement = etablissement::where('id_etablissement', $id)->get();
+        $etablissement = etablissement::where('id_etablissement', Session::get('idEtabl'))->get();
+
         return view('configuration.content.etablissement.profil', compact('etablissement'));
+    }
+
+    public function showEtablissementProfil(){
+
+        $etablissement = etablissement::where('id_etablissement', Session::get('idEtabl'))->get();
+        return view('configuration.content.etablissement.editProfil', compact('etablissement'));
+    }
+
+    public function editEtablissementProfil(Request $request){
+        try {
+
+            $request->validate([
+                'file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            if ($request->file('file')) {
+                $image = $request->file('file');
+                $input['file'] = time() . '.' . $image->getClientOriginalExtension();
+                $imgFile = \Intervention\Image\Facades\Image::make($image->getRealPath());
+                $imgFile->save(public_path('logos_etablissements/'. $input['file']));
+                $affectedRows2 = DB::table('etablissement')->where('id_etablissement', Session::get('idEtabl'))->update([
+                    "nom" => $request->nom,
+                    "resp1"=> $request->resp1,
+                    "abreviation" => $request->abreviation,
+                    "type_etablissement" => $request->type_etablissement,
+                    "ville" => $request->ville,
+                    "boite_postale" => $request->boite_postale,
+                    "telephone" => $request->telephone,
+                    "email" => $request->email,
+                    "site_web" => $request->site_web,
+                    "localisation" => $request->localisation,
+                    "logo" =>$input['file'],
+                ]);
+            }
+            else{
+                $affectedRows2 = DB::table('etablissement')->where('id_etablissement', Session::get('idEtabl'))->update([
+                    "nom" => $request->nom,
+                    "resp1"=> $request->resp1,
+                    "abreviation" => $request->abreviation,
+                    "type_etablissement" => $request->type_etablissement,
+                    "ville" => $request->ville,
+                    "boite_postale" => $request->boite_postale,
+                    "telephone" => $request->telephone,
+                    "email" => $request->email,
+                    "site_web" => $request->site_web,
+                    "localisation" => $request->localisation,
+                ]);
+            }
+
+            return redirect()->route('show_etablissement')->with('success','Product successfully added.');
+        }  catch (Exception $e) {
+            echo 'and the error is: ',  $e->getMessage(), "\n";
+            return response()->json(['error' =>  $e->getMessage()]);
+        }
     }
 }

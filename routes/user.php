@@ -18,12 +18,25 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 		Route::post('/user/logout', [App\Http\Controllers\ConfigurationController::class, 'userLogout'])->name('user.logout');
 	/** */
 
-/**Etablissement */
-Route::get('/configuration/profilE', function () {
-	$etablissement = etablissement::find(Session::get('idEtabl'));
-	$modules = $etablissement->modules;
-    return view('configuration.content.etablissement.profil', $data = ['etablissement'=>$etablissement, 'modules'=>$modules]);
+	/** ROUTES CONFIGURATION */
+
+Route::get('/configuration/dashboard', function () {
+    return view('configuration.content.dashboard');
 });
+
+/**Etablissement */
+// Route::get('/configuration/profilE', function () {
+// 	$etablissement = etablissement::find(Session::get('idEtabl'));
+// 	$modules = $etablissement->modules;
+//     return view('configuration.content.etablissement.profil', $data = ['etablissement'=>$etablissement, 'modules'=>$modules]);
+// });
+
+Route::get('/configuration/profilE', [App\Http\Controllers\EtablissementController::class, 'profilEtablissement']);
+
+
+Route::get('/configuration/showProfil', [App\Http\Controllers\EtablissementController::class, 'showEtablissementProfil'])->name('show_etablissement');
+
+Route::post('/configuration/modifierProfil', [App\Http\Controllers\EtablissementController::class, 'editEtablissementProfil']);
 
 Route::get('/configuration/matricule', function () {
     return view('configuration.content.etablissement.matricule');
@@ -36,23 +49,14 @@ Route::get('/configuration/editMatricule', function () {
 /**end */
 
 /**Utilisateur */
-Route::get('/configuration/utilisateur/profilU', function () {
-    $users = etablissement::find(Session::get('idEtabl'))->users()->select('id_profil', 'nom', 'login', 'creation_date', 'enabled', 'telephone', 'users.id_user')->get();
-    $resultat = array();
-    foreach ($users as $user) {
-        $res = array();
-        $profil = profil::find($user->id_profil);
-        $res['nom'] = $user->nom;
-        $res['login'] = $user->login;
-        $res['date'] = $user->creation_date;
-        $res['enable'] = $user->enabled;
-        $res['telephone'] = $user->telephone;
-        $res['groupe'] = $profil->libelle;
+Route::get('/configuration/utilisateur/profilU', [App\Http\Controllers\ConfigurationController::class, 'profilUser'])->name('users.profil');
+Route::get('/configuration/utilisateur/modif_profil/{id}', [App\Http\Controllers\ConfigurationController::class, 'modif_profil'])->name('users.modif_profil');
+Route::get('/configuration/utilisateur/voir_profil/{id}', [App\Http\Controllers\ConfigurationController::class, 'voir_profil'])->name('users.voir_profil');
+Route::post('/configuration/utilisateur/modif_user', [App\Http\Controllers\ConfigurationController::class, 'modif_user'])->name('user.modif');
+Route::post('/configuration/utilisateur/supprimer_user', [App\Http\Controllers\ConfigurationController::class, 'delete_user'])->name('user.delete');
+Route::post('/configuration/utilisateur/force_supprimer_user', [App\Http\Controllers\ConfigurationController::class, 'force_delete_user'])->name('user.delete_force');
 
-        $resultat[] = $res;
-    }
-    return view('configuration.content.utilisateurs.profil', $data = ["users" => $resultat]);
-});
+
 /**end */
 
 /** Documentations */

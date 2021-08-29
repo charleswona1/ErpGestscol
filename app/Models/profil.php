@@ -12,7 +12,12 @@ class profil extends Model
     protected $primaryKey = 'id_profil';
     protected $table = "profil";
 
-    public function users()
+    public function etablissement()
+    {
+        return $this->belongsTo(etablissement::class);
+    }
+
+    public function profils()
     {
         return $this->hasMany(User::class);
     }
