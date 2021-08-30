@@ -32,6 +32,9 @@ Route::get('/administration/home', 'App\Http\Controllers\HomeController@index')-
 Route::get('/administrateur', [App\Http\Controllers\AdministrationController::class, 'getAcceuilAdmin'])->name('administration.admin')->middleware('auth');
 Route::get('/administrateur/home', [App\Http\Controllers\AdministrationController::class, 'home'])->name('administration.home')->middleware('auth');
 Route::get('/administrateur/etablissement', [App\Http\Controllers\AdministrationController::class, 'adminEtablissement'])->name('administration.etablissement')->middleware('auth');
+Route::get('/administrateur/etablissement/secondaire', [App\Http\Controllers\AdministrationController::class, 'adminEtablissementSecondaire'])->name('administration.etablissement_secondaire')->middleware('auth');
+Route::get('/administrateur/etablissement/universite', [App\Http\Controllers\AdministrationController::class, 'adminEtablissementUniversite'])->name('administration.etablissement_universite')->middleware('auth');
+Route::get('/administrateur/etablissement/primaire', [App\Http\Controllers\AdministrationController::class, 'adminEtablissementPrimaire'])->name('administration.etablissement_primaire')->middleware('auth');
 Route::get('/administrateur/voir_etablissement/{id}', [App\Http\Controllers\AdministrationController::class, 'adminVoirEtablissement'])->name('etablissement.show')->middleware('auth');
 Route::post('/administrateur/ajout_etablissement', [App\Http\Controllers\EtablissementController::class, 'ajoutEtablissement'])->name('etablissement.ajout')->middleware('auth');
 Route::post('/administrateur/modif_etablissement', [App\Http\Controllers\EtablissementController::class, 'modifEtablissement'])->name('etablissement.modif')->middleware('auth');

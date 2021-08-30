@@ -121,6 +121,24 @@ class AdministrationController extends Controller
     	return view('administration.etablissements', compact('etablissements'));
     }
 
+    public function adminEtablissementSecondaire()
+    {
+        $etablissements = etablissement::where("type_etablissement", "Secondaire")->get();
+        return view('administration.etablissements', compact('etablissements'));
+    }
+
+    public function adminEtablissementUniversite()
+    {
+        $etablissements = etablissement::where("type_etablissement", "Université")->get();
+        return view('administration.etablissements', compact('etablissements'));
+    }
+
+    public function adminEtablissementPrimaire()
+    {
+        $etablissements = etablissement::where("type_etablissement", "Primaire")->get();
+        return view('administration.etablissements', compact('etablissements'));
+    }
+
     public function adminUtilisateur()
     {
          $listAdmin = admin::all();
