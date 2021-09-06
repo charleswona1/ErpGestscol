@@ -1,4 +1,5 @@
 <header class="mdc-top-app-bar">
+    <link rel="stylesheet" href="/css/bootstrap.css">
     <div class="mdc-top-app-bar__row">
       <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
         <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button sidebar-toggler">menu</button>
@@ -7,7 +8,7 @@
             <i style="margin-right:30px;" class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">home</i>
         </a>
         <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon search-text-field d-none d-md-flex">
-          
+
           <i class="material-icons mdc-text-field__icon">search</i>
           <input class="mdc-text-field__input" id="text-field-hero-input">
           <div class="mdc-notched-outline">
@@ -75,7 +76,7 @@
               </li>
               <li class="mdc-list-item" role="menuitem">
                 <div class="item-thumbnail item-thumbnail-icon-only">
-                  <i class="mdi mdi-progress-download text-primary"></i>                      
+                  <i class="mdi mdi-progress-download text-primary"></i>
                 </div>
                 <div class="item-content d-flex align-items-start flex-column justify-content-center">
                   <h6 class="item-subject font-weight-normal">Mise &agrave; jour</h6>
@@ -102,7 +103,7 @@
               </li>
               <li class="mdc-list-item" role="menuitem">
                 <div class="item-thumbnail item-thumbnail-icon">
-                  <i class="mdi mdi-account-outline"></i>                      
+                  <i class="mdi mdi-account-outline"></i>
                 </div>
                 <div class="item-content d-flex align-items-start flex-column justify-content-center">
                   <h6 class="item-subject font-weight-normal">New user registered</h6>
@@ -117,7 +118,7 @@
                   <h6 class="item-subject font-weight-normal">System Alert</h6>
                   <small class="text-muted"> 2 days ago </small>
                 </div>
-              </li> 
+              </li>
               <li class="mdc-list-item" role="menuitem">
                 <div class="item-thumbnail item-thumbnail-icon">
                   <i class="mdi mdi-update"></i>
@@ -126,7 +127,7 @@
                   <h6 class="item-subject font-weight-normal">You have a new update</h6>
                   <small class="text-muted"> 3 days ago </small>
                 </div>
-              </li> 
+              </li>
             </ul>
           </div>
         </div>
@@ -166,7 +167,7 @@
                   <h6 class="item-subject font-weight-normal">Profile picture updated</h6>
                   <small class="text-muted"> 18 Minutes ago </small>
                 </div>
-              </li>                
+              </li>
             </ul>
           </div>
         </div>
@@ -186,7 +187,7 @@
               </li>
               <li class="mdc-list-item" role="menuitem">
                 <div class="item-thumbnail item-thumbnail-icon-only">
-                  <i class="mdi mdi-logout-variant text-primary"></i>                      
+                  <i class="mdi mdi-logout-variant text-primary"></i>
                 </div>
                 <div class="item-content d-flex align-items-start flex-column justify-content-center">
                   <h6 class="item-subject font-weight-normal">D&eacute;connexion</h6>

@@ -15,9 +15,12 @@ class CreateProfilsTable extends Migration
     {
         Schema::create('profil', function (Blueprint $table) {
             $table->bigIncrements('id_profil');
-            $table->string('libelle', 255)->unique();
+            $table->string('libelle', 255);
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('id_etablissement')->unique();
+            $table->unsignedBigInteger('id_etablissement');
+
+            $table->foreign('id_etablissement')->references('id_etablissement')->on('etablissement');
+            $table->unique(['libelle', 'id_etablissement']);
         });
     }
 

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/assets1/images/favicon.png" />
+    <script src="/js/alpine.js"></script>
 </head>
 
 <body>
@@ -506,8 +507,14 @@
                             });
                         }
                     } else {
-                        alert("erreur de suppression");
-                        console.log(response);
+                        $('#idErreur').css('display','block');
+                        $("#errorM").html(response.error);
+
+                        var fade_out = function() {
+                            $("#idErreur").css('display','none');
+                        }
+
+                        setTimeout(fade_out, 5000);
                     }
 
                 },

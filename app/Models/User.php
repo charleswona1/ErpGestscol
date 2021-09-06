@@ -15,6 +15,7 @@ class User extends Authenticatable
 
     protected $primaryKey = 'id_user';
     protected $table = "users";
+    protected $guard = 'admins';
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +30,7 @@ class User extends Authenticatable
         'login',
         'enabled',
         'creation_date',
+        'id_profil',
     ];
 
     /**
@@ -52,7 +54,7 @@ class User extends Authenticatable
 
     public function etablissement()
     {
-        return $this->belongsToMany(etablissement::class, 'etablissement_user', 'id_user', 'id_etablissement'); 
+        return $this->belongsToMany(etablissement::class, 'etablissement_user', 'id_user', 'id_etablissement');
     }
 
     public function profil(){

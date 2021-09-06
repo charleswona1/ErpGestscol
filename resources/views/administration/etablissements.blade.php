@@ -266,8 +266,7 @@
                                                                 &nbsp;<i class="fa fa-skype text-link"
                                                                     style="cursor:pointer;" aria-hidden="true"></i>
                                                             </div>
-                                                            <div class="widget-subheading text-muted opacity-7">Père Georges
-                                                                Lissoumé</div>
+                                                            <div class="widget-subheading text-muted opacity-7">{{ $item->resp1 }}</div>
                                                         </div>
                                                     </div>
                                             </td>
@@ -371,8 +370,7 @@
                                                                 &nbsp;<i class="fa fa-skype text-link"
                                                                     style="cursor:pointer;" aria-hidden="true"></i>
                                                             </div>
-                                                            <div class="widget-subheading text-muted opacity-7">Père Georges
-                                                                Lissoumé</div>
+                                                            <div class="widget-subheading text-muted opacity-7"></div>
                                                         </div>
                                                     </div>
                                             </td>
@@ -395,8 +393,7 @@
                                                         style="color:red; font-size:1.5em;">delete</i></a>
                                             </td>
                                         </tr>
-
-                        `)
+                        `           )
                     var nom = $("#nom").val("")
                     var telephone = $("#telephone").val("")
                     var email = $("#email").val("")
@@ -456,7 +453,6 @@
                     }
                 });
             }
-
         }
     </script>
 @endsection

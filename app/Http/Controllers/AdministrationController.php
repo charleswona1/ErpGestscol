@@ -25,6 +25,13 @@ use Illuminate\Validation\Rules\Password;
 class AdministrationController extends Controller
 {
 
+    public function __construct(){
+        
+        $this->middleware('droitEcriture')->only(['adminRegister', 'modif_admin', 'modifier_licence']);
+        $this->middleware('droitSuppression')->only(['delete_admin', 'force_delete_admin', 'delete_licence']);
+
+    }
+
     public function adminLogin1(){
         return view('administration.login');
     }

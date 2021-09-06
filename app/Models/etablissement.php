@@ -41,6 +41,6 @@ class etablissement extends Model
 
     public function profils()
     {
-        return $this->hasMany(profil::class);
+        return $this->hasMany(profil::class, 'id_etablissement');
     }
 }

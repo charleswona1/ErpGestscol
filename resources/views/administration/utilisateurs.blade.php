@@ -49,7 +49,7 @@
                                 </div>
 
 
-                                <div class=class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
                                     <div class="mdc-select demo-width-class" data-mdc-auto-init="MDCSelect">
                                         <input type="hidden" name="enhanced-select">
                                         <i class="mdc-select__dropdown-icon"></i>
@@ -226,7 +226,7 @@
                                 <tbody class="mdc-data-table__content">
 
                                     @foreach ($listAdmin as $admin)
-                                        
+
                                         <tr data-row-id="u0" class="mdc-data-table__row" id="admin{{ $admin->id_admin }}">
                                             <td class="mdc-data-table__cell mdc-data-table__cell--checkbox">
                                                 <div class="mdc-checkbox mdc-data-table__row-checkbox">
@@ -306,7 +306,7 @@
         </div>
         @if($errors->any())
             <div class="alert alert-danger">
-                <p><strong>erreur!!!!</strong></p>
+                <p><strong>erreur!!!!</stalert alert-dangerrong></p>
                 <ul>
                 @foreach($errors->all() as $error)
                     <li>{{$error}}</li>
@@ -319,5 +319,9 @@
                 {{ session()->get('success') }}
             </div>
         @endif
+
+        <div class="alert alert-danger" style="display: none;" id="idErreur">
+            <strong><label id="errorM"></label></strong>
+        </div>
     </main>
 @endsection
