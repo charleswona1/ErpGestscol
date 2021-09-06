@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\document;
+use App\Models\entete;
 use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -50,6 +52,31 @@ class DocumentController extends Controller
             $message = $e->getMessage();
         }
 
+    }
+
+    public function editEntete($id){
+        $entete = entete::find($id);
+        return view('configuration.content.documentations.editEntete', compact("entete"));
+
+    }
+
+    public function modifEntete(Request $request){
+        $request->validate([
+            'id' => ['required', 'numeric'],
+            'entete_g' => ['required', 'string'],
+            'entete_d' => ['required', 'string'],
+        ]);
+
+        try {
+            $entete = entete::find($request->id);
+            $entete->eng_gauche = $request->entete_g;
+            $entete->eng_droit = $request->entete_d;
+            $entete->save();
+            return 1;
+        } catch (QueryException $e) {
+            return $e->getMessage();
+            //throw $th;
+        }
     }
 
 }

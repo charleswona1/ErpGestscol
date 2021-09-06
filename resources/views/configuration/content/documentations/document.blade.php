@@ -149,8 +149,6 @@
                                                 du documents</th>
                                             <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Date de
                                                 création</th>
-                                            <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Actif
-                                            </th>
                                             <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Actions
                                             </th>
                                         </tr>
@@ -192,19 +190,6 @@
                                                         </div>
                                                 </td>
                                                 <td class="mdc-data-table__cell">{{ $document->creation_date }}</td>
-                                                <!-- <td class="mdc-data-table__cell mdc-data-table__cell--numeric">Tous</td> -->
-                                                <td class="mdc-data-table__cell">
-                                                    <div class="mdc-switch mdc-switch--success"
-                                                        data-mdc-auto-init="MDCSwitch">
-                                                        <div class="mdc-switch__track"></div>
-                                                        <div class="mdc-switch__thumb-underlay">
-                                                            <div class="mdc-switch__thumb">
-                                                                <input type="checkbox" id="basic-switch"
-                                                                    class="mdc-switch__native-control" role="switch"
-                                                                    checked>
-                                                            </div>
-                                                        </div>
-                                                </td>
                                                 <td class="mdc-data-table__cell">
                                                     <a href="etablissement-documentprofil.html"><i
                                                             class="material-icons mdc-text-field__icon"
@@ -293,18 +278,6 @@
                                                 <td class="mdc-data-table__cell">${response.array.creation_date}</td>
                                                 <!-- <td class="mdc-data-table__cell mdc-data-table__cell--numeric">Tous</td> -->
                                                 <td class="mdc-data-table__cell">
-                                                    <div class="mdc-switch mdc-switch--success"
-                                                        data-mdc-auto-init="MDCSwitch">
-                                                        <div class="mdc-switch__track"></div>
-                                                        <div class="mdc-switch__thumb-underlay">
-                                                            <div class="mdc-switch__thumb">
-                                                                <input type="checkbox" id="basic-switch"
-                                                                    class="mdc-switch__native-control" role="switch"
-                                                                    checked>
-                                                            </div>
-                                                        </div>
-                                                </td>
-                                                <td class="mdc-data-table__cell">
                                                     <a href="etablissement-documentprofil.html"><i
                                                             class="material-icons mdc-text-field__icon"
                                                             style="color:black; font-size:1.5em;">visibility</i></a>
@@ -324,6 +297,7 @@
                     $("#ligne2").val("")
                     $("#ligne3").val("")
                     $("#ligne4").val("")
+                    $('#cancel').trigger('click');
                 },
                 error: function(err) {
                     console.log(err)

@@ -406,7 +406,7 @@ class ConfigurationController extends Controller
                 $param["id"] = $profil->id_profil."_".$ressource->id_ressource;
                 $resultatFinal[] = $param;
             }
-            
+
         }
         return view('configuration.content.utilisateurs.parametrage', compact('resultatFinal'));
     }
@@ -427,12 +427,12 @@ class ConfigurationController extends Controller
                 $param["id"] = $profil->id_profil."_".$ressource->id_ressource;
                 $resultatFinal[] = $param;
             }
-            
+
         }
         return view('configuration.content.utilisateurs.editParametrage', compact('resultatFinal', 'id'));
 
     }
-    
+
     public function modif_parametre(Request $request){
 
         $request->validate([

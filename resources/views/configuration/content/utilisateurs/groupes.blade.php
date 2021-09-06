@@ -262,7 +262,6 @@
                             $("#idError").css('display','none');
                         }
                         setTimeout(fade_out, 5000);
-                        alert("erreur de suppression");
                     }
 
                 },

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\entete;
 use App\Models\etablissement;
 use App\Models\profil;
 use Illuminate\Support\Facades\Route;
@@ -73,7 +74,7 @@ Route::post('/configuration/utilisateur/modif_parametre', [App\Http\Controllers\
 /** Documentations */
 Route::get('/configuration/documentation/documents', function () {
     return view('configuration.content.documentations.document');
-})->middleware('authUser');;
+})->middleware('authUser');
 
 Route::get('/configuration/documentation/documents/{id}', [App\Http\Controllers\DocumentController::class, 'getDocument'])->middleware('authUser');
 
@@ -82,33 +83,33 @@ Route::post('/configuration/addDocument', [App\Http\Controllers\DocumentControll
 Route::get('/configuration/documentation/deleteDocument/{id}',  [App\Http\Controllers\DocumentController::class, 'deleteDocument'])->name('delete.docu')->middleware('authUser');
 Route::get('/configuration/documentation/editDocuments', function () {
     return view('configuration.content.documentations.editDocument');
-})->middleware('authUser');;
+})->middleware('authUser');
 
 Route::get('/configuration/documentation/entete', function () {
-    return view('configuration.content.documentations.entete');
-})->middleware('authUser');;
+    $entete = entete::where('id_etablissement', Session::get('idEtabl'))->first();
+    return view('configuration.content.documentations.entete', compact("entete"));
+})->middleware('authUser');
 
-Route::get('/configuration/documentation/editEntete', function () {
-    return view('configuration.content.documentations.editEntete');
-})->middleware('authUser');;
+Route::get('/configuration/documentation/editEntete/{id}', [App\Http\Controllers\DocumentController::class, 'editEntete'])->name('users.edit_entete')->middleware('authUser');
 
+Route::post('/configuration/documentation/modifEntete', [App\Http\Controllers\DocumentController::class, 'modifEntete'])->name('users.modifEntete')->middleware('authUser');
 
 Route::get('/configuration/documentation/signature', function () {
     return view('configuration.content.documentations.signature');
-})->middleware('authUser');;
+})->middleware('authUser');
 
 Route::get('/configuration/documentation/editSignature', function () {
     return view('configuration.content.documentations.editSignature');
-})->middleware('authUser');;
+})->middleware('authUser');
 /**end */
 
 /**other menu */
 Route::get('/configuration/annee', function () {
     return view('configuration.content.annee.annee');
-})->middleware('authUser');;
+})->middleware('authUser');
 
 Route::get('/configuration/module', function () {
     return view('configuration.content.module.module');
-})->middleware('authUser');;
+})->middleware('authUser');
 
 ?>
