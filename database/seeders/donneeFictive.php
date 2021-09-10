@@ -66,13 +66,12 @@ class donneeFictive extends Seeder
         ]);
 
 
-        $user1;
         $tabUser = array();
         foreach (range(1,5) as $index) {
 	        	$user = DB::table('users')->insertGetId([
 	        	"id_profil"=>$profil,
 	        	"login"=>$faker->userName,
-	        	"password"=>Hash::make('yannick93'),
+	        	"password"=>Hash::make('gestscol'),
 	        	"nom"=>$faker->name,
 	        	"telephone"=>"677274218",
 	        	"email"=>$faker->email,
@@ -128,7 +127,7 @@ class donneeFictive extends Seeder
                 "est_cloturer"=>false,
                 "par_defaut"=> false,
             ]);
-        
+
         $user_session = DB::table('user_session')->insertGetId([
                 "id_user"=>$user1,
                 "date_debut"=> new \Datetime(),
@@ -586,8 +585,8 @@ class donneeFictive extends Seeder
         $tabApprenant = array();
         $tabApprenantClasse = array();
         $somApprenant = 0;
-        for ($i=0; $i < 21; $i++) { 
-            for ($j=0; $j < $faker->numberBetween(30, 50); $j++) { 
+        for ($i=0; $i < 21; $i++) {
+            for ($j=0; $j < $faker->numberBetween(30, 50); $j++) {
                 $apprenant = DB::table('apprenant')->insertGetId([
                     "id_etablissement"=>$etablissement,
                     "nom"=> $faker->name." ".$faker->lastName,
@@ -629,7 +628,7 @@ class donneeFictive extends Seeder
                 ]);
             $tabEtUser[] = $etablissement_user;
         }
-        
+
         $tabGp = array();
         foreach (range(0, 9) as $index) {
             $groupe = DB::table('groupe')->insertGetId([
@@ -641,8 +640,8 @@ class donneeFictive extends Seeder
         }
 
         foreach (range(0, 9) as $index) {
-            for ($j=0; $j < 5; $j++) { 
-                
+            for ($j=0; $j < 5; $j++) {
+
             $groupe_apprenant_classe = DB::table('groupe_apprenant_classe')->insertGetId([
                     "id_groupe"=>$tabApprenant[$index],
                     "id_apprenant_classe"=> $tabApprenantClasse[$j],
@@ -665,7 +664,7 @@ class donneeFictive extends Seeder
 
         $tabSousPeriode = array();
         foreach (range(0, 2) as $index) {
-            for ($j=0; $j < 1; $j++) { 
+            for ($j=0; $j < 1; $j++) {
                 $tabSousPeriode[$tabPeriode[$index]] = array();
             $sousperiode = DB::table('sous_periode')->insertGetId([
                     "id_periode"=>$tabPeriode[$index],
@@ -782,7 +781,7 @@ class donneeFictive extends Seeder
                     "numero"=>$i+1,
                 ]);
             $groupeM1[] = $groupeM[$i].$index;
-            $tabgroupeM[] = $groupe_matiere;  
+            $tabgroupeM[] = $groupe_matiere;
             }
         }
 
