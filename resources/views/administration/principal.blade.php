@@ -423,8 +423,24 @@
                     },
 
                     success: function(response) {
-                        alert("administrateur modifié avec succes ");
-                        console.log(response);
+                        if(response === 1){
+                            $('#idSuccess').css('display','block');
+                            $( "#idSuccess" ).empty().append("Administrateur modifiée avec succès avec succès");
+
+                            var fade_out = function() {
+                                $("#idSuccess").css('display','none');
+                            }
+                            setTimeout(fade_out, 2000);
+                            window.location.href = "/administrateur/register";
+                        }else{
+                            $('#idError').css('display','block');
+                            $( "#idError" ).empty().append(response.error);
+
+                            var fade_out = function() {
+                                $("#idError").css('display','none');
+                            }
+                            setTimeout(fade_out, 5000);
+                        }
                     },
                     error: function(response) {
                         alert("echec de modification");
@@ -433,7 +449,6 @@
                 });
             }
         } else {
-            console.log("non");
             if (password != confirm_password) {
                 alert("mot de passe non concordant");
             } else {
@@ -453,8 +468,24 @@
                     },
 
                     success: function(response) {
-                        alert("administrateur modifié avec succes ");
-                        console.log(response);
+                        if(response == 2){
+                            $('#idSuccess').css('display','block');
+                            $( "#idSuccess" ).empty().append("Administrateur modifiée avec succès avec succès");
+
+                            var fade_out = function() {
+                                $("#idSuccess").css('display','none');
+                            }
+                            setTimeout(fade_out, 2000);
+                            window.location.href = "/administrateur/register";
+                        }else{
+                            $('#idError').css('display','block');
+                            $( "#idError" ).empty().append(response.error);
+
+                            var fade_out = function() {
+                                $("#idError").css('display','none');
+                            }
+                            setTimeout(fade_out, 5000);
+                        }
                     },
                     error: function(response) {
                         alert("echec de modification");
