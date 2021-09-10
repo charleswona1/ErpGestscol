@@ -5,7 +5,7 @@
         <main class="content-wrapper">
           <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-				
+
 			  <div class="fab">
 				<button class="mdc-button mdc-menu-button mdc-button--raised icon-button secondary-filled-button fab-icon">
                     <i class="material-icons mdc-button__icon">&nbsp;add</i>&nbsp; Créer une Licence &nbsp;
@@ -79,22 +79,22 @@
                             <label for="text-field-hero-input"  class="mdc-floating-label">Date d'expiration</label>
                           </div>
                         </div>
-                        
-						
-						
+
+
+
                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                           <div class="mdc-form-field">
                             <div class="mdc-checkbox">
-                              
-                               
+
+
                             </div>
 
                           </div>
                         </div>
                         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop d-flex align-items-center justify-content-end">
-                          
+
                         </div>
-						
+
 						<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4">
                           <a href="utilisateurs.html" id="cancel" class="mdc-button mdc-button--label w-100">
                             Annuler
@@ -105,21 +105,21 @@
                             Enregistrer
                           </a>
                         </div>
-						
+
 						<!-- <button class="mdl-button mdl-js-button" id="cancel">Cancel</button> -->
                       </div>
                     </div>
 
 				</form>
 			  </div>
-						  
+
               <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                 <div class="mdc-card p-0">
 				<div class="d-flex justify-content-between">
                    <center><h6 class="card-title card-padding pb-0" style="color:grey;" >Licences enrégitrées</h6></center>
-				  
+
 				  <div class="template-demo">
-                        
+
                         <div class="menu-button-container">
                           <button class="mdc-button mdc-menu-button">
                             <i class="material-icons mdc-button__icon">settings</i>
@@ -162,7 +162,7 @@
 						  </th>
 						  <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Nom de l'Etablissemnt</th>
 						  <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Module</th>
-						  <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Numéro de Licence</th>						  
+						  <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Numéro de Licence</th>
 						  <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Date début</th>
 						  <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Date d'expirationn</th>
 						  <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Temps Restant</th>
@@ -194,7 +194,7 @@
 										<!-- &nbsp;<i class="fa fa-phone" style="cursor:pointer;" aria-hidden="true"></i> -->
 										&nbsp;<i class="fa fa-whatsapp text-link" style="cursor:pointer;" aria-hidden="true"></i>
 										&nbsp;<i class="fa fa-skype text-link" style="cursor:pointer;" aria-hidden="true"></i>
-										</div> 
+										</div>
                                     </div>
                                 </div>
 						  </td>
@@ -215,7 +215,7 @@
 								</button>
 							@elseif($module['status'] == 0 && $module['nbreJ'] > 0)
 								<button class="mdc-button text-button--info">
-							  		Bloquée 
+							  		Bloquée
 								</button>
 							@elseif($module['nbreJ'] <= 0 )
 								<button class="mdc-button text-button--danger">
@@ -233,27 +233,11 @@
 						  </td>
 						</tr>
 						@endforeach
-						
 					  </tbody>
 					</table>
-					
-					
-					
-					
-					
                   </div>
                 </div>
               </div>
-            
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			</div>
           </div>
         </main>

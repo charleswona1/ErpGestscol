@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class bourse extends Model
 {
     use HasFactory;
+
+    public function annee_academique() {
+        return $this->belongsTo(annee_academique::class, 'id_annee_academique');
+    }
 }

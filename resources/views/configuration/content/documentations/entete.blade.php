@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{ asset('assets1/css/add.css') }}">
 @endsection
 <?php
+    //dd($entete);
     $enteteG = explode("__", $entete->eng_gauche);
     $enteteD = explode("__", $entete->eng_droit);
 ?>

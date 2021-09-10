@@ -82,7 +82,7 @@
                                     </div>
 
 
-                                    <div class=class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                                    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
                                         <div class="mdc-select demo-width-class" data-mdc-auto-init="MDCSelect">
                                             <input type="hidden" name="enhanced-select" id="id_profil">
                                             <i class="mdc-select__dropdown-icon"></i>

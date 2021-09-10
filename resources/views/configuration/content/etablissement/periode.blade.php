@@ -6,6 +6,7 @@
 
 
 @section('content')
+<?php ?>
     <div class="page-wrapper mdc-toolbar-fixed-adjust">
         <main class="content-wrapper">
             <div class="mdc-layout-grid">
@@ -113,12 +114,12 @@
                                                         </div>
                                                     </div>
                                             </td>
-                                            <td class="mdc-data-table__cell">Année</td>
-                                            <td class="mdc-data-table__cell">Annuel</td>
-                                            <td class="mdc-data-table__cell">Annuelle</td>
+                                            <td class="mdc-data-table__cell">{{$denomination->nom_annee}}</td>
+                                            <td class="mdc-data-table__cell">{{$denomination->adj_masculin_annee}}</td>
+                                            <td class="mdc-data-table__cell">{{$denomination->adj_feminin_annee}}</td>
                                             <td class="mdc-data-table__cell">
                                                 <button class="mdc-button mdc-button--dark icon-button">
-                                                    &nbsp; <a href="/configuration/editPeriode"><i
+                                                    &nbsp; <a href="/configuration/editDenomination/annee"><i
                                                             class="material-icons mdc-button__icon"
                                                             style="color:white;">edit</i>
 
@@ -159,12 +160,12 @@
                                                         </div>
                                                     </div>
                                             </td>
-                                            <td class="mdc-data-table__cell">Trimestre</td>
-                                            <td class="mdc-data-table__cell">Trimestriel</td>
-                                            <td class="mdc-data-table__cell">Trimestrielle</td>
+                                            <td class="mdc-data-table__cell">{{$denomination->nom_periode}}</td>
+                                            <td class="mdc-data-table__cell">{{$denomination->adj_masculin_periode}}</td>
+                                            <td class="mdc-data-table__cell">{{$denomination->adj_feminin_periode}}</td>
                                             <td class="mdc-data-table__cell">
                                                 <button class="mdc-button mdc-button--dark icon-button">
-                                                    &nbsp; <a href="/configuration/editPeriode"><i
+                                                    &nbsp; <a href="/configuration/editDenomination/periode"><i
                                                             class="material-icons mdc-button__icon"
                                                             style="color:white;">edit</i>
 
@@ -204,12 +205,12 @@
                                                         </div>
                                                     </div>
                                             </td>
-                                            <td class="mdc-data-table__cell">Séquence</td>
-                                            <td class="mdc-data-table__cell">Séquentiel</td>
-                                            <td class="mdc-data-table__cell">Séquentielle</td>
+                                            <td class="mdc-data-table__cell">{{$denomination->nom_sous_periode}}</td>
+                                            <td class="mdc-data-table__cell">{{$denomination->adj_masculin_sous_periode}}</td>
+                                            <td class="mdc-data-table__cell">{{$denomination->adj_feminin_sous_periode}}</td>
                                             <td class="mdc-data-table__cell">
                                                 <button class="mdc-button mdc-button--dark icon-button">
-                                                    &nbsp; <a href="/configuration/editPeriode"><i
+                                                    &nbsp; <a href="/configuration/editDenomination/sous_periode"><i
                                                             class="material-icons mdc-button__icon"
                                                             style="color:white;">edit</i>
 
@@ -228,9 +229,7 @@
                 </div>
             </div>
         </main>
-        <!-- partial:../../partials/_footer.html -->
 
-        <!-- partial -->
     </div>
 @endsection
 

@@ -9,6 +9,7 @@ class etablissement extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $primaryKey = 'id_etablissement';
     protected $table = 'etablissement';
 
@@ -31,7 +32,7 @@ class etablissement extends Model
 
     public function annee_academique()
     {
-        return $this->hasMany(annee_academique::class);
+        return $this->hasMany(annee_academique::class, 'id_etablissement');
     }
 
     public function admin()

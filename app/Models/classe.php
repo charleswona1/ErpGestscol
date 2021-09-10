@@ -19,4 +19,8 @@ class classe extends Model
         return $this->belongsTo('App\Models\niveau_scolaire', 'id_niveau', 'id_niveau');
     }
 
+    public function annee_academique() {
+        return $this->belongsToMany(annee_academique::class, 'classe_annee', 'id_classe', 'id_annee_academique');
+    }
+
 }

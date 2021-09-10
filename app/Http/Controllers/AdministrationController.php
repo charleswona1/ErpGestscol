@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\admin;
+use App\Models\admin_acces;
 use App\Models\admin_etablissement;
+use App\Models\droit_admin;
 use App\Models\module_etablissement;
 use App\Models\module;
 use App\Models\licence;
@@ -26,7 +28,7 @@ class AdministrationController extends Controller
 {
 
     public function __construct(){
-        
+
         $this->middleware('droitEcriture')->only(['adminRegister', 'modif_admin', 'modifier_licence']);
         $this->middleware('droitSuppression')->only(['delete_admin', 'force_delete_admin', 'delete_licence']);
 
@@ -192,12 +194,43 @@ class AdministrationController extends Controller
 
     public function adminGroupeConfig()
     {
-    	return view('administration.config-admin-groupe');
+        $droit_admin = droit_admin::all();
+    	return view('administration.config-admin-groupe', compact('droit_admin'));
     }
 
     public function adminParamConfig()
     {
-    	return view('administration.config-admin-parametrages');
+        $resultatFinal = array();
+        $admins = admin::all();
+        foreach ($admins as $admin) {
+            $droits = droit_admin::all();
+            $resultat = array();
+
+            foreach ($droits as $droit) {
+                $tabArray = array();
+                $droit_admin = admin_acces::where('id_droit', $droit->id_droit)->where('id_admin', $admin->id_admin)->first();
+                if($droit_admin != null){
+                    $tabArray['id_droit'] = $droit->id_droit;
+                    $tabArray['presence'] = true;
+                    $tabArray['nom_droit'] = $droit->libelle;
+                    $tabArray['id_droit'] = $droit->id_droit;
+                } else {
+                    $tabArray['id_droit'] = $droit->id_droit;
+                    $tabArray['presence'] = false;
+                    $tabArray['nom_droit'] = $droit->libelle;
+                    $tabArray['id_droit'] = $droit->id_droit;
+                }
+
+                $resultat[] = $tabArray;
+
+            }
+
+            $resultat["id_admin"] = $admin->id_admin;
+            $resultat["nom_admin"] = $admin->nom;
+            $resultat["taille"] = sizeof($droits);
+            $resultatFinal[] = $resultat;
+        }
+    	return view('administration.config-admin-parametrages', compact("resultatFinal"));
     }
 
     public function voir_profil($id)
@@ -289,7 +322,7 @@ class AdministrationController extends Controller
                 $succesBD = 0;
                 $message = $e->getMessage();
             }
-            
+
         }
 
         $resultat = array(
@@ -297,13 +330,13 @@ class AdministrationController extends Controller
             'message' => $message,
             'ligneT'  => $ligneT,
         );
-        
+
         return response()->json($resultat);
     }
 
     public function force_delete_admin(Request $request) {
 
-        $succesBD = -1; 
+        $succesBD = -1;
         $message = "";
         $ligneT = -1;
 
@@ -537,5 +570,109 @@ class AdministrationController extends Controller
         $etablissement = etablissement::where('id_etablissement', $id)->get();
 
         return view('administration.etablissement-profil', compact('etablissement'));
+    }
+
+    public function delete_ressource(Request $request){
+
+        $succesBD = -1;
+        $message = "";
+        $ligneT = -1;
+
+        try {
+            $res = droit_admin::where('id_droit', $request->id)->delete();
+            $succesBD = 1;
+            $ligneT = $request->id;
+            $message = "succes de la requete";
+        } catch (QueryException $e) {
+            if($e->getCode() == '23000'){
+                $succesBD = 2;
+                $message = $e->getMessage();
+            } else {
+                $succesBD = 0;
+                $message = $e->getMessage();
+            }
+
+        }
+
+        $resultat = array(
+            'status' => $succesBD,
+            'message' => $message,
+            'ligneT'  => $ligneT,
+        );
+
+        return response()->json($resultat);
+
+    }
+
+    public function save_droit1(Request $request){
+        $validated = $request->validate([
+            'nom_droit' => ['required'],
+            'id_droit' => ['required'],
+        ]);
+
+        try {
+            $droit_admin = new droit_admin();
+            $droit_admin->code = $request->id_droit;
+            $droit_admin->libelle = $request->nom_droit;
+            $droit_admin->save();
+            return $droit_admin->id_droit;
+        } catch (QueryException $e) {
+            return $e->getMessage();
+        }
+
+
+    }
+
+    public function edit_droit($id){
+
+        $resultatFinal = array();
+        $admins = admin::all();
+        foreach ($admins as $admin) {
+            $droits = droit_admin::all();
+            $resultat = array();
+
+            foreach ($droits as $droit) {
+                $tabArray = array();
+                $droit_admin = admin_acces::where('id_droit', $droit->id_droit)->where('id_admin', $admin->id_admin)->first();
+                if($droit_admin != null){
+                    $tabArray['id_droit'] = $droit->id_droit;
+                    $tabArray['presence'] = true;
+                    $tabArray['nom_droit'] = $droit->libelle;
+                    $tabArray['id_droit'] = $droit->id_droit;
+                } else {
+                    $tabArray['id_droit'] = $droit->id_droit;
+                    $tabArray['presence'] = false;
+                    $tabArray['nom_droit'] = $droit->libelle;
+                    $tabArray['id_droit'] = $droit->id_droit;
+                }
+
+                $resultat[] = $tabArray;
+
+            }
+
+            $resultat["id_admin"] = $admin->id_admin;
+            $resultat["nom_admin"] = $admin->nom;
+            $resultat["taille"] = sizeof($droits);
+            $resultatFinal[] = $resultat;
+        }
+    	return view('administration.config-admin-parametragesedit', compact("resultatFinal", "id"));
+
+    }
+
+    public function save_droit(Request $request){
+        $taille = $request->taille;
+        for($i=0; $i<$taille; $i++){
+            if($request->input('verd'.$i) == 1){
+                $test = admin_acces::where('id_admin', $request->input('id'))->where('id_droit', $request->input('droit'.$i))->first();
+                if($test == null){
+                    DB::table('admin_acces')->insertGetId([
+                        'id_droit'=> $request->input('droit'.$i),
+                        'id_admin' => $request->input('id'),
+                    ]);
+                }
+            } else {
+                admin_acces::where('id_admin', $request->input('id'))->where('id_droit', $request->input('droit'.$i))->delete();
+            }
+        }
     }
 }

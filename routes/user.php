@@ -1,8 +1,11 @@
 <?php
 
+use App\Models\document;
 use App\Models\entete;
 use App\Models\etablissement;
+use App\Models\parametrage_matricule;
 use App\Models\profil;
+use App\Models\signature;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
@@ -40,12 +43,12 @@ Route::get('/configuration/showProfil', [App\Http\Controllers\EtablissementContr
 Route::post('/configuration/modifierProfil', [App\Http\Controllers\EtablissementController::class, 'editEtablissementProfil'])->middleware('authUser');
 
 Route::get('/configuration/matricule', function () {
-    return view('configuration.content.etablissement.matricule');
+    $matricule = parametrage_matricule::where('id_etablissement', Session::get('idEtabl'))->first();
+    return view('configuration.content.etablissement.matricule', compact('matricule'));
 })->middleware('authUser');;
 
-Route::get('/configuration/editMatricule', function () {
-    return view('configuration.content.etablissement.editMatricule');
-})->middleware('authUser');;
+Route::get('/configuration/editMatricule/{id}', [App\Http\Controllers\EtablissementController::class, 'editMatricule'])->name('users.edit_matricule')->middleware('authUser');
+Route::post('/configuration/addMatricule', [App\Http\Controllers\EtablissementController::class, 'addMatricule'])->name('users.add_matricule')->middleware('authUser');
 
 /**end */
 
@@ -87,6 +90,13 @@ Route::get('/configuration/documentation/editDocuments', function () {
 
 Route::get('/configuration/documentation/entete', function () {
     $entete = entete::where('id_etablissement', Session::get('idEtabl'))->first();
+    if($entete == null){
+        $entete = entete::create([
+            "id_etablissement" => Session::get('idEtabl'),
+            "eng_gauche" => "/__/__/__/",
+            "eng_droit" => "/__/__/__/",
+        ]);
+    }
     return view('configuration.content.documentations.entete', compact("entete"));
 })->middleware('authUser');
 
@@ -95,21 +105,34 @@ Route::get('/configuration/documentation/editEntete/{id}', [App\Http\Controllers
 Route::post('/configuration/documentation/modifEntete', [App\Http\Controllers\DocumentController::class, 'modifEntete'])->name('users.modifEntete')->middleware('authUser');
 
 Route::get('/configuration/documentation/signature', function () {
-    return view('configuration.content.documentations.signature');
+    $document = signature::where('id_etablissement', Session::get('idEtabl'))->first();
+
+    return view('configuration.content.documentations.signature', compact('document'));
 })->middleware('authUser');
 
-Route::get('/configuration/documentation/editSignature', function () {
-    return view('configuration.content.documentations.editSignature');
-})->middleware('authUser');
+Route::get('/configuration/documentation/editSignature/{id}', [App\Http\Controllers\DocumentController::class, 'editSignature'])->name('users.edit_signature')->middleware('authUser');
+Route::post('/configuration/documentation/addSignature', [App\Http\Controllers\DocumentController::class, 'addSignature'])->name('users.addSignature')->middleware('authUser');
 /**end */
 
 /**other menu */
-Route::get('/configuration/annee', function () {
-    return view('configuration.content.annee.annee');
-})->middleware('authUser');
+Route::get('/configuration/annee', [App\Http\Controllers\AnneeScolaireController::class, 'annee_scolaire'])->name('users.annee_scolaire')->middleware('authUser');
+Route::post('/configuration/delete_annee', [App\Http\Controllers\AnneeScolaireController::class, 'delete_annee_scolaire'])->name('users.delete_annee_scolaire')->middleware('authUser');
+Route::post('/configuration/ajout_annee', [App\Http\Controllers\AnneeScolaireController::class, 'ajout_annee'])->name('users.ajout_annee')->middleware('authUser');
+Route::post('/configuration/encour_annee', [App\Http\Controllers\AnneeScolaireController::class, 'encour_annee'])->name('users.encour_annee')->middleware('authUser');
+Route::post('/configuration/verrouiller_annee', [App\Http\Controllers\AnneeScolaireController::class, 'verrouiller_annee'])->name('users.verrouiller_annee')->middleware('authUser');
 
 Route::get('/configuration/module', function () {
     return view('configuration.content.module.module');
 })->middleware('authUser');
+
+/** Periode */
+
+Route::get('/configuration/periode', [App\Http\Controllers\AnneeScolaireController::class, 'getPeriode'])->name('users.periode')->middleware('authUser');
+Route::get('/configuration/editDenomination/annee', [App\Http\Controllers\AnneeScolaireController::class, 'modifDenominationAnnee'])->name('users.modifDenominationAnnee')->middleware('authUser');
+Route::get('/configuration/editDenomination/periode', [App\Http\Controllers\AnneeScolaireController::class, 'modifDenominationPeriode'])->name('users.modifDenominationPeriode')->middleware('authUser');
+Route::get('/configuration/editDenomination/sous_periode', [App\Http\Controllers\AnneeScolaireController::class, 'modifDenominationSousPeriode'])->name('users.modifDenominationSousPeriode')->middleware('authUser');
+Route::post('/configuration/editDenomination/save_denomination', [App\Http\Controllers\AnneeScolaireController::class, 'save_denomination'])->name('users.save_denomination')->middleware('authUser');
+
+/** end  */
 
 ?>

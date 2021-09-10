@@ -9,8 +9,14 @@ class droit_admin extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = "droit_admin";
     protected $primaryKey = "id_droit";
+
+    protected $fillable = [
+        'code',
+        'libelle',
+    ];
 
     public function admin()
     {

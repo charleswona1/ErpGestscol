@@ -88,7 +88,7 @@
                                 <nav class="mdc-list mdc-drawer-submenu">
                                     <div class="mdc-list-item mdc-drawer-item">
                                         <a class="mdc-drawer-link" href="{{ route('administration.configGroupe') }} ">
-                                            Groupes
+                                            Ressources
                                         </a>
                                     </div>
                                     <div class="mdc-list-item mdc-drawer-item">
@@ -407,7 +407,7 @@
             } else {
                 $.ajax({
                     url: "{{ route('admin.modif') }}",
-                    type: "POST",   
+                    type: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",
                         nom: nom,
@@ -525,7 +525,7 @@
             });
         }
     }
-    
+
 
     function saveLicence(){
       var etablissement = $("#id_etablissement").val();
