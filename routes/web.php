@@ -57,7 +57,7 @@ Route::get('/administrateur/conf_param', [App\Http\Controllers\AdministrationCon
 Route::post('/administrateur/save_licence', [App\Http\Controllers\AdministrationController::class, 'save_licence'])->name('admin.save_licence')->middleware('auth');
 Route::post('/administrateur/modifier_licence', [App\Http\Controllers\AdministrationController::class, 'modifier_licence'])->name('admin.modifier_licence')->middleware('auth');
 Route::post('/administrateur/delete_ressource', [App\Http\Controllers\AdministrationController::class, 'delete_ressource'])->name('admin.delete_ressource')->middleware('auth');
-Route::post('/administrateur/save_droit1', [App\Http\Controllers\AdministrationController::class, 'save_droit1'])->name('admin.save_droit1')->middleware('auth');
+Route::post('/administrateur/save_ressource', [App\Http\Controllers\AdministrationController::class, 'save_ressource'])->name('admin.save_ressource')->middleware('auth');
 Route::get('/administrateur/edit_droit/{id}', [App\Http\Controllers\AdministrationController::class, 'edit_droit'])->name('admin.edit_droit')->middleware('auth');
 Route::post('/administrateur/save_droit', [App\Http\Controllers\AdministrationController::class, 'save_droit'])->name('admin.save_droit')->middleware('auth');
 

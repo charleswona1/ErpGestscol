@@ -3,7 +3,7 @@
 @section('style')
 <link rel="stylesheet" href="{{ asset('assets1/css/add.css') }}">
 @endsection
-<?php 
+<?php
     $var = explode("_", $id);
     $profil = $var[0];
     $ressource = $var[1];
@@ -14,7 +14,7 @@
     <main class="content-wrapper">
         @csrf
       <div class="mdc-layout-grid">
-        <div class="mdc-layout-grid__inner">   
+        <div class="mdc-layout-grid__inner">
           <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
             <div class="mdc-card p-0">
             <div class="mdc-card">
@@ -140,6 +140,10 @@
                                                 <label for="basic-disabled-checkbox"
                                                     id="basic-disabled-checkbox-label">Suppression</label>
                                             </div>
+
+                                            <div class="mdc-form-field" style="margin-left: 50px;">
+                                                <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label"><b>{{$resultat['ressource']}}</b></label>
+                                            </div>
                                         </td>
                                     </tr>
                                     @else
@@ -255,6 +259,9 @@
                                                 <label for="basic-disabled-checkbox"
                                                     id="basic-disabled-checkbox-label">Suppression</label>
                                             </div>
+                                            <div class="mdc-form-field" style="margin-left: 50px;">
+                                                <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label"><b>{{$resultat['ressource']}}</b></label>
+                                            </div>
                                         </td>
                                         <td class="mdc-data-table__cell" scope="row" id="u0">
                                             <div class="widget-content p-0">
@@ -286,32 +293,32 @@
                                         </td>
                                     </tr>
                                     @endif
-                                     
+
                                 @endforeach
                             </tbody>
                         </table>
-                        
+
                         <div class="mdc-card" style="text-align:right;">
                           <section class="mdc-card__primary">
                             <h6 class="card-title"></h6>
                           </section>
                           <section class="mdc-card__supporting-text">
                             <div class="template-demo">
-                              
+
                               <button class="mdc-button mdc-button--raised icon-button filled-button--secondary">
                                 &nbsp; <a href="Config-admin-parametrages.html" style="color:white;"><i class="material-icons mdc-button__icon">close</i> &nbsp;Annuler &nbsp;</a>
                               </button>
                                 <button class="mdc-button mdc-button--success icon-button" >
-                                &nbsp; <a onclick="save_modification({{$profil}}, {{$ressource}})"><i class="material-icons mdc-button__icon" style="color:white;">save</i> 
+                                &nbsp; <a onclick="save_modification({{$profil}}, {{$ressource}})"><i class="material-icons mdc-button__icon" style="color:white;">save</i>
                                 &nbsp;<span style="color:white;">Enregistrer &nbsp; </span></a>
                                 </button>
-                               
-                              
+
+
                               <button class="mdc-button mdc-button--raised icon-button filled-button--light">
                                 <i class="material-icons mdc-button__icon">print</i>
                               </button>
-                              
-                              
+
+
                             </div>
                           </section>
                         </div>
@@ -326,7 +333,7 @@
                 </div>
               </div>
             </div>
-            
+
           </div>
       </div>
     </main>
@@ -392,13 +399,13 @@
                     $("#idError").css('display','none');
                 }
                 setTimeout(fade_out, 5000);
-                
+
             }
         });
 
     }
-     
+
 </script>
 @section('script')
-    
+
 @endsection

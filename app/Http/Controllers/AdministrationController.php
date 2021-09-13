@@ -12,6 +12,7 @@ use App\Models\module;
 use App\Models\licence;
 use App\Models\etablissement;
 use App\Models\etablissement_user;
+use App\Models\ressource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use DB;
@@ -194,8 +195,16 @@ class AdministrationController extends Controller
 
     public function adminGroupeConfig()
     {
-        $droit_admin = droit_admin::all();
-    	return view('administration.config-admin-groupe', compact('droit_admin'));
+        $resultatFinal = array();
+        $modules = module::all();
+        foreach ($modules as $module) {
+            $resssources = array();
+            $ressources['id_module'] = $module->id_module;
+            $ressources['nom_module'] = $module->nom;
+            $ressources['ressources'] = $module->ressources()->get();
+            $resultatFinal[] = $ressources;
+        }
+    	return view('administration.config-admin-groupe', compact('resultatFinal'));
     }
 
     public function adminParamConfig()
@@ -579,7 +588,7 @@ class AdministrationController extends Controller
         $ligneT = -1;
 
         try {
-            $res = droit_admin::where('id_droit', $request->id)->delete();
+            $res = ressource::where('id_ressource', $request->id)->delete();
             $succesBD = 1;
             $ligneT = $request->id;
             $message = "succes de la requete";
@@ -604,18 +613,20 @@ class AdministrationController extends Controller
 
     }
 
-    public function save_droit1(Request $request){
+    public function save_ressource(Request $request){
         $validated = $request->validate([
-            'nom_droit' => ['required'],
-            'id_droit' => ['required'],
+            'nom_droit' => ['required', 'string'],
+            'id_droit' => ['required', 'numeric'],
+            'id_module' => ['required', 'numeric'],
         ]);
 
         try {
-            $droit_admin = new droit_admin();
-            $droit_admin->code = $request->id_droit;
-            $droit_admin->libelle = $request->nom_droit;
-            $droit_admin->save();
-            return $droit_admin->id_droit;
+            $ressource = new ressource();
+            $ressource->code = $request->id_droit;
+            $ressource->libelle = $request->nom_droit;
+            $ressource->id_module = $request->id_module;
+            $ressource->save();
+            return $ressource->id_ressource;
         } catch (QueryException $e) {
             return $e->getMessage();
         }

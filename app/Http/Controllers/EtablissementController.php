@@ -179,14 +179,17 @@ class EtablissementController extends Controller
     public function profilEtablissement()
     {
         $etablissement = etablissement::where('id_etablissement', Session::get('idEtabl'))->get();
-
-        return view('configuration.content.etablissement.profil', compact('etablissement'));
+        $nbreUser = $etablissement[0]->users()->count();
+        $modules = $etablissement[0]->modules()->select('module.nom')->get();
+        return view('configuration.content.etablissement.profil', compact('etablissement', 'nbreUser', 'modules'));
     }
 
     public function showEtablissementProfil(){
 
         $etablissement = etablissement::where('id_etablissement', Session::get('idEtabl'))->get();
-        return view('configuration.content.etablissement.editProfil', compact('etablissement'));
+        $nbreUser = $etablissement[0]->users()->count();
+        $effectif = $etablissement[0]->apprenants()->count();
+        return view('configuration.content.etablissement.editProfil', compact('etablissement', 'nbreUser', 'effectif'));
     }
 
     public function editEtablissementProfil(Request $request){

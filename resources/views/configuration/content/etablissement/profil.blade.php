@@ -367,7 +367,7 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="mdc-data-table__cell">15</td>
+                                                            <td class="mdc-data-table__cell">{{$nbreUser}}</td>
                                                         </tr>
                                                         <tr data-row-id="u0" class="mdc-data-table__row">
                                                             <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -392,17 +392,13 @@
                                                                 </div>
                                                             </td>
                                                             <td class="mdc-data-table__cell">
-                                                                <button
-                                                                    class="mdc-button mdc-button--unelevated filled-button--warning"
-                                                                    style="margin:none; font-size:0.7em;">
-                                                                    Gestscol
-                                                                </button>
-
-                                                                <button
-                                                                    class="mdc-button mdc-button--unelevated filled-button--dark"
-                                                                    style="margin:none; font-size:0.7em;">
-                                                                    Caisse
-                                                                </button>
+                                                                @foreach ($modules as $module)
+                                                                    <button
+                                                                        class="mdc-button mdc-button--unelevated filled-button--warning"
+                                                                        style="margin:none; font-size:0.7em;">
+                                                                        {{$module->nom}}
+                                                                    </button>
+                                                                @endforeach
                                                             </td>
                                                         </tr>
 

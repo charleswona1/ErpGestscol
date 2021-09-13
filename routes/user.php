@@ -24,9 +24,8 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 	/** ROUTES CONFIGURATION */
 
-Route::get('/configuration/dashboard', function () {
-    return view('configuration.content.dashboard');
-})->middleware('authUser');;
+    Route::get('/configuration/dashboard', [App\Http\Controllers\ConfigurationController::class, 'getDashboard'])->name('user.dashboard')->middleware('authUser');
+
 
 /**Etablissement */
 // Route::get('/configuration/profilE', function () {
@@ -90,6 +89,8 @@ Route::get('/configuration/documentation/editDocuments', function () {
 
 Route::get('/configuration/documentation/entete', function () {
     $entete = entete::where('id_etablissement', Session::get('idEtabl'))->first();
+    $et = etablissement::find(Session::get('idEtabl'));
+    $logo = $et->logo;
     if($entete == null){
         $entete = entete::create([
             "id_etablissement" => Session::get('idEtabl'),
@@ -97,7 +98,7 @@ Route::get('/configuration/documentation/entete', function () {
             "eng_droit" => "/__/__/__/",
         ]);
     }
-    return view('configuration.content.documentations.entete', compact("entete"));
+    return view('configuration.content.documentations.entete', compact("entete", "logo"));
 })->middleware('authUser');
 
 Route::get('/configuration/documentation/editEntete/{id}', [App\Http\Controllers\DocumentController::class, 'editEntete'])->name('users.edit_entete')->middleware('authUser');
@@ -121,9 +122,6 @@ Route::post('/configuration/ajout_annee', [App\Http\Controllers\AnneeScolaireCon
 Route::post('/configuration/encour_annee', [App\Http\Controllers\AnneeScolaireController::class, 'encour_annee'])->name('users.encour_annee')->middleware('authUser');
 Route::post('/configuration/verrouiller_annee', [App\Http\Controllers\AnneeScolaireController::class, 'verrouiller_annee'])->name('users.verrouiller_annee')->middleware('authUser');
 
-Route::get('/configuration/module', function () {
-    return view('configuration.content.module.module');
-})->middleware('authUser');
 
 /** Periode */
 
@@ -134,5 +132,12 @@ Route::get('/configuration/editDenomination/sous_periode', [App\Http\Controllers
 Route::post('/configuration/editDenomination/save_denomination', [App\Http\Controllers\AnneeScolaireController::class, 'save_denomination'])->name('users.save_denomination')->middleware('authUser');
 
 /** end  */
+
+/** ressource profil */
+Route::get('/configuration/module', [App\Http\Controllers\AnneeScolaireController::class, 'getRessourceGroupe'])->name('users.getRessourceGroupe')->middleware('authUser');
+Route::post('/configuration/save_ressource_profil', [App\Http\Controllers\AnneeScolaireController::class, 'save_ressource_profil'])->name('users.save_ressource_profil')->middleware('authUser');
+Route::post('/configuration/add_ressource_profil', [App\Http\Controllers\AnneeScolaireController::class, 'add_ressource_profil'])->name('users.add_ressource_profil')->middleware('authUser');
+Route::post('/configuration/delete_ressource_profil', [App\Http\Controllers\AnneeScolaireController::class, 'delete_ressource_profil'])->name('users.delete_ressource_profil')->middleware('authUser');
+/** end */
 
 ?>

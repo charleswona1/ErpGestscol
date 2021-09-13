@@ -138,6 +138,9 @@
                                                                         <label for="basic-disabled-checkbox"
                                                                             id="basic-disabled-checkbox-label">Suppression</label>
                                                                     </div>
+                                                                    <div class="mdc-form-field" style="margin-left: 50px;">
+                                                                        <label for="basic-disabled-checkbox" id="basic-disabled-checkbox-label"><b>{{$resultat['ressource']}}</b></label>
+                                                                    </div>
                                                                 </td>
                                                                 <td class="mdc-data-table__cell" scope="row" id="u0">
                                                                     <div class="widget-content p-0">
@@ -167,10 +170,10 @@
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                            </tr> 
+                                                            </tr>
                                                         @endforeach
-                                                        
-                                                        
+
+
                                                     </tbody>
                                                 </table>
                                             </div>

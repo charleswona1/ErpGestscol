@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\annee_academique;
 use App\Models\etablissement;
+use App\Models\module;
+use App\Models\profil;
+use App\Models\ressource;
+use App\Models\ressource_profil;
 use DateTime;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -170,5 +174,92 @@ class AnneeScolaireController extends Controller
                 return $e->getMessage();
             }
         }
+    }
+
+    public function getRessourceGroupe(){
+        $profils = profil::where('id_etablissement', Session::get('idEtabl'))->get();
+        $modules = etablissement::find(Session::get('idEtabl'))->modules()->get();
+        $resultatFinal = array();
+        foreach($profils as $profil){
+            $ressources = $profil->ressources()->get();
+            foreach ($ressources as $res) {
+                $resultat = array();
+                $resultat["nom_ressource"] = $res->libelle;
+                $resultat["nom_profil"] = $profil->libelle;
+                $resultat["nbre_user"] = $profil->users()->count();
+                $resultat["id_res"] = $res->id_ressource;
+                $resultat["id_profil"] = $profil->id_profil;
+
+                $resultatFinal[] = $resultat;
+            }
+        }
+
+        return view('configuration.content.module.module', compact(['resultatFinal', 'profils', 'modules']));
+    }
+
+    public function save_ressource_profil(Request $request){
+        $ressources = ressource::where("id_module", $request->id)->get();
+        return $ressources;
+    }
+
+    public function add_ressource_profil(Request $request){
+        $taille = $request->taille;
+        $resultat = array();
+        for($i=0; $i<$taille; $i++){
+            $ressource_profil = ressource_profil::where('id_profil', $request->profil)->where('id_ressource', $request->input('ressource'.$i))->first();
+            $resultat[] = $ressource_profil;
+            try {
+                if ($ressource_profil == null) {
+                    $res = ressource_profil::create([
+                        "id_profil" => $request->profil,
+                        "id_ressource" => $request->input('ressource'.$i),
+                        "lecture" => 0,
+                        "ecriture" => 0,
+                        "modification" => 0,
+                        "suppression" => 0,
+                    ]);
+
+                    $resultat[] = $res;
+                }
+
+            } catch (QueryException $e) {
+                $resultat[] = $e->getMessage();
+            }
+
+        }
+
+        return $resultat;
+    }
+
+    public function delete_ressource_profil(Request $request){
+
+        $succesBD = -1;
+        $message = "";
+        $ligneT = -1;
+
+        try {
+            $res = ressource_profil::where('id_ressource', $request->id_ressource)->where("id_profil", $request->id_profil)->delete();
+            $succesBD = 1;
+            $ligneT = $request->id;
+            $message = "succes de la requete";
+        } catch (QueryException $e) {
+            if($e->getCode() == '23000'){
+                $succesBD = 2;
+                $message = $e->getMessage();
+            } else {
+                $succesBD = 0;
+                $message = $e->getMessage();
+            }
+
+        }
+
+        $resultat = array(
+            'status' => $succesBD,
+            'message' => $message,
+            'ligneT'  => $ligneT,
+        );
+
+        return response()->json($resultat);
+
     }
 }

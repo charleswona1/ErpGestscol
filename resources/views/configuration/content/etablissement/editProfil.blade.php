@@ -324,7 +324,7 @@
                                         </div>
                                     </div>
                                   </td>
-                                  <td class="mdc-data-table__cell">15</td>
+                                  <td class="mdc-data-table__cell">{{$nbreUser}}</td>
                                 </tr>
                                 <tr data-row-id="u0" class="mdc-data-table__row">
                                   <td class="mdc-data-table__cell" scope="row" id="u0">
@@ -341,7 +341,7 @@
                                         </div>
                                     </div>
                                   </td>
-                                  <td class="mdc-data-table__cell">2548</td>
+                                  <td class="mdc-data-table__cell">{{$effectif}}</td>
                                 </tr>
                                 <tr data-row-id="u0" class="mdc-data-table__row">
 

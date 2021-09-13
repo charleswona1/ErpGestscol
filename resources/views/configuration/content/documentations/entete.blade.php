@@ -53,7 +53,8 @@
                     <tr data-row-id="u0" class="mdc-data-table__row">
                       <td class="mdc-data-table__cell">
                         <a href="index.html" class="brand-logo">
-                         <img src="{{ asset('assets1/images/faces/logo.jpg') }}" height="160px" width="150px"  alt="user" class="user">
+                         <img src="{{ asset($logo?'logos_etablissements/'.$logo:'assets1/images/faces/logo.jpg') }}" height="160px" width="150px"  alt="user" class="user">
+
                       </a>
                       </td>
                     </tr>

@@ -23,4 +23,8 @@ class ressource extends Model
         return $this->belongsToMany(profil::class, 'ressource_profil', 'id_ressource', 'id_profil')
                 ->withPivot('lecture', 'ecriture', 'modification', 'suppression');
     }
+
+    public function module() {
+        return $this->belongsTo(module::class, 'id_module');
+    }
 }

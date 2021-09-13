@@ -16,4 +16,8 @@ class module extends Model
     {
         return $this->belongsToMany(etablissement::class, 'module_etablissement', 'id_module', 'id_etablissement');
     }
+
+    public function ressources() {
+        return $this->hasMany(ressource::class, 'id_module');
+    }
 }

@@ -56,6 +56,28 @@ class ConfigurationController extends Controller
 
     }
 
+    public function getDashboard() {
+        $resultatFinal = array();
+        $etablissement = etablissement::find(Session::get('idEtabl'));
+        $nbreG = $etablissement->apprenants()->where('sexe', 'M')->orWhere('sexe', 'm')->orWhere('sexe', 'G')->orWhere('sexe', 'g')->count();
+        $nbreF = $etablissement->apprenants()->where('sexe', 'F')->orWhere('sexe', 'f')->count();
+        $users = $etablissement->users()->count();
+        $modules = $etablissement->modules()->count();
+        $nom_module = $etablissement->modules()->select("module.nom")->get();
+        $annee_academique = $etablissement->annee_academique()->count();
+        $annee_encours = $etablissement->annee_academique()->where('par_defaut', true)->select('annee_academique.nom')->first();
+
+        $resultatFinal['nbre_g'] = $nbreG;
+        $resultatFinal['nbre_f'] = $nbreF;
+        $resultatFinal['nbre_users'] = $users;
+        $resultatFinal['nbre_module'] = $modules;
+        $resultatFinal['nom_module'] = $nom_module;
+        $resultatFinal['nbre_annee'] = $annee_academique;
+        $resultatFinal['annee_encours'] = $annee_encours;
+
+        return view('configuration.content.dashboard', compact("resultatFinal"));
+    }
+
     public function userRegister(Request $request){
         $response = null;
 
