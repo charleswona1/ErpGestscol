@@ -50,10 +50,13 @@ Route::post('/administrateur/delete_licence', [App\Http\Controllers\Administrati
 Route::post('/administrateur/modif_admin', [App\Http\Controllers\AdministrationController::class, 'modif_admin'])->name('admin.modif')->middleware('auth');
 Route::post('/administrateur/delete_admin', [App\Http\Controllers\AdministrationController::class, 'delete_admin'])->name('admin.delete')->middleware('auth');
 Route::post('/administrateur/force_delete_admin', [App\Http\Controllers\AdministrationController::class, 'force_delete_admin'])->name('admin.delete_force')->middleware('auth');
-Route::get('/administrateur/register', [App\Http\Controllers\AdministrationController::class, 'adminUtilisateur'])->name('administration.utilisateurs')->middleware('auth');;
-Route::get('/administrateur/licence', [App\Http\Controllers\AdministrationController::class, 'adminLicence'])->name('administration.licence')->middleware('auth');;
-Route::get('/administrateur/conf_groupe', [App\Http\Controllers\AdministrationController::class, 'adminGroupeConfig'])->name('administration.configGroupe')->middleware('auth');;
-Route::get('/administrateur/conf_param', [App\Http\Controllers\AdministrationController::class, 'adminParamConfig'])->name('administration.configParam')->middleware('auth');;
+Route::get('/administrateur/register', [App\Http\Controllers\AdministrationController::class, 'adminUtilisateur'])->name('administration.utilisateurs')->middleware('auth');
+Route::get('/administrateur/secondaire', [App\Http\Controllers\AdministrationController::class, 'adminSecondaireUser'])->name('administration.adminSecondaireUser')->middleware('auth');
+Route::get('/administrateur/primaire', [App\Http\Controllers\AdministrationController::class, 'adminPrimaireUser'])->name('administration.adminPrimaireUser')->middleware('auth');
+Route::get('/administrateur/universite', [App\Http\Controllers\AdministrationController::class, 'adminUniversiteUser'])->name('administration.adminUniversiteUser')->middleware('auth');
+Route::get('/administrateur/licence', [App\Http\Controllers\AdministrationController::class, 'adminLicence'])->name('administration.licence')->middleware('auth');
+Route::get('/administrateur/conf_groupe', [App\Http\Controllers\AdministrationController::class, 'adminGroupeConfig'])->name('administration.configGroupe')->middleware('auth');
+Route::get('/administrateur/conf_param', [App\Http\Controllers\AdministrationController::class, 'adminParamConfig'])->name('administration.configParam')->middleware('auth');
 Route::post('/administrateur/save_licence', [App\Http\Controllers\AdministrationController::class, 'save_licence'])->name('admin.save_licence')->middleware('auth');
 Route::post('/administrateur/modifier_licence', [App\Http\Controllers\AdministrationController::class, 'modifier_licence'])->name('admin.modifier_licence')->middleware('auth');
 Route::post('/administrateur/delete_ressource', [App\Http\Controllers\AdministrationController::class, 'delete_ressource'])->name('admin.delete_ressource')->middleware('auth');

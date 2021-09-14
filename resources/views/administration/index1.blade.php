@@ -11,7 +11,7 @@
             <div class="card-inner">
               <h5 class="card-title">Total Etablissements</h5>
                <a href="/administrateur/etablissement"><h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ $count_etablissemnt }}</h5></a>
-              <a href=""><p class="tx-12 text-muted">65 Utilisateurs</p></a>
+              <a href="/administrateur/register"><p class="tx-12 text-muted">{{ $users }} Utilisateur(s)</p></a>
               <div class="card-icon-wrapper">
                 <i class="material-icons">dvr</i>
               </div>
@@ -23,7 +23,7 @@
             <div class="card-inner">
               <h5 class="card-title">Ecoles Primaires</h5>
               <a href="/administrateur/etablissement/primaire"><h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ $primaire }}</h5></a>
-              <a href=""><p class="tx-12 text-muted">10 Utilisateurs</p></a>
+              <a href="/administrateur/primaire"><p class="tx-12 text-muted">{{ $nbreEtP }} Utilisateur(s)</p></a>
               <div class="card-icon-wrapper">
                 <i class="material-icons">credit_card</i>
               </div>
@@ -35,7 +35,7 @@
             <div class="card-inner">
               <h5 class="card-title">Secondaires</h5>
               <a href="/administrateur/etablissement/secondaire"><h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ $secondaire }}</h5></a>
-              <a href=""><p class="tx-12 text-muted">45 Utilisateurs</p></a>
+              <a href="/administrateur/secondaire"><p class="tx-12 text-muted">{{ $nbreEtS }} Utilisateur(s)</p></a>
               <div class="card-icon-wrapper">
                 <i class="material-icons">credit_card</i>
               </div>
@@ -47,7 +47,7 @@
             <div class="card-inner">
               <h5 class="card-title">Universit&eacute;s</h5>
               <a href="/administrateur/etablissement/universite"><h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ $universite }}</h5></a>
-              <a href=""><p class="tx-12 text-muted">10 Utilisateurs</p></a>
+              <a href="/administrateur/universite"><p class="tx-12 text-muted">{{ $nbreEtU }} Utilisateur(s)</p></a>
               <div class="card-icon-wrapper">
                 <i class="material-icons">credit_card</i>
               </div>
@@ -61,7 +61,7 @@
               <div>
                   <i class="material-icons refresh-icon">refresh</i>
                   <i class="material-icons options-icon ml-2">more_vert</i>
-  		
+
               </div>
             </div>
             <div class="d-block d-sm-flex justify-content-between align-items-center">
@@ -79,7 +79,7 @@
                       <li class="mdc-list-item" role="menuitem">
                         <h6 class="item-subject font-weight-normal">Toutes</h6>
                       </li>
-                     
+
                       <!-- <li class="mdc-list-divider"></li>
                       <li class="mdc-list-item" role="menuitem">
                         <h6 class="item-subject font-weight-normal">Save As..</h6>
@@ -225,11 +225,11 @@
                     </table>
                   </div>
               </div>
-              <!--<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet"> 
+              <!--<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
                 <div id="revenue-map" class="revenue-world-map"></div>
               </div> -->
             </div>
-          </div> 
+          </div>
         </div>
         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
           <div class="mdc-card bg-info text-white">
@@ -261,7 +261,7 @@
             </div>
             <div class="d-block d-sm-flex justify-content-between align-items-center">
               <h6 class="card-sub-title mb-0">Taux d'activation des Licences par Modules</h6>
-              <div class="mdc-tab-wrapper revenue-tab mdc-tab--secondary"> 
+              <div class="mdc-tab-wrapper revenue-tab mdc-tab--secondary">
                 <div class="mdc-tab-bar" role="tablist">
                   <div class="mdc-tab-scroller">
                     <div class="mdc-tab-scroller__scroll-area">
@@ -284,7 +284,7 @@
                           </span>
                           <span class="mdc-tab__ripple"></span>
                         </button>
-                        
+
                         <button class="mdc-tab mdc-tab" role="tab" aria-selected="true" tabindex="0">
                           <span class="mdc-tab__content">
                             <span class="mdc-tab__text-label">Toutes</span>
@@ -298,11 +298,11 @@
                     </div>
                   </div>
                 </div>
-                <div class="content content--active">    
+                <div class="content content--active">
                 </div>
                 <div class="content">
                 </div>
-                <div class="content">    
+                <div class="content">
                 </div>
                 <div class="content">
                 </div>
@@ -315,7 +315,7 @@
             </div>
           </div>
         </div>
-       
+
       </div>
     </div>
   </main>

@@ -13,6 +13,7 @@ use App\Models\licence;
 use App\Models\etablissement;
 use App\Models\etablissement_user;
 use App\Models\ressource;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use DB;
@@ -111,13 +112,32 @@ class AdministrationController extends Controller
     public function getAcceuilAdmin()
     {
         $count_etablissemnt = DB::table('etablissement')->count();
-       $primaire =  DB::table('etablissement')->where('type_etablissement', 'Primaire')->count();
-       $secondaire =  DB::table('etablissement')->where('type_etablissement', 'Secondaire')->count();
-       $universite =  DB::table('etablissement')->where('type_etablissement', 'Université')->count();
+        $users = admin::all()->count();
+        $users_secondaire = etablissement::where('type_etablissement', 'Secondaire')->get();
+        $nbreEtS = 0;
+        foreach ($users_secondaire as $key) {
+            $nbreEtS = $nbreEtS + $key->admin()->count();
+        }
+
+        $users_primaire = etablissement::where('type_etablissement', 'Primaire')->get();
+        $nbreEtP = 0;
+        foreach ($users_primaire as $key) {
+            $nbreEtP = $nbreEtP + $key->admin()->count();
+        }
+
+        $users_universite = etablissement::where('type_etablissement', 'Université')->get();
+
+        $nbreEtU = 0;
+        foreach ($users_universite as $key) {
+            $nbreEtU = $nbreEtU + $key->admin()->count();
+        }
+        $primaire =  DB::table('etablissement')->where('type_etablissement', 'Primaire')->count();
+        $secondaire =  DB::table('etablissement')->where('type_etablissement', 'Secondaire')->count();
+        $universite =  DB::table('etablissement')->where('type_etablissement', 'Université')->count();
 
         // dd($count_etablissemnt);
 
-    	return view('administration.index1', compact('count_etablissemnt','primaire','secondaire','universite'));
+    	return view('administration.index1', compact('count_etablissemnt','primaire','secondaire','universite', 'users', 'nbreEtS', 'nbreEtP', 'nbreEtU'));
     }
 
     public function home()
@@ -151,7 +171,49 @@ class AdministrationController extends Controller
 
     public function adminUtilisateur()
     {
-         $listAdmin = admin::all();
+        $listAdmin = admin::all();
+    	return view('administration.utilisateurs', $data = ["listAdmin" => $listAdmin]);
+    }
+
+    public function adminSecondaireUser()
+    {
+        $users_secondaire = etablissement::where('type_etablissement', 'Secondaire')->get();
+        $listAdmin = array();
+        foreach ($users_secondaire as $key) {
+            $admins = $key->admin()->get();
+            foreach ($admins as $admin) {
+                $listAdmin[] = $admin;
+            }
+        }
+
+    	return view('administration.utilisateurs', $data = ["listAdmin" => $listAdmin]);
+    }
+
+    public function adminPrimaireUser()
+    {
+        $users_secondaire = etablissement::where('type_etablissement', 'Primaire')->get();
+        $listAdmin = array();
+        foreach ($users_secondaire as $key) {
+            $admins = $key->admin()->get();
+            foreach ($admins as $admin) {
+                $listAdmin[] = $admin;
+            }
+        }
+
+    	return view('administration.utilisateurs', $data = ["listAdmin" => $listAdmin]);
+    }
+
+    public function adminUniversiteUser()
+    {
+        $users_secondaire = etablissement::where('type_etablissement', 'Université')->get();
+        $listAdmin = array();
+        foreach ($users_secondaire as $key) {
+            $admins = $key->admin()->get();
+            foreach ($admins as $admin) {
+                $listAdmin[] = $admin;
+            }
+        }
+
     	return view('administration.utilisateurs', $data = ["listAdmin" => $listAdmin]);
     }
 
