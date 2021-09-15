@@ -2,6 +2,17 @@
 
   @section('content')
   <?php //dd($modules) ?>
+
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <p><strong>erreur!!!!</strong></p>
+            <ul>
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
         <main class="content-wrapper">
           <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
@@ -229,12 +240,15 @@
 							<a href="/administrateur/detail_licence/{{$module['id_mod']}}"><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">visibility</i></a>
 							<a href="/administrateur/modif_licence/{{$module['id_mod']}}"><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">edit</i></a>
 							<a href=""><i class="material-icons mdc-text-field__icon" style="color:black; font-size:1.5em;">print</i></a>
-							<a onclick="delete_licence('{{$module['id_mod']}}')"><i class="material-icons mdc-text-field__icon" style="color:red; font-size:1.5em;">delete</i></a>
+							<a onclick="delete_licence('{{$module['id_mod']}}', 1)"><i class="material-icons mdc-text-field__icon" style="color:red; font-size:1.5em;">delete</i></a>
 						  </td>
 						</tr>
 						@endforeach
 					  </tbody>
 					</table>
+                    <div class="alert alert-danger" style="display: none;" id="idErreur">
+                        <strong><label id="errorM"></label></strong>
+                    </div>
                   </div>
                 </div>
               </div>

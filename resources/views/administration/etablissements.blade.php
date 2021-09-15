@@ -21,6 +21,16 @@
 @endsection
 
 @section('content')
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <p><strong>erreur!!!!</strong></p>
+            <ul>
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
     <main class="content-wrapper">
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">

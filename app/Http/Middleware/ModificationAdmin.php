@@ -18,11 +18,11 @@ class ModificationAdmin
     {
         $droit = auth()->guard('admins')->user()->enabled;
         if($droit == 0){
-            return response()->json(['error' => 'Votre compte est desactivé vous ne pouvez faire aucune action sur cette application']);
+            return redirect()->back()->withErrors(['error' => 'Votre compte est desactivé vous ne pouvez faire aucune action sur cette application']);
         }else{
             $niv = auth()->guard('admins')->user()->droit_admin()->where('code', 4)->first();
             if($niv == null){
-                return response()->json(['error' => 'Vous n\'avez le droit de faire des modifications']);
+                return redirect()->back()->withErrors(['error' => 'Vous n\'avez pas le droit de faire des modifications']);
             } else {
                 return $next($request);
             }

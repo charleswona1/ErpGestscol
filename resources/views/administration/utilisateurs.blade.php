@@ -1,9 +1,16 @@
 @extends('administration.principal')
 
 @section('content')
-    <?php //dd($listAdmin);
-    ?>
-
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <p><strong>erreur!!!!</strong></p>
+            <ul>
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
     <main class="content-wrapper">
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
@@ -304,16 +311,6 @@
                 </div>
             </div>
         </div>
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <p><strong>erreur!!!!</stalert alert-dangerrong></p>
-                <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-                </ul>
-            </div>
-        @endif
         @if(session()->has('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}

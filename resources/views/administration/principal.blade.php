@@ -649,7 +649,7 @@
 
     }
 
-    function delete_licence(id)
+    function delete_licence(id, niv)
     {
       var confirmation = confirm("Voulez-vous vraiment supprimer cette licence?");
         if (confirmation) {
@@ -663,11 +663,29 @@
 
                 success: function(response) {
                     if (response["status"] == 1) {
+                        if(niv == 1){
+                            alert("licence supprimée avec succes ");
+                            $("#licence" + id).remove();
+                        } else {
+                            window.location.href = "/administrateur/licence";
+                        }
+                    } else {
+                        $('#idErreur').css('display','block');
+                        $("#errorM").html(response.error);
+
+                        var fade_out = function() {
+                            $("#idErreur").css('display','none');
+                        }
+
+                        setTimeout(fade_out, 5000);
+                    }
+
+                   /* if (response["status"] == 1) {
                         alert("licence supprimé avec succes ");
                         $("#licence"+id).remove();
                     } else {
                         alert("erreur de suppression");
-                    }
+                    }*/
 
                 },
                 error: function(response) {

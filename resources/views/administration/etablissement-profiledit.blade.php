@@ -269,27 +269,6 @@
 							  </tr>
 							  </tbody>
 					  </table>
-				  <!--	</table>
-						  </tbody>
-<tr>
-								  <td class="mdc-data-table__cell">
-								  <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
-					<a href="utilisateur-profil.html" class="mdc-button mdc-button--label w-100">
-					  Annuler
-					</a>
-					</td>
-					<td class="mdc-data-table__cell">
-				  </div>
-				  <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-2">
-					<a href="utilisateur-profil.html"  class="mdc-button mdc-button--raised w-100">
-					  Mettre à jour
-					</a>
-				  </div>
-								  </td>
-							  </tr>
-
-						  </tbody>
-					  </table>  -->
 					</div>
 				  </div>
 				  <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop">
@@ -382,7 +361,7 @@
 									  </div>
 								  </div>
 								</td>
-								<td class="mdc-data-table__cell">15</td>
+								<td class="mdc-data-table__cell">{{$users}}</td>
 							  </tr>
 							  <tr data-row-id="u0" class="mdc-data-table__row">
 								<td class="mdc-data-table__cell" scope="row" id="u0">
@@ -399,7 +378,7 @@
 									  </div>
 								  </div>
 								</td>
-								<td class="mdc-data-table__cell">2548</td>
+								<td class="mdc-data-table__cell">{{$apprenants}}</td>
 							  </tr>
 							  <tr data-row-id="u0" class="mdc-data-table__row">
 

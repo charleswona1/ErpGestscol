@@ -55,6 +55,12 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'droitEcriture' => \App\Http\Middleware\EcritureAdmin::class,
         'droitSuppression' => \App\Http\Middleware\SuppressionAdmin::class,
+        'droitLecture' => \App\Http\Middleware\LectureAdmin::class,
+        'droitModification' => \App\Http\Middleware\ModificationAdmin::class,
+        'droitEcritureE' => \App\Http\Middleware\EcritureEtablissement::class,
+        'droitSuppressionE' => \App\Http\Middleware\SuppressionEtablissement::class,
+        'droitLectureE' => \App\Http\Middleware\LireEtablissement::class,
+        'droitModificationE' => \App\Http\Middleware\ModificationEtablissement::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'authUser' => \App\Http\Middleware\RedirigerAuthUser::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

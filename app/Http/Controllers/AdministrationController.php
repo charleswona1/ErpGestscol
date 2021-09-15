@@ -33,7 +33,9 @@ class AdministrationController extends Controller
 
         $this->middleware('droitEcriture')->only(['adminRegister', 'modif_admin', 'modifier_licence']);
         $this->middleware('droitSuppression')->only(['delete_admin', 'force_delete_admin', 'delete_licence']);
-
+        $this->middleware('droitModification')->only(['modif_licence']);
+        $this->middleware('droitEcritureE')->only(['adminVoirEtablissement']);
+        $this->middleware('droitLecture')->only(['detail_licence', 'voir_profil']);
     }
 
     public function adminLogin1(){

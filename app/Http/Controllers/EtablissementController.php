@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Cookie;
 
 class EtablissementController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('droitEcritureE')->only(['modifEtablissement', 'EditEtablissement']);
+    }
+
     public function showEtablissement($id)
     {
         $etablissement = etablissement::where('id_etablissement', $id)->get();
@@ -22,7 +27,9 @@ class EtablissementController extends Controller
     public function EditEtablissement($id)
     {
         $etablissement = etablissement::where('id_etablissement', $id)->get();
-        return view('administration.etablissement-profiledit', compact('etablissement'));
+        $users = $etablissement[0]->users()->count();
+        $apprenants = $etablissement[0]->apprenants()->count();
+        return view('administration.etablissement-profiledit', compact('etablissement', 'users', 'apprenants'));
     }
     public function ajoutEtablissement(Request $request)
     {
