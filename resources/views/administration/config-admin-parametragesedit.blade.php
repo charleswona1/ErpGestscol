@@ -139,6 +139,16 @@
 								<h6 class="card-title"></h6>
 							  </section>
 							  <section class="mdc-card__supporting-text">
+
+                                <div class="template-demo">
+                                    <div class="alert alert-success" id="idSuccess" style="display: none; text-align: center;">
+
+                                    </div>
+                                    <div class="alert alert-warning" id="idError" style="display: none; text-align: center;">
+
+                                    </div>
+                                </div>
+
 								<div class="template-demo">
 
 								  <button class="mdc-button mdc-button--raised icon-button filled-button--secondary">
@@ -202,11 +212,25 @@
                     contentType: false,
 
                     success:function(response){
-
+                         console.log(response);
+                        if(response == 1){
+                            $('#idSuccess').css('display','block');
+                            $( "#idSuccess" ).empty().append("Droits modifiés avec succes");
+                            var fade_out = function() {
+                                $("#idSuccess").css('display','none');
+                            }
+                            setTimeout(fade_out, 5000);
+                        }
                     },
                     error: function(response){
                         console.log(response);
-                        alert('erreur');
+                        $('#idError').css('display','block');
+                        $( "#idError" ).empty().append("Erreur de modification des droits");
+
+                        var fade_out = function() {
+                            $("#idError").css('display','none');
+                        }
+                        setTimeout(fade_out, 5000);
                     }
                 });
             }

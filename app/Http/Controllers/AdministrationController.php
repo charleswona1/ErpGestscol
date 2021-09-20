@@ -74,12 +74,13 @@ class AdministrationController extends Controller
         $request->validate([
             'nom' => ['required', 'string', 'max:255'],
             'login' => ['required', 'unique:admin', 'max:255',  Rule::unique(admin::class),],
-            'telephone' => ['required', 'max:30'],
+            'telephone' => ['required', 'max:30', 'regex:+?[0-9]*'],
             'email' => [
                 'required',
                 'string',
                 'email',
                 'max:255',
+                'regex:/(.+)@(.+)\.(.+)/i',
             ],
             'password' => [
                 'required',
@@ -323,12 +324,13 @@ class AdministrationController extends Controller
     {
         if($request->presence == 1){
             $validated = $request->validate([
-            'nom' => ['string', 'max:255'],
-            'telephone' => ['max:30'],
+            'nom' => ['required', 'string', 'max:255'],
+            'telephone' => ['required', 'max:30', 'regex:+?[0-9]*'],
             'email' => [
                 'string',
                 'email',
                 'max:255',
+                'regex:/(.+)@(.+)\.(.+)/i',
             ],
             'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:8'
@@ -749,5 +751,6 @@ class AdministrationController extends Controller
                 admin_acces::where('id_admin', $request->input('id'))->where('id_droit', $request->input('droit'.$i))->delete();
             }
         }
+        return 1;
     }
 }

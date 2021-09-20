@@ -23,7 +23,7 @@ Route::get('/', function () {
 
     Route::post('/', [App\Http\Controllers\AdministrationController::class, 'adminLogin'])->name('admin.authentification');
 
-    Route::post('/admin/register', [App\Http\Controllers\AdministrationController::class, 'adminRegister'])->name('admin.register');
+    Route::post('/admin/register', [App\Http\Controllers\AdministrationController::class, 'adminRegister'])->name('admin.register')->middleware('auth');
 
     Route::post('/admin/logout', [App\Http\Controllers\AdministrationController::class, 'adminLogout'])->name('admin.logout');
 /** */

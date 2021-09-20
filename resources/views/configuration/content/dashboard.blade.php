@@ -10,9 +10,9 @@
             <div class="mdc-card info-card info-card--success">
               <div class="card-inner">
                 <h5 class="card-title">Effectif Etablissement</h5>
-                 <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom">{{$resultatFinal['nbre_g'] + $resultatFinal['nbre_f']}}</h5></a>
-                <a href=""><span class="tx-12 text-muted">{{$resultatFinal['nbre_f']}} Fille(s)</span></a> <br/>
-                <a href=""><span class="tx-12 text-muted">{{$resultatFinal['nbre_g']}} Garçon(s)</span></a>
+                 <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom"></h5></a>
+                <a href=""><span class="tx-12 text-muted"></span></a> <br/>
+                <a href=""><span class="tx-12 text-muted"></span></a>
                 <div class="card-icon-wrapper">
                   <i class="material-icons">business</i>
                 </div>
@@ -23,7 +23,7 @@
             <div class="mdc-card info-card info-card--danger">
               <div class="card-inner">
                 <h5 class="card-title">Utilisateurs</h5>
-                <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom">{{$resultatFinal['nbre_users']}}</h5></a>
+                <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom"></h5></a>
                 <div class="card-icon-wrapper">
                   <i class="material-icons">people</i>
                 </div>
@@ -34,10 +34,8 @@
             <div class="mdc-card info-card info-card--primary">
               <div class="card-inner">
                 <h5 class="card-title">Modules Installés</h5>
-                <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom">{{$resultatFinal['nbre_module']}}</h5></a>
-                @foreach ($resultatFinal['nom_module'] as $module)
-                <a href=""><span class="tx-12 text-muted">{{$module->nom}}</span></a> <br/>
-                @endforeach
+                <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom"></h5></a>
+
                 <div class="card-icon-wrapper">
                   <i class="material-icons">widgets</i>
                 </div>
@@ -48,8 +46,8 @@
             <div class="mdc-card info-card info-card--info">
               <div class="card-inner">
                 <h5 class="card-title">Années Académiques</h5>
-                <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom">{{$resultatFinal['nbre_annee']}}</h5></a>
-                <a href=""><span class="tx-12 text-muted">{{$resultatFinal['annee_encours']->nom}} En cours</span></a> <br/>
+                <a href=""><h5 class="font-weight-light pb-2 mb-1 border-bottom"></h5></a>
+                <a href=""><span class="tx-12 text-muted"> En cours</span></a> <br/>
                 <div class="card-icon-wrapper">
                   <i class="material-icons">event_available</i>
                 </div>

@@ -156,7 +156,7 @@
         compt1 = 0;
         compt2 = 0;
         while(i>0){
-            if($("#eng_g"+i).val() != "/" && $("#eng_g"+i).val().trim() != ""){
+            if($("#eng_g"+i).val().trim() != ""){
                 if(compt1 == 0){
                     entete_g = $("#eng_g"+i).val();
                     compt1++;
@@ -166,7 +166,7 @@
 
             }
 
-            if($("#eng_d"+i).val() != "/" && $("#eng_d"+i).val().trim() != ""){
+            if($("#eng_d"+i).val().trim() != ""){
                 if(compt2 == 0){
                     entete_d = $("#eng_d"+i).val();
                     compt2++;
