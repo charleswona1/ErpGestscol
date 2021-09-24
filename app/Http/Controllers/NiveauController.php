@@ -7,21 +7,28 @@ use App\Models\niveau;
 
 class NiveauController extends Controller
 {
-    session_start();
+    public function liste_niveau() {
+        return view('gestscol.ressource.niveau.liste_niveau');
+    }
+
+    public function formulaire_niveau() {
+        return view('gestscol.ressource.niveau.formulaire_niveau');
+    }
+    /*session_start();
 
 
 		public function ajoutNiveau(Request $request) {
 
 	    	if ($request->session()->get("user_id") == "") {
-	    		
+
 	    		$request->validate([
 		    		 'nom'=>'required',
 		    		 'bareme'=>'required',
 		    		 'ordre'=>'required',
 		    	]);
-				
 
-		        $succesBD = -1; 
+
+		        $succesBD = -1;
 		        $message = "";
 
 		    	try {
@@ -40,7 +47,7 @@ class NiveauController extends Controller
 		    		$succesBD = 0;
 		        	$message = $e->getMessage();
 		    	}
-		    	
+
 		    	$resultat = array(
 		    		'status' = $succesBD,
 		    		'message' = $message,
@@ -54,14 +61,14 @@ class NiveauController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	}
     	}
 
     	public function modifNiveau(Request $request)
 	    {
-	    	$succesBD = -1; 
+	    	$succesBD = -1;
 		    $message = "";
 	    	if ($request->session()->get("user_id") == "") {
 	    		try {
@@ -77,7 +84,7 @@ class NiveauController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	} else {
 
@@ -85,14 +92,14 @@ class NiveauController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	}
 	    }
 
 	    public function supprimerSousPeriode(Request $request) {
 
-	    	$succesBD = -1; 
+	    	$succesBD = -1;
 		    $message = "";
 	    	if ($request->session()->get("user_id") == "") {
 	    		try {
@@ -108,7 +115,7 @@ class NiveauController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	} else {
 
@@ -116,9 +123,9 @@ class NiveauController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	}
 
-	    }
+	    }*/
 }

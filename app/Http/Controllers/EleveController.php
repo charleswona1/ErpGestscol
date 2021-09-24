@@ -9,8 +9,16 @@ use Illuminate\Support\Facades\DB;
 
 class EleveController extends Controller
 {
-    public function addEleve() {
-    	return view('gestscol.gestscol-FormEleve');
+    public function creer_apprenant() {
+    	return view('gestscol.ressource.apprenant.creer_apprenant');
+    }
+
+    public function liste_apprenant(){
+        return view('gestscol.ressource.apprenant.liste_apprenant');
+    }
+
+    public function classe_apprenant() {
+        return view('gestscol.configuration.eleve_classe');
     }
 
     public function ajoutEleve(Request $request) {

@@ -275,4 +275,8 @@ class EtablissementController extends Controller
         }
 
     }
+
+    public function matricule_etablissement() {
+        return view('gestscol.ressource.matricule');
+    }
 }

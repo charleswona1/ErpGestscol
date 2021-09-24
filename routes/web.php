@@ -65,3 +65,4 @@ Route::get('/administrateur/edit_droit/{id}', [App\Http\Controllers\Administrati
 Route::post('/administrateur/save_droit', [App\Http\Controllers\AdministrationController::class, 'save_droit'])->name('admin.save_droit')->middleware('auth');
 
 require __DIR__.'/user.php';
+require __DIR__.'/gestscol.php';

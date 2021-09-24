@@ -7,24 +7,30 @@ use App\Models\cycle;
 
 class CycleController extends Controller
 {
-    
 
-	session_start();
+    function liste_cycle() {
+        return view('gestscol.ressource.cycle.list_cycle');
+    }
+
+    function formulaire_cycle() {
+        return view('gestscol.ressource.cycle.formulaire_cycle');
+    }
+	//session_start();
 
 
-		public function ajoutCycle(Request $request) {
+		/*public function ajoutCycle(Request $request) {
 
 	    	if ($request->session()->get("user_id") == "") {
-	    		
+
 	    		$request->validate([
 		    		 'nom'=>'required',
 		    	]);
 
 				$annee_academique = new annee_academique;
 
-				
 
-		        $succesBD = -1; 
+
+		        $succesBD = -1;
 		        $message = "";
 
 		    	try {
@@ -41,7 +47,7 @@ class CycleController extends Controller
 		    		$succesBD = 0;
 		        	$message = $e->getMessage();
 		    	}
-		    	
+
 		    	$resultat = array(
 		    		'status' = $succesBD,
 		    		'message' = $message,
@@ -55,14 +61,14 @@ class CycleController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	}
     	}
 
     	public function modifCycle(Request $request)
 	    {
-	    	$succesBD = -1; 
+	    	$succesBD = -1;
 		    $message = "";
 	    	if ($request->session()->get("user_id") == "") {
 	    		try {
@@ -78,7 +84,7 @@ class CycleController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	} else {
 
@@ -86,14 +92,14 @@ class CycleController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	}
 	    }
 
-	    public function supprimerCycle(Request $request) {
+	    /*public function supprimerCycle(Request $request) {
 
-	    	$succesBD = -1; 
+	    	$succesBD = -1;
 		    $message = "";
 	    	if ($request->session()->get("user_id") == "") {
 	    		try {
@@ -109,7 +115,7 @@ class CycleController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	} else {
 
@@ -117,11 +123,11 @@ class CycleController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	}
 
-	    }
+	    }*/
 
 
 }

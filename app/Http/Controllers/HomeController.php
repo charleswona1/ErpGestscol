@@ -17,4 +17,8 @@ class HomeController extends Controller
     public function home_configuration() {
     	return view('configuration.utilisateurs-tb');
     }
+
+    public function homeGestscol() {
+        return view('gestscol.dashboard');
+    }
 }

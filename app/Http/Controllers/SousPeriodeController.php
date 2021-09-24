@@ -7,21 +7,31 @@ use App\Models\sous_periode;
 
 class SousPeriodeController extends Controller
 {
+    public function liste_sous_periode() {
+        return view('gestscol.ressource.sous-periode.liste_sous_periode');
+    }
+
+    public function formulaire_sous_periode() {
+        return view('gestscol.ressource.sous-periode.creer_sous_periode');
+    }
+
+
+    /*
     session_start();
 
 
 		public function ajoutSousPeriode(Request $request) {
 
 	    	if ($request->session()->get("user_id") == "") {
-	    		
+
 	    		$request->validate([
 		    		 'numero'=>'required|numeric',
 		    		 'date_debut'=>'required',
 		    		 'date_fin'=>'required',
 		    	]);
-				
 
-		        $succesBD = -1; 
+
+		        $succesBD = -1;
 		        $message = "";
 
 		    	try {
@@ -40,7 +50,7 @@ class SousPeriodeController extends Controller
 		    		$succesBD = 0;
 		        	$message = $e->getMessage();
 		    	}
-		    	
+
 		    	$resultat = array(
 		    		'status' = $succesBD,
 		    		'message' = $message,
@@ -54,14 +64,14 @@ class SousPeriodeController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	}
     	}
 
     	public function modifSousPeriode(Request $request)
 	    {
-	    	$succesBD = -1; 
+	    	$succesBD = -1;
 		    $message = "";
 	    	if ($request->session()->get("user_id") == "") {
 	    		try {
@@ -77,7 +87,7 @@ class SousPeriodeController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	} else {
 
@@ -85,14 +95,14 @@ class SousPeriodeController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	}
 	    }
 
 	    public function supprimerSousPeriode(Request $request) {
 
-	    	$succesBD = -1; 
+	    	$succesBD = -1;
 		    $message = "";
 	    	if ($request->session()->get("user_id") == "") {
 	    		try {
@@ -108,7 +118,7 @@ class SousPeriodeController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	} else {
 
@@ -116,9 +126,10 @@ class SousPeriodeController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	}
 
 	    }
+        */
 }

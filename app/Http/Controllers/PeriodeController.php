@@ -7,24 +7,31 @@ use App\Models\periode;
 
 class PeriodeController extends Controller
 {
-    
 
-	session_start();
+    public function liste_periode() {
+        return view('gestscol.ressource.periode.liste_periode');
+    }
+
+    public function formulaire_periode() {
+        return view('gestscol.ressource.periode.creer_periode');
+    }
+
+	/*session_start();
 
 
 		public function ajoutPeriode(Request $request) {
 
 	    	if ($request->session()->get("user_id") == "") {
-	    		
+
 	    		$request->validate([
 		    		 'numero'=>'required|numeric',
 		    		 'date_debut'=>'required',
 		    		 'date_fin'=>'required',
 		    		 'pourcentage'=>'required',
 		    	]);
-				
 
-		        $succesBD = -1; 
+
+		        $succesBD = -1;
 		        $message = "";
 
 		    	try {
@@ -44,7 +51,7 @@ class PeriodeController extends Controller
 		    		$succesBD = 0;
 		        	$message = $e->getMessage();
 		    	}
-		    	
+
 		    	$resultat = array(
 		    		'status' = $succesBD,
 		    		'message' = $message,
@@ -58,14 +65,14 @@ class PeriodeController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	}
     	}
 
     	public function modifPeriode(Request $request)
 	    {
-	    	$succesBD = -1; 
+	    	$succesBD = -1;
 		    $message = "";
 	    	if ($request->session()->get("user_id") == "") {
 	    		try {
@@ -81,7 +88,7 @@ class PeriodeController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	} else {
 
@@ -89,14 +96,14 @@ class PeriodeController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	}
 	    }
 
 	    public function supprimerPeriode(Request $request) {
 
-	    	$succesBD = -1; 
+	    	$succesBD = -1;
 		    $message = "";
 	    	if ($request->session()->get("user_id") == "") {
 	    		try {
@@ -112,7 +119,7 @@ class PeriodeController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	} else {
 
@@ -120,11 +127,11 @@ class PeriodeController extends Controller
 		    		'status' = $succesBD,
 		    		'message' = $message,
 		    	);
-	    		
+
 	    		return response()->json($resultat);
 	    	}
 
-	    }
+	    }*/
 
 
 }

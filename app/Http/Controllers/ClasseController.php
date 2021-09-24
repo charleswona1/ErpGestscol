@@ -22,12 +22,12 @@ class ClasseController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-      
+
     }
 
     /**
@@ -103,5 +103,13 @@ class ClasseController extends Controller
         return response()->json([
             'success' => "classe supprimer",
         ]);
+    }
+
+    public function liste_classe() {
+        return view('gestscol.ressource.classe.list_classe');
+    }
+
+    public function formulaire_classe() {
+        return view('gestscol.ressource.classe.formulaire_classe');
     }
 }
