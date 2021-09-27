@@ -10,6 +10,7 @@
         Route::get('/gestscol/liste_apprenant', [App\Http\Controllers\EleveController::class, 'liste_apprenant'])->name('gestscol.list_apprenant');
         Route::get('/gestscol/creer_apprenant', [App\Http\Controllers\EleveController::class, 'creer_apprenant'])->name('gestscol.creer_apprenant');
         Route::get('/gestscol/classe_apprenant', [App\Http\Controllers\EleveController::class, 'classe_apprenant'])->name('gestscol.classe_apprenant');
+        Route::post('/gestscol/ajouter_apprenant', [App\Http\Controllers\EleveController::class, 'ajouter_apprenant'])->name('gestscol.ajouter_apprenant');
     });
     /** end */
 
@@ -18,6 +19,7 @@
         Route::get('/gestscol/liste_enseignant', [App\Http\Controllers\EnseignantController::class, 'liste_enseignant'])->name('gestscol.list_enseignant');
         Route::get('/gestscol/creer_enseignant', [App\Http\Controllers\EnseignantController::class, 'creer_enseignant'])->name('gestscol.creer_enseignant');
         Route::get('/gestscol/emploi_enseignant', [App\Http\Controllers\EnseignantController::class, 'emploi_enseignant'])->name('gestscol.emploi_enseignant');
+        Route::post('/gestscol/ajouter_enseignant', [App\Http\Controllers\EnseignantController::class, 'ajouter_enseignant'])->name('gestscol.ajouter_enseignant');
     });
     /** end */
 
@@ -43,6 +45,7 @@
     Route::middleware([])->group(function () {
         Route::get('/gestscol/liste_cycle', [App\Http\Controllers\CycleController::class, 'liste_cycle'])->name('gestscol.list_cycle');
         Route::get('/gestscol/formulaire_cycle', [App\Http\Controllers\CycleController::class, 'formulaire_cycle'])->name('gestscol.formulaire_cycle');
+        Route::post('/gestscol/creer_cycle', [App\Http\Controllers\CycleController::class, 'creer_cycle'])->name('gestscol.creer_cycle');
         //Route::get('/gestscol/emploi_enseignant', [App\Http\Controllers\ClasseController::class, 'emploi_enseignant'])->name('gestscol.emploi_enseignant');
     });
     /** end */
@@ -51,6 +54,7 @@
     Route::middleware([])->group(function () {
         Route::get('/gestscol/liste_niveau', [App\Http\Controllers\NiveauController::class, 'liste_niveau'])->name('gestscol.list_niveau');
         Route::get('/gestscol/formulaire_niveau', [App\Http\Controllers\NiveauController::class, 'formulaire_niveau'])->name('gestscol.formulaire_niveau');
+        Route::post('/gestscol/creer_niveau', [App\Http\Controllers\NiveauController::class, 'creer_niveau'])->name('gestscol.creer_niveau');
         //Route::get('/gestscol/emploi_enseignant', [App\Http\Controllers\ClasseController::class, 'emploi_enseignant'])->name('gestscol.emploi_enseignant');
     });
     /** end */

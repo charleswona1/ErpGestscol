@@ -1,6 +1,7 @@
 @extends('gestscol.partiel.content')
 
 @section('content')
+<?php //dd($cycles); ?>
 <div class="app-main__outer">
     <div class="app-main__inner">
         <div class="app-page-title" style="position:relative; top:0%;">
@@ -84,42 +85,29 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>1</td>
-                                <td>1er Cycle</td>
+                                <?php $i = 1; ?>
+                                @foreach ($cycles as $cycle)
+                                    <tr>
+                                        <th>
+                                            <div class="custom-checkbox custom-control">
+                                            <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
+                                            <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
+                                        </th>
+                                        <td>{{$i}}</td>
+                                        <td>{{$cycle->nom}}</td>
 
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>2</td>
-                                <td>2nd Cycle</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row" colspan="5"></tr>
-                            </tr>
+                                        <td class="mdc-data-table__cell">
+                                            <a href="#"><i class="fas fa-eye"></i></i></a>
+                                            <a href="#"><i class="fas fa-edit"></i></i></a>
+                                            <a href="#"><i class="fas fa-print"></i></i></a>
+                                            <a href="#" style="color:red;"><i class="fas fa-trash"></i></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                @endforeach
+                                <tr>
+                                    <th scope="row" colspan="5"></tr>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

@@ -49,4 +49,14 @@ class etablissement extends Model
     {
         return $this->hasMany(apprenant::class, 'id_etablissement');
     }
+
+    public function enseignant()
+    {
+        return $this->hasMany(enseignant::class, 'id_etablissement');
+    }
+
+    public function cycle()
+    {
+        return $this->hasMany(cycle::class, 'id_etablissement');
+    }
 }

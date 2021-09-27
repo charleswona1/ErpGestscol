@@ -88,115 +88,29 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>1</td>
-                                <td>1er Cycle</td>
-                                <td>6e</td>
-                                <td>20</td>
+                                <?php $i=1; ?>
+                                @foreach ($resultatFinal as $resultat)
 
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>2</td>
-                                <td>1er Cycle</td>
-                                <td>5e</td>
-                                <td>20</td>
+                                    <tr>
+                                        <th>
+                                            <div class="custom-checkbox custom-control">
+                                            <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
+                                            <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
+                                        </th>
+                                        <td>{{$i}}</td>
+                                        <td>{{$resultat["cycle"]}}</td>
+                                        <td>{{$resultat["niveau"]}}</td>
+                                        <td>{{$resultat["bareme"]}}</td>
 
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>3</td>
-                                <td>1er Cycle</td>
-                                <td>4e Esp</td>
-                                <td>20</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>4</td>
-                                <td>1er Cycle</td>
-                                <td>4e All</td>
-                                <td>20</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>5</td>
-                                <td>1er Cycle</td>
-                                <td>3e Esp</td>
-                                <td>20</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>6</td>
-                                <td>1er Cycle</td>
-                                <td>3e All</td>
-                                <td>20</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-
+                                        <td class="mdc-data-table__cell">
+                                            <a href='#'><i class="fas fa-eye"></i></a>
+                                            <a href='#'><i class="fas fa-edit"></i></i></a>
+                                            <a href='#'><i class="fas fa-print"></i></i></a>
+                                            <a href='#' style="color:red;"><i class="fas fa-trash"></i></i></a>
+                                        </td>
+                                    </tr>
+                                    <?php $i++ ?>
+                                @endforeach
                             <tr>
                                 <th scope="row" colspan="5"></tr>
                             </tr>

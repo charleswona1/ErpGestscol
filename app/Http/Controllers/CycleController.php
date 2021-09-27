@@ -4,16 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\cycle;
+use App\Models\etablissement;
+use Exception;
 
 class CycleController extends Controller
 {
 
     function liste_cycle() {
-        return view('gestscol.ressource.cycle.list_cycle');
+        $etab = etablissement::find(1);
+        $cycles = $etab->cycle()->get();
+        return view('gestscol.ressource.cycle.list_cycle', compact('cycles'));
     }
 
     function formulaire_cycle() {
         return view('gestscol.ressource.cycle.formulaire_cycle');
+    }
+
+    function creer_cycle(Request $request) {
+        $request->validate([
+            'cycle'=>['required', 'string', 'max:50'],
+       ]);
+
+       try {
+        $cycle = new cycle();
+        $cycle->id_etablissement = 1;
+        $cycle->nom = $request->cycle;
+
+        $cycle->save();
+        return 1;
+    } catch (Exception $th) {
+        return $th->getMessage();
+    }
     }
 	//session_start();
 

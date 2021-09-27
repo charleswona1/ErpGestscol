@@ -65,7 +65,12 @@
                             </ul>
                         </div>
                     </div>
-                </div>    </div>
+                </div>
+            </div>
+            <div class="alert alert-success" id="idSuccess" style="display: none;">
+            </div>
+            <div class="alert alert-warning" id="idError" style="display: none;">
+            </div>
         </div>
         <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
             <li class="nav-item">
@@ -91,24 +96,24 @@
                        <div class="main-card mb-3 card">
                             <div class="card-body"><h5 class="card-title">Identification</h5>
                                 <form class="">
+                                    @csrf
                                     <div class="position-relative form-group">
-                                        <label for="exampleEmail" class="">Nom complet <span style="color:red;">*</span></label><input name="nom" id="exampleEmail" required placeholder="Nom complet de l'élève" type="email" class="form-control">
+                                        <label for="exampleEmail" class="">Nom complet <span style="color:red;">*</span></label><input name="nom" id="nom_apprenant" required placeholder="Nom complet de l'élève" type="email" class="form-control">
                                     </div>
                                   <div class="input-group">
                                         <div class="position-relative form-group">
-                                            <label for="lieuNaissance" class="">Né le <span style="color:red;">*</span></label><input name="lieuNaissance" id="lieuNaissance" required placeholder="Email" type="date" class="form-control"></div>
+                                            <label for="lieuNaissance" class="">Né le <span style="color:red;">*</span></label><input name="lieuNaissance" id="dateN" required placeholder="date de naissance" type="date" class="form-control"></div>
                                     <div class="position-relative form-group"><label for="lieuNaissance" class="">A</label>
                                       <input name="lieuNaissance" id="lieuNaissance" placeholder="Lieu de naissance" type="text" class="form-control"></div>
                                     </div>
 
-
-
-                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Sexe <span style="color:red;">*</span></label><select name="select" required id="exampleSelect" class="form-control">
-                                        <option>Masculin</option>
-                                        <option>Féminin</option>
+                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Sexe <span style="color:red;">*</span></label>
+                                    <select name="select" required id="sexe" class="form-control">
+                                        <option value="M">Masculin</option>
+                                        <option value="F">Féminin</option>
                                     </select></div>
-                                    <div class="position-relative form-group"><label for="exampleText" class="">Domicile</label><textarea name="text" id="exampleText" class="form-control"></textarea></div>
-                                   <div class="position-relative form-group"><label for="exampleFile" class="">Photo</label><input name="file" id="exampleFile" type="file" class="form-control-file">
+                                    <div class="position-relative form-group"><label for="exampleText" class="">Domicile</label><textarea name="text" id="domicile" class="form-control"></textarea></div>
+                                    <div class="position-relative form-group"><label for="exampleFile" class="">Photo</label><input name="file" id="image" type="file" class="form-control-file">
                                         <small class="form-text text-muted">Le taille de la photo doit être de 2Mo maximum.</small>
                                     </div>
 
@@ -121,18 +126,20 @@
                         <div class="main-card mb-3 card">
                           <div class="card-body">   <!--<h5 class="card-title">Sizing</h5> -->
                                 <form class="">
-                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Réligion</label><select name="select" id="exampleSelect" class="form-control">
-                                        <option>Catholique</option>
-                                        <option>Protestant</option>
-                                        <option>Evangeliste</option>
-                                        <option>Panthécotiste</option>
-                                        <option>Musulman</option>
-                                        <option>Budiste</option>
-                                        <option>Catholique</option>
-                                        <option>Autre</option>
-                                    </select></div>
-                                    <div class="position-relative form-group"><label for="lieuNaissance" class="">Email</label><input name="lieuNaissance" id="lieuNaissance" placeholder="Email" type="email" class="form-control"></div>
-                                    <div class="position-relative form-group"><label for="lieuNaissance" class="">Contact</label><input name="lieuNaissance" id="lieuNaissance" placeholder="Téléphone de l'élève" type="text" class="form-control"></div>
+                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Réligion</label>
+                                        <select name="select" id="religion" class="form-control">
+                                            <option value="Catholique">Catholique</option>
+                                            <option value="Protestant">Protestant</option>
+                                            <option value="Evangeliste">Evangeliste</option>
+                                            <option value="Panthécotiste">Panthécotiste</option>
+                                            <option value="Musulman">Musulman</option>
+                                            <option value="Budiste">Budiste</option>
+                                            <option value="1">Autre</option>
+                                        </select>
+                                    </div>
+                                    <div class="position-relative form-group" style="display:none;"><label for="autre_religion" class="">Preciser</label><input name="autre_religion" id="autre_religion" placeholder="Preciser l'autre religion" type="text" class="form-control"></div>
+                                    <div class="position-relative form-group"><label for="email" class="">Email</label><input name="email" id="email" placeholder="Email" type="email" class="form-control"></div>
+                                    <div class="position-relative form-group"><label for="contact" class="">Contact</label><input name="contact" id="contact" placeholder="Téléphone de l'élève" type="text" class="form-control"></div>
                             </div>
 
                         </div>
@@ -140,15 +147,17 @@
                             <div class="card-body"><label for="exampleSelect" class="">Groupe Sanguin</label>
                                 <form class="">
                                     <fieldset class="position-relative form-group">
-                                        <div class="position-relative form-check"><label class="form-check-label"><input name="radio1" type="radio" class="form-check-input"> A+ &nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input"> A- &nbsp;&nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input"> AB+ &nbsp;&nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input"> AB- &nbsp; &nbsp;&nbsp; &nbsp;</label>
+                                        <div class="position-relative form-check">
+                                            <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="A+"> A+ &nbsp; &nbsp; &nbsp;</label>
+                                            <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="A-"> A- &nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                            <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="AB+"> AB+ &nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                            <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="AB-"> AB- &nbsp; &nbsp;&nbsp; &nbsp;</label>
                                         </div>
-                                        <div class="position-relative form-check"><label class="form-check-label"><input name="radio1" type="radio" class="form-check-input"> B+ &nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input"> B-  &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input"> O+ &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input"> O- &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</label>
+                                        <div class="position-relative form-check">
+                                            <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="B+"> B+ &nbsp; &nbsp; &nbsp;</label>
+                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="B-"> B-  &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="O+"> O+ &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="O-"> O- &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</label>
                                         </div>
                                 </form>
                             </div>
@@ -165,39 +174,39 @@
                                     <table>
                                      <tr>
                                         <td width="50%">
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Nom de la Mère <span style="color:red;">*</span></label></label><input name="lieuNaissance" id="lieuNaissance" placeholder="Nom de la mère" type="text" class="form-control"></div>
+                                            <div class="position-relative form-group"><label for="lieuNaissance" class="">Nom de la Mère <span style="color:red;">*</span></label><input name="nom_mere" id="nom_mere" placeholder="Nom de la mère" type="text" class="form-control"></div>
                                         </td>
                                         <td>
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Profession</label><input name="lieuNaissance" id="lieuNaissance" placeholder="Profession de la mère" type="text" class="form-control"></div>
+                                            <div class="position-relative form-group"><label for="lieuNaissance" class="">Profession</label><input name="prof_mere" id="prof_mere" placeholder="Profession de la mère" type="text" class="form-control"></div>
                                         </td>
                                         <td>
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Téléphone</label><input name="lieuNaissance" id="lieuNaissance" placeholder="Téléphone de la mère" type="text" class="form-control"></div>
+                                            <div class="position-relative form-group"><label for="lieuNaissance" class="">Téléphone</label><input name="tel_mere" id="tel_mere" placeholder="Téléphone de la mère" type="text" class="form-control"></div>
                                         </td>
                                      </tr>
                                     </table>
                                     <table>
                                      <tr>
                                         <td width="50%">
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Nom du Père</label><input name="lieuNaissance" id="lieuNaissance" placeholder="Nom du père" type="text" class="form-control"></div>
+                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Nom du Père</label><input name="nom_pere" id="nom_pere" placeholder="Nom du père" type="text" class="form-control"></div>
                                         </td>
                                         <td>
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Profession</label><input name="lieuNaissance" id="lieuNaissance" placeholder="Profession du père" type="text" class="form-control"></div>
+                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Profession</label><input name="prof_pere" id="prof_pere" placeholder="Profession du père" type="text" class="form-control"></div>
                                         </td>
                                         <td>
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Téléphone</label><input name="lieuNaissance" id="lieuNaissance" placeholder="Téléphone du père" type="text" class="form-control"></div>
+                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Téléphone</label><input name="tel_pere" id="tel_pere" placeholder="Téléphone du père" type="text" class="form-control"></div>
                                         </td>
                                      </tr>
                                     </table>
                                     <table>
                                      <tr>
                                         <td width="50%">
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Nom du Tuteur</label><input name="lieuNaissance" id="lieuNaissance" placeholder="Nom du tuteur" type="text" class="form-control"></div>
+                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Nom du Tuteur</label><input name="lieuNaissance" id="nom_tuteur" placeholder="Nom du tuteur" type="text" class="form-control"></div>
                                         </td>
                                         <td>
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Profession</label><input name="lieuNaissance" id="lieuNaissance" placeholder="Profession du tuteur" type="text" class="form-control"></div>
+                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Profession</label><input name="lieuNaissance" id="prof_tuteur" placeholder="Profession du tuteur" type="text" class="form-control"></div>
                                         </td>
                                         <td>
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Téléphone</label><input name="lieuNaissance" id="lieuNaissance" placeholder="Téléphone du tuteur" type="text" class="form-control"></div>
+                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Téléphone</label><input name="lieuNaissance" id="tel_tuteur" placeholder="Téléphone du tuteur" type="text" class="form-control"></div>
                                         </td>
                                      </tr>
                                     </table>
@@ -210,11 +219,12 @@
                             <div class="card-body"><h5 class="card-title">CONTACT D'URGENCE</h5>
                                 <div>
                                     <div class="position-relative form-group">
-                                       <div class="position-relative form-group"><label for="exampleSelect" class="">Personne à contacter en cas d'urgence</label><select name="select" id="exampleSelect" class="form-control">
-                                        <option>Père</option>
-                                        <option>Mère</option>
-                                        <option>Tuteur</option>
-                                       <option>Autre</option>
+                                       <div class="position-relative form-group"><label for="exampleSelect" class="">Personne à contacter en cas d'urgence</label>
+                                    <select name="select" id="index_contact" class="form-control">
+                                        <option value="1">Père</option>
+                                        <option value="2">Mère</option>
+                                        <option value="3">Tuteur</option>
+                                       <option value="Autre">Autre</option>
                                     </select></div>
                                     <input name="lieuNaissance" id="lieuNaissance" placeholder="Téléphone de l'Autre contact" type="text" class="form-control">
                                 </div>
@@ -232,11 +242,11 @@
                                 <div class="card-body"><h5 class="card-title">SANTE</h5>
                                     <div class="position-relative form-group">
                                         <div>
-                                            <div class="custom-checkbox custom-control"><input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input"><label class="custom-control-label" for="exampleCustomCheckbox">
+                                            <div class="custom-checkbox custom-control"><input type="checkbox" id="sante" name="sante" value="Apte" class="custom-control-input"><label class="custom-control-label" for="exampleCustomCheckbox">
                                                 Apte</label></div>
-                                            <div class="custom-checkbox custom-control"><input type="checkbox" id="exampleCustomCheckbox2" class="custom-control-input"><label class="custom-control-label" for="exampleCustomCheckbox2">
+                                            <div class="custom-checkbox custom-control"><input type="checkbox" id="sante" name="sante" value="Inapte" class="custom-control-input"><label class="custom-control-label" for="exampleCustomCheckbox2">
                                                 Inapte</label></div>
-                                             <div class="custom-checkbox custom-control"><input type="checkbox" id="exampleCustomCheckbox2" class="custom-control-input"><label class="custom-control-label" for="exampleCustomCheckbox2">
+                                             <div class="custom-checkbox custom-control"><input type="checkbox" id="sante" name="sante" value="Handicapé" class="custom-control-input"><label class="custom-control-label" for="exampleCustomCheckbox2">
                                                 Handicapé</label></div>
                                         </div>
                                     </div>
@@ -250,25 +260,113 @@
                                     <div class="position-relative form-group">
                                         <div>
                                             <div class="position-relative form-group"><label for="exampleEmail" class="">
-                                                Etablissement</label><input name="nom" id="exampleEmail" placeholder="Etablissement" type="email" class="form-control"></div>
+                                                Etablissement</label><input name="nom" id="etablA" placeholder="Etablissement" type="text" class="form-control"></div>
 
                                             <div class="position-relative form-group"><label for="exampleEmail" class="">
-                                                Classe</label><input name="nom" id="exampleEmail" placeholder="classe" type="email" class="form-control"></div>
+                                                Classe</label><input name="nom" id="classeA" placeholder="classe" type="text" class="form-control"></div>
                                             <div class="position-relative form-group"><label for="exampleEmail" class="">
-                                                Classes Redoublées</label><input name="nom" id="exampleEmail" placeholder="Classes Redoublées" type="email" class="form-control"></div>
+                                                Classes Redoublées</label><input name="ClasseR" id="classeR" placeholder="Classes Redoublées" type="text" class="form-control"></div>
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button class="mt-2 btn btn-success">Enrégistrer</button>
+
                         </div>
                     </div>
                 </form>
+                <button class="mt-2 btn btn-success" onclick="saveApprenant()">Enrégistrer</button>
             </div>
         </div>
     </div>
     </div>
 </div>
 </div>
+<script type="text/javascript">
+
+function saveApprenant() {
+
+    var nom = $("#nom_apprenant").val();
+    var dateNaissance = $("#dateN").val();
+    var lieuNaissance = $("#lieuNaissance").val();
+    var sexe = $("#sexe option:selected" ).val();
+    var domicile = $("#domicile").val();
+    var email = $("#email").val();
+    var nom_pere = $("#nom_pere").val();
+    var profession_pere = $("#prof_pere").val();
+    var tel_pere = $("#tel_pere").val();
+    var nom_mere = $("#nom_mere").val();
+    var profession_mere = $("#prof_mere").val();
+    var tel_mere = $("#tel_mere").val();
+    var nom_tuteur = $("#nom_tuteur").val();
+    var profession_tuteur = $("#prof_tuteur").val();
+    var tel_tuteur = $("#tel_tuteur").val();
+    var groupe_sanguin = $("input[name='radio1']:checked").val();
+    var religion = $("#religion option:selected" ).val();
+    var contact = $("#contact").val();
+    var autre = $("#index_contact").val();
+    var type_contact = 1;
+
+    $.ajax({
+        url: "{{route('gestscol.ajouter_apprenant')}}",
+        type: "POST",
+        data:{
+        "_token": "{{ csrf_token() }}",
+        nom:nom,
+        dateNaissance:dateNaissance,
+        lieuNaissance:lieuNaissance,
+        sexe:sexe,
+        domicile:domicile,
+        email:email,
+        nom_pere:nom_pere,
+        profession_pere:profession_pere,
+        tel_pere:tel_pere,
+        nom_mere:nom_mere,
+        profession_mere:profession_mere,
+        tel_mere:tel_mere,
+        nom_tuteur:nom_tuteur,
+        profession_tuteur:profession_tuteur,
+        tel_tuteur:tel_tuteur,
+        groupe_sanguin:groupe_sanguin,
+        religion:religion,
+        contact:contact,
+        type_contact:type_contact,
+        autre:autre
+        },
+
+        success:function(response){
+            console.log(response);
+            if (response == 1) {
+                $('#idSuccess').css('display','block');
+                $( "#idSuccess" ).empty().append("Apprenant enregistré avec succès");
+
+                var fade_out = function() {
+                    $("#idSuccess").css('display','none');
+                }
+                setTimeout(fade_out, 5000);
+            } else {
+
+                $( "#idError" ).empty();
+                $('#idError').css('display','block');
+                $( "#idError" ).append("erreur d'enregistrement");
+
+                var fade_out = function() {
+                    $("#idError").css('display','none');
+                }
+                setTimeout(fade_out, 5000);
+
+            }
+        },
+        error: function(response){
+            $('#idError').css('display','block');
+            $( "#idError" ).append("Veuillez remplir tous les champs obligatoires");
+            var fade_out = function() {
+                $("#idError").css('display','none');
+            }
+            setTimeout(fade_out, 5000);
+        }
+    });
+}
+
+</script>
 @endsection

@@ -74,7 +74,7 @@ class AdministrationController extends Controller
         $request->validate([
             'nom' => ['required', 'string', 'max:255'],
             'login' => ['required', 'unique:admin', 'max:255',  Rule::unique(admin::class),],
-            'telephone' => ['required', 'max:30', 'regex:+?[0-9]*'],
+            'telephone' => ['required', 'max:30'],
             'email' => [
                 'required',
                 'string',

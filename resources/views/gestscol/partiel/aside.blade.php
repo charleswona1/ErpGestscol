@@ -270,19 +270,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="#">
                         <i class="metismenu-icon pe-7s-display2"></i>
                         Elèves et matières d'option
                     </a>
                 </li>
                 <li>
-                    <a href="eleves-groupe.html">
+                    <a href="#">
                         <i class="metismenu-icon pe-7s-users"></i>
                         Elèves composants les groupes
                     </a>
                 </li>
                 <li>
-                    <a href="affectation-matieres.html">
+                    <a href="#">
                         <i class="metismenu-icon pe-7s-shuffle"></i>
                         Affectations des matières
                     </a>
@@ -294,44 +294,44 @@
                     </a>
                 </li>
                 <li>
-                    <a href="gestion-moyennes.html">
+                    <a href="#">
                         <i class="metismenu-icon pe-7s-way"></i>
                         Gestion des moyennes
                     </a>
                 </li>
                 <li>
-                    <a href="appreciation.html">
+                    <a href="#">
                         <i class="metismenu-icon pe-7s-like2"></i>
                         Appréciations de notes
                     </a>
                 </li>
                 <li>
-                    <a href="mention.html">
+                    <a href="#">
                         <i class="metismenu-icon pe-7s-star"></i>
                         Mention du travail
                     </a>
                 </li>
                 <li>
-                    <a href="bourses.html">
+                    <a href="#">
                         <i class="metismenu-icon pe-7s-medal"></i>
                         bourses
                     </a>
                 </li>
                 <li class="app-sidebar__heading">Discipline</li>
                 <li>
-                    <a href="forms-controls.html">
+                    <a href="#">
                         <i class="metismenu-icon pe-7s-mouse">
                         </i>Consultation
                     </a>
                 </li>
                 <li>
-                    <a href="forms-layouts.html">
+                    <a href="#">
                         <i class="metismenu-icon pe-7s-eyedropper">
                         </i>Sanction
                     </a>
                 </li>
                 <li>
-                    <a href="forms-validation.html">
+                    <a href="#">
                         <i class="metismenu-icon pe-7s-pendrive">
                         </i>Paramétrage de Sanctions
                     </a>
