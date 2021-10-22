@@ -325,7 +325,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route("gestscol.liste_sanction")}}">
                         <i class="metismenu-icon pe-7s-eyedropper">
                         </i>Sanction
                     </a>

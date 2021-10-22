@@ -83,6 +83,24 @@
     });
     /** end */
 
+       /** sanction route */
+       Route::middleware([])->group(function () {
+        Route::get('/gestscol/liste_sanction', [App\Http\Controllers\SanctionController::class, 'liste_sanction'])->name('gestscol.liste_sanction');
+        Route::get('/gestscol/formulaire_sanction', [App\Http\Controllers\SanctionController::class, 'formulaire_sanction'])->name('gestscol.formulaire_sanction');
+        Route::post('/gestscol/sanction/create', [App\Http\Controllers\SanctionController::class, 'create'])->name('gestscol.sanction.create');
+        Route::get('/gestscol/sanction/formulaire_sanction/{id}', [App\Http\Controllers\SanctionController::class, 'formulaire_sanction_update'])->name('gestscol.formulaire_sanction.update');
+        Route::post('/gestscol/sanction/update', [App\Http\Controllers\SanctionController::class, 'update'])->name('gestscol.sanction.update');
+        Route::get('/gestscol/sanction/delete/{id}', [App\Http\Controllers\SanctionController::class, 'delete'])->name('gestscol.sanction.delete');
+        
+        Route::get('/gestscol/sanction/parametrage/edit/{id}', [App\Http\Controllers\SanctionController::class, 'parametrage_edit'])->name('gestscol.sanction.parametrage.edit');
+        Route::get('/gestscol/sanction/parametrage', [App\Http\Controllers\SanctionController::class, 'parametrage'])->name('gestscol.sanction.parametrage');
+        Route::post('/gestscol/sanction/parametrage', [App\Http\Controllers\SanctionController::class, 'parametrage_create'])->name('gestscol.sanction.parametrage.create');
+        Route::post('/gestscol/sanction/parametrage/update', [App\Http\Controllers\SanctionController::class, 'parametrage_update'])->name('gestscol.sanction.parametrage.update');
+        Route::get('/gestscol/sanction/parametrage/delete/{id}', [App\Http\Controllers\SanctionController::class, 'parametrage_delete'])->name('gestscol.sanction.parametrage.delete');
+    
+    });
+    /** end */
+
     Route::get('/gestscol/matricule', [App\Http\Controllers\EtablissementController::class, 'matricule_etablissement'])->name('gestscol.matricule_etablissement');
 
 
