@@ -20,6 +20,7 @@ class CreateSanctionsTable extends Migration
             $table->string('unite', 10)->nullable();
             $table->integer('seuil');
             $table->integer('degre');
+            $table->string('abbreviation');
 
             $table->foreign('id_etablissement')->references('id_etablissement')->on('etablissement');
         });

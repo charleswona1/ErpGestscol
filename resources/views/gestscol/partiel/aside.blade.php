@@ -331,7 +331,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route("gestscol.sanction.parametrage")}}">
                         <i class="metismenu-icon pe-7s-pendrive">
                         </i>Paramétrage de Sanctions
                     </a>
