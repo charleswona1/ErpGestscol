@@ -13,8 +13,12 @@ class MatiereController extends Controller
     function creer_matiere() {
         return view('gestscol.ressource.matiere.creer_matiere');
     }
+    function parametrage_matiere() {
+        return view('gestscol.configuration.parametrage_matiere');
+    }
 
     function groupe_matiere() {
 
     }
+  
 }
