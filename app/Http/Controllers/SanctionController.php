@@ -34,7 +34,7 @@ class SanctionController extends Controller
         $sanction = new sanction($request->all());
         $sanction->id_etablissement=2;
         $sanction ->save();
-
+        
         //Session::flash('success', "sanction a bien été créé");
         return redirect()->route('gestscol.liste_sanction');
         //return view('gestscol.ressource.sanction.formulaire_sanction');

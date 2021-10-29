@@ -36,7 +36,16 @@
         Route::get('/gestscol/liste_matiere', [App\Http\Controllers\MatiereController::class, 'liste_matiere'])->name('gestscol.list_matiere');
         Route::get('/gestscol/creer_matiere', [App\Http\Controllers\MatiereController::class, 'creer_matiere'])->name('gestscol.creer_matiere');
         Route::get('/gestscol/groupe_matiere', [App\Http\Controllers\MatiereController::class, 'groupe_matiere'])->name('gestscol.groupe_matiere');
-        Route::get('/gestscol/parametrage_matiere', [App\Http\Controllers\MatiereController::class, 'parametrage_matiere'])->name('gestscol.parametrage_matiere');
+
+        Route::get('/gestscol/parametrage_matiere', [App\Http\Controllers\ParametrageMatiereController::class, 'parametrage_matiere'])->name('gestscol.parametrage_matiere');
+        Route::post('/gestscol/parametrage_matiere/create', [App\Http\Controllers\ParametrageMatiereController::class, 'create'])->name('gestscol.parametrage_matiere.create');
+
+        Route::get('/gestscol/parametrage_matiere/edit/{id}', [App\Http\Controllers\ParametrageMatiereController::class, 'edit'])->name('gestscol.parametrage_matiere.edit');
+        Route::post('/gestscol/parametrage_matiere/update', [App\Http\Controllers\ParametrageMatiereController::class, 'update'])->name('gestscol.parametrage_matiere.update');
+        Route::get('/gestscol/parametrage_matiere/delete/{id}', [App\Http\Controllers\ParametrageMatiereController::class, 'delete'])->name('gestscol.parametrage_matiere.delete');
+        
+        Route::get('/gestscol/configuration/affectation/matiere', [App\Http\Controllers\ParametrageMatiereController::class, 'affectation'])->name('gestscol.affectation_matiere');
+        
         //Route::get('/gestscol/emploi_enseignant', [App\Http\Controllers\ClasseController::class, 'emploi_enseignant'])->name('gestscol.emploi_enseignant');
     });
     /** end */
@@ -102,6 +111,7 @@
     /** end */
 
     Route::get('/gestscol/matricule', [App\Http\Controllers\EtablissementController::class, 'matricule_etablissement'])->name('gestscol.matricule_etablissement');
+   
 
 
 ?>

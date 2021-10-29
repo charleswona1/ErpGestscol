@@ -73,46 +73,56 @@
                          <div class="main-card mb-3 card">
 
                             <div class="card-body ">
-                                <form action="{{ route('gestscol.parametrage_matiere.create') }}" method="POST">
+                                <form action="{{ route('gestscol.parametrage_matiere.update') }}" method="POST">
                                     @csrf                                   
                                      <table class="col-md-12">
+                                         <input type="hidden" name="id" value="{{$matiere_niveau->id}}">
                                         <tr>
                                             <td>
                                         <div class="position-relative form-group"><label for="exampleSelect" class="">Niveau <span style="color:red;">*</span></label>
                                             <select name="id_niveau_scolaire" class="form-control" required>
                                                 @foreach ($niveaux as $niveau)
-                                                <option value="{{$niveau->id_niveau}}">{{$niveau->nom}}</option> 
-                                            @endforeach
-                                                
+                                                @if ($niveau->id_niveau==$matiere_niveau->niveau_scolaire()->get()[0]->id_niveau)
+                                                <option value="{{$niveau->id_niveau_scolaire}}" selected>{{$niveau->nom}}</option> 
+                                                @else
+                                                <option value="{{$niveau->id_niveau_scolaire}}">{{$niveau->nom}}</option> 
+                                                @endif
+                                                @endforeach
                                             </select>
                                         </div>
                                             </td>
                                             <td>
                                         <div class="position-relative form-group"><label for="exampleSelect" class="">Matière <span style="color:red;">*</span></label>
                                             <select name="id_matiere" class="form-control" required>
+            
                                                 @foreach ($matieres as $matiere)
-                                                <option value="{{$matiere->id_matiere}}">{{$matiere->nom}}</option> 
-                                            @endforeach
-                                                
+                                                    @if ($matiere->id_matiere==$matiere_niveau->matiere()->get()[0]->id_matiere)
+                                                        <option value="{{$matiere->id_matiere}}" selected>{{$matiere->nom}}</option> 
+                                                    @else
+                                                        <option value="{{$matiere->id_matiere}}">{{$matiere->nom}}</option> 
+                                                    @endif
+                                                @endforeach
                                             </select>
                                         </div>
                                             </td>
 
                                             <td>
                                         <div class="position-relative form-group">
-                                            <label for="exampleEmail" class="">Coefficient <span style="color:red;">*</span></label><input name="coefficient"  placeholder=" " type="float" class="form-control" required>
+                                            <label for="exampleEmail" class="">Coefficient <span style="color:red;">*</span></label>
+                                            <input name="coefficient"  placeholder=" " type="float" value="{{$matiere_niveau->coefficient}}" class="form-control" required>
                                         </div>
                                             </td>
                                             <td>
                                         <div class="position-relative form-group">
-                                            <label for="exampleEmail" class="">Groupe <span style="color:red;">*</span></label><input name="id_groupe_matiere"  placeholder=" " type="number" class="form-control" required>
+                                            <label for="exampleEmail" class="">Groupe <span style="color:red;">*</span></label>
+                                            <input name="id_groupe_matiere"  placeholder=" " type="number" value="{{$matiere_niveau->groupe_matiere_numero()}}" class="form-control" required>
                                         </div>
                                             </td>
                                         </tr>
-
+                                    
                                     </table>
 
-
+                                    
                                     <button class="mt-1 btn btn-secondary"><a href="classe-liste.html" style="color:white; text-decoration:none;">Annuler</a></button>
                                     <button class="mt-1 btn btn-success" type="submit">Enregistrer</button>
 
@@ -148,14 +158,14 @@
                                     <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
                                     <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
                                 </th>
-                                <td>{{$item->matiere_nom()}}</td>
+                                <td>{{$item->matiere()->get()[0]->nom}}</td>
                                 <td>{{$item->coefficient}}</td>
-                                <td>{{$item->groupe_matiere_nom()}}</td>
+                                <td>{{$item->groupe_matiere()->get()[0]->nom}}</td>
                                 
                                 <td class="mdc-data-table__cell">
                                     <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
                                     <a href="{{ route('gestscol.parametrage_matiere.edit', $item->id) }}"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
+                                    <a href="#"><i class="fas fa-print"></i></i></a>
                                     <a href="{{ route('gestscol.parametrage_matiere.delete', $item->id) }}" style="color:red;"><i class="fas fa-trash"></i></i></a>
                                 </td>
                             </tr>

@@ -282,7 +282,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route("gestscol.affectation_matiere")}}">
                         <i class="metismenu-icon pe-7s-shuffle"></i>
                         Affectations des matières
                     </a>
