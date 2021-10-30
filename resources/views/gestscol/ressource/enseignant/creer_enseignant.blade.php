@@ -71,44 +71,68 @@
             <div class="alert alert-warning" id="idError" style="display: none;">
             </div>
         </div>
-        <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
-            <li class="nav-item">
-                <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
-                    <span>Informations Personnelles</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-content-1">
-                    <span>Informations Professionnelles</span>
-                </a>
-            </li>
 
+        
+
+
+        <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-home-tab" data-toggle="tab" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+                <span>Informations Personnelles</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-profile-tab" data-toggle="tab" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
+                <span>Informations professionnelles</span>
+              </a>
+            </li>
         </ul>
-        <div class="tab-content">
-            <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="row">
                     <div class="col-md-6">
-                         <div class="main-card mb-3 card">
-                            <div class="card-body"><h5 class="card-title">Identification</h5>
-                                <form class="">
-                                    <div class="position-relative form-group"><label for="exampleEmail" class="">Nom complet</label><input name="nom" id="nom" placeholder="Nom complet de l'enseignant" type="email" class="form-control"></div>
-                                  <div class="input-group">
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Date de Naissance </label><input name="lieuNaissance" id="dateNaissance" placeholder="Email" type="date" class="form-control"></div>
-                                    <div class="position-relative form-group"><label for="lieuNaissance" class="">Lieu</label>
-                                      <input name="lieuNaissance" id="lieuNaissance" placeholder="Téléphone de l'élève" type="text" class="form-control"></div>
+                        <div class="main-card mb-3 card">
+                            <div class="card-body">
+                                <h5 class="card-title">Identification</h5>
+                            
+                                <div class="position-relative form-group">
+                                    <label for="exampleEmail" class="">Nom complet</label>
+                                    <input name="nom" id="nom" placeholder="Nom complet de l'enseignant" type="email" class="form-control">
+                                </div>
+
+                                <div class="input-group w-100">
+                                    <div class="position-relative form-group">
+                                        <label for="lieuNaissance" class="">Date de Naissance </label>
+                                        <input name="lieuNaissance" id="dateNaissance" placeholder="Email" type="date" class="form-control">
                                     </div>
-
-
-                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Sexe</label><select name="select" id="sexe" class="form-control">
-                                        <option value="Masculin">Masculin</option>
-                                        <option value="Feminin">Féminin</option>
-                                    </select></div>
-                                    <div class="position-relative form-group"><label for="exampleText" class="">Domicile</label><textarea name="text" id="domicile" class="form-control"></textarea></div>
-                                   <div class="position-relative form-group"><label for="exampleFile" class="">Photo</label><input name="file" id="imageEns" type="file" class="form-control-file">
-                                        <small class="form-text text-muted">Le taille de la photo doit être de 2Mo maximum.</small>
+                                
+                                
+                                    <div class="position-relative form-group">
+                                        <label for="lieuNaissance" class="">Lieu</label>
+                                        <input name="lieuNaissance" id="lieuNaissance" placeholder="Téléphone de l'élève" type="text" class="form-control">
                                     </div>
+                                    
+                                    <div class="position-relative form-group">
+                                        <label for="exampleSelect" class="">Sexe</label>
+                                        <select name="select" id="sexe" class="form-control">
+                                            <option value="Masculin">Masculin</option>
+                                            <option value="Feminin">Féminin</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                                </form>
+                                <div class="input-group w-100">
+                                    <div class="position-relative form-group w-100">
+                                        <label for="exampleText" class="">Domicile</label>
+                                        <textarea name="text" id="domicile" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="position-relative form-group">
+                                    <label for="exampleFile" class="">Photo</label>
+                                    <input name="file" id="imageEns" type="file" class="form-control-file">
+                                    <small class="form-text text-muted">Le taille de la photo doit être de 2Mo maximum.</small>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,66 +140,67 @@
                     <div class="col-md-6">
                         <div class="main-card mb-3 card">
                           <div class="card-body">   <!--<h5 class="card-title">Sizing</h5> -->
-                                <form class="">
+                                <div class="position-relative form-group">
+                                    <label for="exampleSelect" class="">Statut au sein de l'établissement</label>
+                                    <select name="select" id="status" class="form-control">
+                                        <option value="Permanent">Permanent</option>
+                                        <option value="Vacataire">Vacataire</option>
+                                    </select>
+                                </div>
 
-
-                                    <div class="position-relative form-group">
-                                        <label for="exampleSelect" class="">Statut au sein de l'établissement</label>
-                                        <select name="select" id="status" class="form-control">
-                                            <option value="Permanent">Permanent</option>
-                                            <option value="Vacataire">Vacataire</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Niveau Scolaire</label><select name="select" id="niveau" class="form-control">
+                                <div class="position-relative form-group">
+                                    <label for="exampleSelect" class="">Niveau Scolaire</label>
+                                    <select name="select" id="niveau" class="form-control">
                                         <option value="BEPC">BEPC</option>
                                         <option value="Probatoire">Probatoire</option>
                                         <option value="Baccalauréat">Baccalauréat</option>
                                         <option value="Licence">Licence</option>
                                         <option value="Master">Master</option>
                                         <option value="Doctorat">Doctorat</option>
-                                    </select></div>
+                                    </select>
+                                </div>
 
-                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Réligion</label>
-                                        <select name="select" id="religion" class="form-control">
-                                            <option value="Catholique">Catholique</option>
-                                            <option value="Protestant">Protestant</option>
-                                            <option value="Evangeliste">Evangeliste</option>
-                                            <option value="Panthécotiste">Panthécotiste</option>
-                                            <option value="Musulman">Musulman</option>
-                                            <option value="Budiste">Budiste</option>
-                                            <option value="Autre">Autre</option>
-                                        </select>
-                                    </div>
-                                    <div class="position-relative form-group"><label for="lieuNaissance" class="">Email</label><input name="lieuNaissance" id="email" placeholder="Email" type="email" class="form-control"></div>
-                                    <div class="position-relative form-group"><label for="lieuNaissance" class="">Contact</label><input name="lieuNaissance" id="contact" placeholder="Téléphone de l'enseignant" type="text" class="form-control"></div>
-
-                            <div class="card-body"><label for="exampleSelect" class="">Groupe Sanguin</label>
-                                <form class="">
-                                    <fieldset class="position-relative form-group">
-                                        <div class="position-relative form-check">
-                                            <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="A+"> A+ &nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="A-"> A- &nbsp;&nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="AB+"> AB+ &nbsp;&nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="AB-"> AB- &nbsp; &nbsp;&nbsp; &nbsp;</label>
-                                        </div>
-                                        <div class="position-relative form-check">
-                                            <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="B+"> B+ &nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="B-"> B-  &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="O+"> O+ &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="O-"> O- &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</label>
-                                        </div>
-                                </form>
-
-
+                                <div class="position-relative form-group">
+                                    <label for="exampleSelect" class="">Réligion</label>
+                                    <select name="select" id="religion" class="form-control">
+                                        <option value="Catholique">Catholique</option>
+                                        <option value="Protestant">Protestant</option>
+                                        <option value="Evangeliste">Evangeliste</option>
+                                        <option value="Panthécotiste">Panthécotiste</option>
+                                        <option value="Musulman">Musulman</option>
+                                        <option value="Budiste">Budiste</option>
+                                        <option value="Autre">Autre</option>
+                                    </select>
+                                </div>
+                                <div class="position-relative form-group">
+                                    <label for="lieuNaissance" class="">Email</label>
+                                    <input name="lieuNaissance" id="email" placeholder="Email" type="email" class="form-control">
+                                </div>
+                                <div class="position-relative form-group">
+                                    <label for="lieuNaissance" class="">Contact</label>
+                                    <input name="lieuNaissance" id="contact" placeholder="Téléphone de l'enseignant" type="text" class="form-control">
+                                </div>
+                            </div>                                    
+                            <div class="card-body">
+                                <label for="exampleSelect" class="">Groupe Sanguin</label>
+                                <div class="position-relative form-check">
+                                    <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="A+"> A+ &nbsp; &nbsp; &nbsp;</label>
+                                    <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="A-"> A- &nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                    <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="AB+"> AB+ &nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                    <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="AB-"> AB- &nbsp; &nbsp;&nbsp; &nbsp;</label>
+                                </div>
+                                <div class="position-relative form-check">
+                                    <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="B+"> B+ &nbsp; &nbsp; &nbsp;</label>
+                                    <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="B-"> B-  &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                    <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="O+"> O+ &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                    <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="O-"> O- &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</label>
+                                </div>
                             </div>
-
                         </div>
-
+                    </div>
                 </div>
             </div>
-            </div>
-             <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="main-card mb-3 card">
@@ -193,9 +218,8 @@
                             </div>
                         </div>
                     </div>
-                     <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="main-card mb-3 card">
-
                             <div class="card-body">
                                 <div class="position-relative form-group"><label for="exampleSelect" class="">Titre</label>
                                     <select name="select" id="titre" class="form-control">
@@ -209,26 +233,28 @@
                                         <option value="Fr">Frère</option>
                                     </select>
                                 </div>
-                                <div class="position-relative form-group"><label for="lieuNaissance" class="">Localisation</label><input name="lieuNaissance" id="localisation" placeholder="Téléphone" type="text" class="form-control"></div>
-                                <div class="position-relative form-group"><label for="lieuNaissance" class="">numero d'autorisation</label><input name="lieuNaissance" id="num_autorisation" placeholder="Téléphone" type="text" class="form-control"></div>
-
+                                <div class="position-relative form-group">
+                                    <label for="lieuNaissance" class="">Localisation</label>
+                                    <input name="lieuNaissance" id="localisation" placeholder="Téléphone" type="text" class="form-control">
+                                </div>
+                                <div class="position-relative form-group">
+                                    <label for="lieuNaissance" class="">numero d'autorisation</label>
+                                    <input name="lieuNaissance" id="num_autorisation" placeholder="Téléphone" type="text" class="form-control">
+                                </div>
                             </div>
-                          </div>
-                            <div class="card-body"><h5 class="card-title">CONTACT D'URGENCE</h5>
-                                <div>
-                                    <div class="position-relative form-group">
+                            <div class="card-body">
+                                <h5 class="card-title">CONTACT D'URGENCE</h5>
+                                <div class="position-relative form-group">
                                     <label for="exampleSelect" class="">Numéro de téléphone d'urgence</label>
                                     <input name="lieuNaissance" id="numero2" placeholder="Téléphone de l'Autre contact" type="text" class="form-control">
                                 </div>
                             </div>
-                             <button class="mt-1 btn btn-secondary"><a href="#" style="color:white; text-decoration:none;">Annuler</a></button>
-                             <button class="mt-1 btn btn-success" onclick="saveEnseignant()">Enrégistrer</button>
                         </div>
-                        </div>
-                    </div>
+                    </div>  
+                    <button class="mt-1 ml-3 btn btn-success" onclick="saveEnseignant()">Enrégistrer</button>
                 </div>
-
             </div>
+        </div>
     </div>
     <div class="app-wrapper-footer">
         <div class="app-footer">

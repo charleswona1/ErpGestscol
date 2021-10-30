@@ -72,25 +72,28 @@
             <div class="alert alert-warning" id="idError" style="display: none;">
             </div>
         </div>
-        <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+
+        
+
+        <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav mb-3" id="pills-tab" role="tablist">
             <li class="nav-item">
-                <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
-                    <span>Informations Personnelles</span>
-                </a>
+              <a class="nav-link active" id="pills-home-tab" data-toggle="tab" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+                <span>Informations Personnelles</span>
+              </a>
             </li>
             <li class="nav-item">
-                <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-content-1">
-                    <span>Informations Familiales</span>
-                </a>
+              <a class="nav-link" id="pills-profile-tab" data-toggle="tab" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
+                <span>Informations Familiales</span>
+              </a>
             </li>
             <li class="nav-item">
-                <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-content-2">
-                    <span>Autres Informations</span>
-                </a>
+              <a class="nav-link" id="pills-contact-tab" data-toggle="tab" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">
+                <span>Autres Informations</span>
+              </a>
             </li>
         </ul>
-        <div class="tab-content">
-            <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="row">
                     <div class="col-md-6">
                        <div class="main-card mb-3 card">
@@ -98,22 +101,30 @@
                                 <form class="">
                                     @csrf
                                     <div class="position-relative form-group">
-                                        <label for="exampleEmail" class="">Nom complet <span style="color:red;">*</span></label><input name="nom" id="nom_apprenant" required placeholder="Nom complet de l'élève" type="email" class="form-control">
+                                        <label for="exampleEmail" class="">Nom complet <span style="color:red;">*</span></label>
+                                        <input name="nom" id="nom_apprenant" required placeholder="Nom complet de l'élève" type="email" class="form-control">
                                     </div>
                                   <div class="input-group">
                                         <div class="position-relative form-group">
-                                            <label for="lieuNaissance" class="">Né le <span style="color:red;">*</span></label><input name="lieuNaissance" id="dateN" required placeholder="date de naissance" type="date" class="form-control"></div>
+                                            <label for="lieuNaissance" class="">Né le <span style="color:red;">*</span></label>
+                                            <input name="lieuNaissance" id="dateN" required placeholder="date de naissance" type="date" class="form-control">
+                                        </div>
                                     <div class="position-relative form-group"><label for="lieuNaissance" class="">A</label>
                                       <input name="lieuNaissance" id="lieuNaissance" placeholder="Lieu de naissance" type="text" class="form-control"></div>
                                     </div>
 
                                     <div class="position-relative form-group"><label for="exampleSelect" class="">Sexe <span style="color:red;">*</span></label>
-                                    <select name="select" required id="sexe" class="form-control">
+                                    <select name="sexe" required id="sexe" class="form-control">
                                         <option value="M">Masculin</option>
                                         <option value="F">Féminin</option>
                                     </select></div>
-                                    <div class="position-relative form-group"><label for="exampleText" class="">Domicile</label><textarea name="text" id="domicile" class="form-control"></textarea></div>
-                                    <div class="position-relative form-group"><label for="exampleFile" class="">Photo</label><input name="file" id="image" type="file" class="form-control-file">
+                                    <div class="position-relative form-group">
+                                        <label for="exampleText" class="">Domicile</label>
+                                        <textarea name="domicile" id="domicile" class="form-control"></textarea>
+                                    </div>
+                                    <div class="position-relative form-group">
+                                        <label for="exampleFile" class="">Photo</label>
+                                        <input name="file" id="image" type="file" class="form-control-file">
                                         <small class="form-text text-muted">Le taille de la photo doit être de 2Mo maximum.</small>
                                     </div>
 
@@ -127,7 +138,7 @@
                           <div class="card-body">   <!--<h5 class="card-title">Sizing</h5> -->
                                 <form class="">
                                     <div class="position-relative form-group"><label for="exampleSelect" class="">Réligion</label>
-                                        <select name="select" id="religion" class="form-control">
+                                        <select name="religion" id="religion" class="form-control">
                                             <option value="Catholique">Catholique</option>
                                             <option value="Protestant">Protestant</option>
                                             <option value="Evangeliste">Evangeliste</option>
@@ -137,9 +148,18 @@
                                             <option value="1">Autre</option>
                                         </select>
                                     </div>
-                                    <div class="position-relative form-group" style="display:none;"><label for="autre_religion" class="">Preciser</label><input name="autre_religion" id="autre_religion" placeholder="Preciser l'autre religion" type="text" class="form-control"></div>
-                                    <div class="position-relative form-group"><label for="email" class="">Email</label><input name="email" id="email" placeholder="Email" type="email" class="form-control"></div>
-                                    <div class="position-relative form-group"><label for="contact" class="">Contact</label><input name="contact" id="contact" placeholder="Téléphone de l'élève" type="text" class="form-control"></div>
+                                    <div class="position-relative form-group" style="display:none;">
+                                        <label for="autre_religion" class="">Preciser</label>
+                                        <input name="autre_religion" id="autre_religion" placeholder="Preciser l'autre religion" type="text" class="form-control">
+                                    </div>
+                                    <div class="position-relative form-group">
+                                        <label for="email" class="">Email</label>
+                                        <input name="email" id="email" placeholder="Email" type="email" class="form-control">
+                                    </div>
+                                    <div class="position-relative form-group">
+                                        <label for="contact" class="">Contact</label>
+                                        <input name="contact" id="contact" placeholder="Téléphone de l'élève" type="text" class="form-control">
+                                    </div>
                             </div>
 
                         </div>
@@ -148,24 +168,24 @@
                                 <form class="">
                                     <fieldset class="position-relative form-group">
                                         <div class="position-relative form-check">
-                                            <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="A+"> A+ &nbsp; &nbsp; &nbsp;</label>
-                                            <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="A-"> A- &nbsp;&nbsp; &nbsp; &nbsp;</label>
-                                            <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="AB+"> AB+ &nbsp;&nbsp; &nbsp; &nbsp;</label>
-                                            <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="AB-"> AB- &nbsp; &nbsp;&nbsp; &nbsp;</label>
+                                            <label class="form-check-label"><input name="groupe_sanguin" type="radio" class="form-check-input" value="A+"> A+ &nbsp; &nbsp; &nbsp;</label>
+                                            <label class="form-check-label"><input name="groupe_sanguin" type="radio" class="form-check-input" value="A-"> A- &nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                            <label class="form-check-label"><input name="groupe_sanguin" type="radio" class="form-check-input" value="AB+"> AB+ &nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                            <label class="form-check-label"><input name="groupe_sanguin" type="radio" class="form-check-input" value="AB-"> AB- &nbsp; &nbsp;&nbsp; &nbsp;</label>
                                         </div>
                                         <div class="position-relative form-check">
-                                            <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="B+"> B+ &nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="B-"> B-  &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="O+"> O+ &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</label>
-                                          <label class="form-check-label"><input name="radio1" type="radio" class="form-check-input" value="O-"> O- &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</label>
+                                            <label class="form-check-label"><input name="groupe_sanguin" type="radio" class="form-check-input" value="B+"> B+ &nbsp; &nbsp; &nbsp;</label>
+                                          <label class="form-check-label"><input name="groupe_sanguin" type="radio" class="form-check-input" value="B-"> B-  &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                          <label class="form-check-label"><input name="groupe_sanguin" type="radio" class="form-check-input" value="O+"> O+ &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                          <label class="form-check-label"><input name="groupe_sanguin" type="radio" class="form-check-input" value="O-"> O- &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</label>
                                         </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="main-card mb-3 card">
@@ -174,39 +194,66 @@
                                     <table>
                                      <tr>
                                         <td width="50%">
-                                            <div class="position-relative form-group"><label for="lieuNaissance" class="">Nom de la Mère <span style="color:red;">*</span></label><input name="nom_mere" id="nom_mere" placeholder="Nom de la mère" type="text" class="form-control"></div>
+                                            <div class="position-relative form-group">
+                                                <label for="lieuNaissance" class="">Nom de la Mère <span style="color:red;">*</span></label>
+                                                <input name="nom_mere" id="nom_mere" placeholder="Nom de la mère" type="text" class="form-control">
+                                            </div>
                                         </td>
                                         <td>
-                                            <div class="position-relative form-group"><label for="lieuNaissance" class="">Profession</label><input name="prof_mere" id="prof_mere" placeholder="Profession de la mère" type="text" class="form-control"></div>
+                                            <div class="position-relative form-group">
+                                                <label for="lieuNaissance" class="">Profession</label>
+                                                <input name="prof_mere" id="prof_mere" placeholder="Profession de la mère" type="text" class="form-control">
+                                            </div>
                                         </td>
                                         <td>
-                                            <div class="position-relative form-group"><label for="lieuNaissance" class="">Téléphone</label><input name="tel_mere" id="tel_mere" placeholder="Téléphone de la mère" type="text" class="form-control"></div>
+                                            <div class="position-relative form-group">
+                                                <label for="lieuNaissance" class="">Téléphone</label>
+                                                <input name="tel_mere" id="tel_mere" placeholder="Téléphone de la mère" type="text" class="form-control">
+                                            </div>
                                         </td>
                                      </tr>
                                     </table>
                                     <table>
                                      <tr>
                                         <td width="50%">
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Nom du Père</label><input name="nom_pere" id="nom_pere" placeholder="Nom du père" type="text" class="form-control"></div>
+                                            <div class="position-relative form-group">
+                                                <label for="lieuNaissance" class="">Nom du Père</label>
+                                                <input name="nom_pere" id="nom_pere" placeholder="Nom du père" type="text" class="form-control">
+                                            </div>
                                         </td>
                                         <td>
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Profession</label><input name="prof_pere" id="prof_pere" placeholder="Profession du père" type="text" class="form-control"></div>
+                                            <div class="position-relative form-group">
+                                                <label for="lieuNaissance" class="">Profession</label>
+                                                <input name="prof_pere" id="prof_pere" placeholder="Profession du père" type="text" class="form-control">
+                                            </div>
                                         </td>
                                         <td>
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Téléphone</label><input name="tel_pere" id="tel_pere" placeholder="Téléphone du père" type="text" class="form-control"></div>
+                                            <div class="position-relative form-group">
+                                                <label for="lieuNaissance" class="">Téléphone</label>
+                                                <input name="tel_pere" id="tel_pere" placeholder="Téléphone du père" type="text" class="form-control">
+                                            </div>
                                         </td>
                                      </tr>
                                     </table>
                                     <table>
                                      <tr>
                                         <td width="50%">
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Nom du Tuteur</label><input name="lieuNaissance" id="nom_tuteur" placeholder="Nom du tuteur" type="text" class="form-control"></div>
+                                            <div class="position-relative form-group">
+                                                <label for="lieuNaissance" class="">Nom du Tuteur</label>
+                                                <input name="lieuNaissance" id="nom_tuteur" placeholder="Nom du tuteur" type="text" class="form-control">
+                                            </div>
                                         </td>
                                         <td>
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Profession</label><input name="lieuNaissance" id="prof_tuteur" placeholder="Profession du tuteur" type="text" class="form-control"></div>
+                                            <div class="position-relative form-group">
+                                                <label for="lieuNaissance" class="">Profession</label>
+                                                <input name="lieuNaissance" id="prof_tuteur" placeholder="Profession du tuteur" type="text" class="form-control">
+                                            </div>
                                         </td>
                                         <td>
-                                        <div class="position-relative form-group"><label for="lieuNaissance" class="">Téléphone</label><input name="lieuNaissance" id="tel_tuteur" placeholder="Téléphone du tuteur" type="text" class="form-control"></div>
+                                            <div class="position-relative form-group">
+                                                <label for="lieuNaissance" class="">Téléphone</label>
+                                                <input name="lieuNaissance" id="tel_tuteur" placeholder="Téléphone du tuteur" type="text" class="form-control">
+                                            </div>
                                         </td>
                                      </tr>
                                     </table>
@@ -216,16 +263,19 @@
                     </div>
                     <div class="col-md-4">
                         <div class="main-card mb-3 card">
-                            <div class="card-body"><h5 class="card-title">CONTACT D'URGENCE</h5>
+                            <div class="card-body">
+                                <h5 class="card-title">CONTACT D'URGENCE</h5>
                                 <div>
                                     <div class="position-relative form-group">
-                                       <div class="position-relative form-group"><label for="exampleSelect" class="">Personne à contacter en cas d'urgence</label>
-                                    <select name="select" id="index_contact" class="form-control">
-                                        <option value="1">Père</option>
-                                        <option value="2">Mère</option>
-                                        <option value="3">Tuteur</option>
-                                       <option value="Autre">Autre</option>
-                                    </select></div>
+                                       <div class="position-relative form-group">
+                                           <label for="exampleSelect" class="">Personne à contacter en cas d'urgence</label>
+                                            <select name="select" id="index_contact" class="form-control">
+                                                <option value="1">Père</option>
+                                                <option value="2">Mère</option>
+                                                <option value="3">Tuteur</option>
+                                                <option value="Autre">Autre</option>
+                                            </select>
+                                        </div>
                                     <input name="lieuNaissance" id="lieuNaissance" placeholder="Téléphone de l'Autre contact" type="text" class="form-control">
                                 </div>
                             </div>
@@ -234,7 +284,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane tabs-animation fade" id="tab-content-2" role="tabpanel">
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                 <form class="">
                     <div class="row">
                         <div class="col-md-6">
@@ -242,12 +292,18 @@
                                 <div class="card-body"><h5 class="card-title">SANTE</h5>
                                     <div class="position-relative form-group">
                                         <div>
-                                            <div class="custom-checkbox custom-control"><input type="checkbox" id="sante" name="sante" value="Apte" class="custom-control-input"><label class="custom-control-label" for="exampleCustomCheckbox">
-                                                Apte</label></div>
-                                            <div class="custom-checkbox custom-control"><input type="checkbox" id="sante" name="sante" value="Inapte" class="custom-control-input"><label class="custom-control-label" for="exampleCustomCheckbox2">
-                                                Inapte</label></div>
-                                             <div class="custom-checkbox custom-control"><input type="checkbox" id="sante" name="sante" value="Handicapé" class="custom-control-input"><label class="custom-control-label" for="exampleCustomCheckbox2">
-                                                Handicapé</label></div>
+                                            <div class="custom-checkbox custom-control">
+                                                <input name="sante" id="sante" type="radio" class="form-check-input" value="Apte">
+                                                <label class="form-check-label" for="sante">Apte</label>
+                                            </div>
+                                            <div class="custom-checkbox custom-control">
+                                                <input name="sante" id="sante" type="radio" class="form-check-input" value="Inapte">
+                                                <label class="form-check-label" for="sante">Inapte</label>
+                                            </div>
+                                            <div class="custom-checkbox custom-control">
+                                                <input name="sante" id="sante" type="radio" class="form-check-input" value="Handicapé">
+                                                <label class="form-check-label" for="sante">Handicapé</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -278,7 +334,6 @@
                 <button class="mt-2 btn btn-success" onclick="saveApprenant()">Enrégistrer</button>
             </div>
         </div>
-    </div>
     </div>
 </div>
 </div>

@@ -13,4 +13,8 @@ class EvaluationController extends Controller
     public function formulaire_evaluation() {
         return view('gestscol.ressource.evaluation.formulaire_evaluation');
     }
+
+    public function store(Request $request){
+        
+    }
 }

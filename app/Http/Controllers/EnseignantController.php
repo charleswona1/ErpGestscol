@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\enseignant;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class EnseignantController extends Controller
 {
@@ -13,7 +14,9 @@ class EnseignantController extends Controller
     }
 
     public function liste_enseignant() {
-        return view('gestscol.ressource.enseignant.list_enseignant');
+        $enseignants = enseignant::paginate(5);
+    
+        return view('gestscol.ressource.enseignant.list_enseignant',compact("enseignants"));
     }
 
     public function creer_enseignant() {
@@ -87,5 +90,16 @@ class EnseignantController extends Controller
            return $th->getMessage();
        }
 
+    }
+
+    public function delete(Request $request){
+        
+        $val = enseignant::where('id_enseignant',$request->enseignant)->first();
+
+        $val->delete();
+
+        Session::flash('success', "Enseignant supprimé");
+         
+         return redirect()->back();
     }
 }
