@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\cycle;
 
 class niveau_scolaire extends Model
 {
@@ -13,9 +14,17 @@ class niveau_scolaire extends Model
 
     protected $primaryKey = 'id_niveau';
     protected $table = "niveau_scolaire";
-
-    public function classe()
+    protected $fillable = [
+        'nom',
+        'bareme',
+        'ordre',
+        'id_cycle'
+    ];
+    public function annee_academique() {
+        return $this->belongsTo(annee_academique::class, 'id_annee_academique');
+    }
+    public function cycle()
     {
-        return $this->hasMany(classe::class, 'id_niveau');
+        return $this->belongsTo(cycle::class, 'id_cycle');
     }
 }

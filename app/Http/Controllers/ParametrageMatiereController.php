@@ -7,6 +7,8 @@ use App\Models\matiere;
 use App\Models\niveau_scolaire;
 use App\Models\matiere_niveau;
 use App\Models\enseignant;
+use Illuminate\Support\Facades\Session;
+
 
 class ParametrageMatiereController extends Controller
 {
@@ -72,6 +74,7 @@ class ParametrageMatiereController extends Controller
         {
             $matiere_niveau->delete();
         }
+        Session::flash('success', "parametrage de matière supprimé ");
         
         return redirect()->route('gestscol.parametrage_matiere');
      
@@ -79,6 +82,8 @@ class ParametrageMatiereController extends Controller
      public function affectation()
     {
         $enseignants=enseignant::all();
+        /*$matieres=matieres::all();
+        $classes=classe::all();*/
        return view('gestscol.configuration.affectation_matiere', compact('enseignants'));
             
     }

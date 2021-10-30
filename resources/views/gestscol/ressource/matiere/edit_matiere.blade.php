@@ -10,7 +10,7 @@
                         <i class="pe-7s-note2 icon-gradient bg-premium-dark">
                         </i>
                     </div>
-                    <div>Création d'une Matière
+                    <div>Modification d'une Matière
 
                     </div>
                 </div>
@@ -37,22 +37,23 @@
                          <div class="main-card mb-3 card">
 
                             <div class="card-body ">
-                                <form action="{{ route('gestscol.matiere.store') }}" method="POST">
+                                <form action="{{ route('gestscol.matiere.update') }}" method="POST">
                                     @csrf 
+                                    <input type="hidden" value="{{$matiere->id_matiere}}" name="id">
                                     <div class="position-relative form-group">
                                             <label for="exampleEmail" class="">Nom de la Matière <span style="color:red;">*</span></label>
-                                            <input name="nom"  placeholder="Classe" type="texte" class="form-control" required>
+                                            <input name="nom"  placeholder="Classe" type="texte" class="form-control" value="{{$matiere->nom}}" required>
                                         </div>
                                         <div class="position-relative form-group">
                                             <label for="exampleEmail" class="">Abréviation <span style="color:red;">*</span></label>
-                                            <input name="abreviation" placeholder="Classe" type="texte" class="form-control" required>
+                                            <input name="abreviation" placeholder="Classe" type="texte" class="form-control" value="{{$matiere->abreviation}}" required>
                                         </div>
 
 
 
 
                                         <button class="mt-1 btn btn-secondary"><a href="matiere-liste.html" style="color:white; text-decoration:none;">Annuler</a></button>
-                                        <button class="mt-1 btn btn-success" type="submit">Enregistrer</button>
+                                        <button class="mt-1 btn btn-success" type="submit">Modifier</button>
 
                                 </form>
                             </div>

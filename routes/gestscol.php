@@ -25,8 +25,14 @@
 
     /** classe route */
     Route::middleware([])->group(function () {
-        Route::get('/gestscol/liste_classe', [App\Http\Controllers\ClasseController::class, 'liste_classe'])->name('gestscol.list_classe');
-        Route::get('/gestscol/formulaire_classe', [App\Http\Controllers\ClasseController::class, 'formulaire_classe'])->name('gestscol.formulaire_classe');
+        Route::get('/gestscol/liste_classe', [App\Http\Controllers\ClasseController::class, 'index'])->name('gestscol.list_classe');
+        Route::get('/gestscol/formulaire_classe', [App\Http\Controllers\ClasseController::class, 'create'])->name('gestscol.classe.create');
+        Route::post('/gestscol/formulaire_classe/create', [App\Http\Controllers\ClasseController::class, 'store'])->name('gestscol.classe.store');
+        Route::get('/gestscol/formulaire_classe/edit/{id}', [App\Http\Controllers\ClasseController::class, 'edit'])->name('gestscol.classe.edit');
+        Route::post('/gestscol/formulaire_classe/update', [App\Http\Controllers\ClasseController::class, 'update'])->name('gestscol.classe.update');
+        
+        Route::get('/gestscol/formulaire_classe/delete/{id}', [App\Http\Controllers\ClasseController::class, 'destroy'])->name('gestscol.classe.delete');
+        
         //Route::get('/gestscol/emploi_enseignant', [App\Http\Controllers\ClasseController::class, 'emploi_enseignant'])->name('gestscol.emploi_enseignant');
     });
     /** end */
@@ -35,6 +41,12 @@
     Route::middleware([])->group(function () {
         Route::get('/gestscol/liste_matiere', [App\Http\Controllers\MatiereController::class, 'liste_matiere'])->name('gestscol.list_matiere');
         Route::get('/gestscol/creer_matiere', [App\Http\Controllers\MatiereController::class, 'creer_matiere'])->name('gestscol.creer_matiere');
+        Route::post('/gestscol/creer_matiere/store', [App\Http\Controllers\MatiereController::class, 'store'])->name('gestscol.matiere.store');
+        Route::get('/gestscol/edit_matiere/{id}', [App\Http\Controllers\MatiereController::class, 'edit'])->name('gestscol.matiere.edit');
+        Route::get('/gestscol/delete_matiere/{id}', [App\Http\Controllers\MatiereController::class, 'destroy'])->name('gestscol.matiere.delete');
+        
+        Route::post('/gestscol/creer_matiere/update', [App\Http\Controllers\MatiereController::class, 'update'])->name('gestscol.matiere.update');
+        
         Route::get('/gestscol/groupe_matiere', [App\Http\Controllers\MatiereController::class, 'groupe_matiere'])->name('gestscol.groupe_matiere');
 
         Route::get('/gestscol/parametrage_matiere', [App\Http\Controllers\ParametrageMatiereController::class, 'parametrage_matiere'])->name('gestscol.parametrage_matiere');
@@ -55,6 +67,10 @@
         Route::get('/gestscol/liste_cycle', [App\Http\Controllers\CycleController::class, 'liste_cycle'])->name('gestscol.list_cycle');
         Route::get('/gestscol/formulaire_cycle', [App\Http\Controllers\CycleController::class, 'formulaire_cycle'])->name('gestscol.formulaire_cycle');
         Route::post('/gestscol/creer_cycle', [App\Http\Controllers\CycleController::class, 'creer_cycle'])->name('gestscol.creer_cycle');
+        Route::get('/gestscol/edit_cycle/{id}', [App\Http\Controllers\CycleController::class, 'edit'])->name('gestscol.edit_cycle');
+        Route::post('/gestscol/edit_cycle/', [App\Http\Controllers\CycleController::class, 'update'])->name('gestscol.update_cycle');
+        Route::get('/gestscol/delete_cycle/{id}', [App\Http\Controllers\CycleController::class, 'destroy'])->name('gestscol.delete_cycle');
+        
         //Route::get('/gestscol/emploi_enseignant', [App\Http\Controllers\ClasseController::class, 'emploi_enseignant'])->name('gestscol.emploi_enseignant');
     });
     /** end */
@@ -63,7 +79,12 @@
     Route::middleware([])->group(function () {
         Route::get('/gestscol/liste_niveau', [App\Http\Controllers\NiveauController::class, 'liste_niveau'])->name('gestscol.list_niveau');
         Route::get('/gestscol/formulaire_niveau', [App\Http\Controllers\NiveauController::class, 'formulaire_niveau'])->name('gestscol.formulaire_niveau');
-        Route::post('/gestscol/creer_niveau', [App\Http\Controllers\NiveauController::class, 'creer_niveau'])->name('gestscol.creer_niveau');
+        Route::post('/gestscol/creer_niveau/', [App\Http\Controllers\NiveauController::class, 'creer_niveau'])->name('gestscol.creer_niveau');
+        
+        Route::get('/gestscol/formulaire_niveau/edit/{id}', [App\Http\Controllers\NiveauController::class, 'edit'])->name('gestscol.formulaire_niveau.edit');
+        Route::post('/gestscol/edit_niveau/', [App\Http\Controllers\NiveauController::class, 'update'])->name('gestscol.edit_niveau');
+        Route::get('/gestscol/delete_niveau/{id}', [App\Http\Controllers\NiveauController::class, 'destroy'])->name('gestscol.delete_niveau');
+        
         //Route::get('/gestscol/emploi_enseignant', [App\Http\Controllers\ClasseController::class, 'emploi_enseignant'])->name('gestscol.emploi_enseignant');
     });
     /** end */
@@ -72,6 +93,13 @@
     Route::middleware([])->group(function () {
         Route::get('/gestscol/liste_periode', [App\Http\Controllers\PeriodeController::class, 'liste_periode'])->name('gestscol.list_periode');
         Route::get('/gestscol/formulaire_periode', [App\Http\Controllers\PeriodeController::class, 'formulaire_periode'])->name('gestscol.formulaire_periode');
+        Route::post('/gestscol/formulaire_periode', [App\Http\Controllers\PeriodeController::class, 'create'])->name('gestscol.formulaire_periode.create');
+        
+        Route::get('/gestscol/formulaire_periode/edit/{id}', [App\Http\Controllers\PeriodeController::class, 'edit'])->name('gestscol.formulaire_periode.edit');
+        Route::post('/gestscol/formulaire_periode/update', [App\Http\Controllers\PeriodeController::class, 'update'])->name('gestscol.formulaire_periode.update');
+        Route::get('/gestscol/delete_periode/{id}', [App\Http\Controllers\PeriodeController::class, 'destroy'])->name('gestscol.delete_periode');
+        
+        
         //Route::get('/gestscol/emploi_enseignant', [App\Http\Controllers\ClasseController::class, 'emploi_enseignant'])->name('gestscol.emploi_enseignant');
     });
     /** end */

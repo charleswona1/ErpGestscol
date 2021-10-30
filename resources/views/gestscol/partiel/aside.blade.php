@@ -107,7 +107,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{route("gestscol.formulaire_classe")}}">
+                            <a href="{{route('gestscol.classe.create')}}">
                                 <i class="metismenu-icon">
                                 </i>Créer une Classe
                             </a>

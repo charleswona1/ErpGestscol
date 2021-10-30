@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="page-title-actions">
-                    <a href="classe-formulaire.html">
+                    <a href="{{route('gestscol.classe.create')}}">
                         <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"">
                             <i class="fa fa-plus"></i> Nouvelle Salle de Classe
                         </button>
@@ -70,7 +70,8 @@
 
             <div class="col-lg-12">
                 <div class="main-card mb-3 card">
-
+                    <x-flash-back></x-flash-back>
+                    
                     <div class="card-body" class="scroll-area-md">
                        <!-- <h5 class="card-title">Table with hover</h5> -->
                         <table class="mb-0 table table-hover" >
@@ -90,120 +91,37 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox1" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox1"> </label></div>
-                                </th>
-                                <td>1</td>
-                                <td>6e 1</td>
-                                <td>M. NGUIMBOUS Jean Calvin</td>
-                                <td>6e</td>
-                                <td>54</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox2" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox2"> </label></div>
-                                </th>
-                                <td>2</td>
-                                <td>6e 2</td>
-                                <td>M. BEKONO BESSALA Jean</td>
-                                <td>6e</td>
-                                <td>42</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox3" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox3"> </label></div>
-                                </th>
-                                <td>3</td>
-                                <td>5e 1</td>
-                                <td>Mme. DJUIKOM Chantal</td>
-                                <td>5e</td>
-                                <td>55</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox4" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox4"> </label></div>
-                                </th>
-                                <td>4</td>
-                                <td>5e 2</td>
-                                <td>Mme. BILOA Laurencia</td>
-                                <td>5e</td>
-                                <td>54</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox5" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox5"> </label></div>
-                                </th>
-                                <td>5</td>
-                                <td>4e Esp1</td>
-                                <td>M. KILAMA Theodore Florent</td>
-                                <td>4e Esp</td>
-                                <td>40</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox6" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox6"> </label></div>
-                                </th>
-                                <td>6</td>
-                                <td>4e Esp2</td>
-                                <td>Mme. BOUSSOURA DODO Raissa</td>
-                                <td>4e Esp</td>
-                                <td>38</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
+                                @forelse ($classes as $classe)
+                                <tr>
+                                    <th>
+                                        <div class="custom-checkbox custom-control">
+                                        <input type="checkbox" id="exampleCustomCheckbox6" class="custom-control-input">
+                                        <label class="custom-control-label" for="exampleCustomCheckbox6"> </label></div>
+                                    </th>
+                                    <td>{{$classe->niveau()->get()[0]->ordre}}</td>
+                                    <td>{{$classe->nom}}</td>
+                                    <td></td>
+                                    <td>{{$classe->niveau()->get()[0]->nom}}</td>
+                                    <td></td>
+                                    
+                                    <td class="mdc-data-table__cell">
+                                        <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
+                                        <a href="{{route('gestscol.classe.edit', $classe->id_classe)}}"><i class="fas fa-edit"></i></i></a>
+                                        <a href=""><i class="fas fa-print"></i></i></a>
+                                        <a href="{{route('gestscol.classe.delete', $classe->id_classe)}}" style="color:red;"><i class="fas fa-trash"></i></i></a>
+                                    </td>
+                                </tr> 
+                                @empty
+                                <tr>
+                                    <td colspan="10">
+                                        <div class="lead text-center text-muted pt-30 pb-30">
+                                            Pas de classe
+                                        </div>
+                                    </td>
+                                </tr>
+                                    
+                                @endforelse
+                         
 
 
                             <tr>

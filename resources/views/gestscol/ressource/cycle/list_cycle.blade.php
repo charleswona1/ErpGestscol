@@ -68,7 +68,8 @@
 
             <div class="col-lg-12">
                 <div class="main-card mb-3 card">
-
+                    <x-flash-back></x-flash-back>
+                    
                     <div class="card-body" class="scroll-area-md">
                        <!-- <h5 class="card-title">Table with hover</h5> -->
                         <table class="mb-0 table table-hover" >
@@ -98,9 +99,9 @@
 
                                         <td class="mdc-data-table__cell">
                                             <a href="#"><i class="fas fa-eye"></i></i></a>
-                                            <a href="#"><i class="fas fa-edit"></i></i></a>
+                                            <a href="{{route('gestscol.edit_cycle', $cycle->id_cycle )}}"><i class="fas fa-edit"></i></i></a>
                                             <a href="#"><i class="fas fa-print"></i></i></a>
-                                            <a href="#" style="color:red;"><i class="fas fa-trash"></i></i></a>
+                                            <a href="{{route('gestscol.delete_cycle', $cycle->id_cycle )}}" style="color:red;"><i class="fas fa-trash"></i></i></a>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>

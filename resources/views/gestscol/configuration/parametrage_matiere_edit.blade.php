@@ -71,7 +71,8 @@
 
             <div class="col-md-10">
                          <div class="main-card mb-3 card">
-
+                            <x-flash-back></x-flash-back>
+                            
                             <div class="card-body ">
                                 <form action="{{ route('gestscol.parametrage_matiere.update') }}" method="POST">
                                     @csrf                                   

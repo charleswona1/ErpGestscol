@@ -10,7 +10,7 @@
                         <i class="pe-7s-folder icon-gradient bg-premium-dark">
                         </i>
                     </div>
-                    <div>Création d'une Classe
+                    <div>Modification d'une Classe
 
                     </div>
                 </div>
@@ -20,8 +20,10 @@
 
 
                     </div>
-                </div>    </div>
-        </div>            <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+                </div>    
+            </div>
+        </div>           
+         <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
             <li class="nav-item">
                 <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
                     <span>Formulaire</span>
@@ -36,27 +38,33 @@
                          <div class="main-card mb-3 card">
 
                             <div class="card-body ">
-                                <form action="{{ route('gestscol.classe.store') }}" method="POST">
+                                <form action="{{ route('gestscol.classe.update') }}" method="POST">
                                     @csrf 
+                                    <input type="hidden" value="{{$classe->id_classe}}" name="id">
                                         <div class="position-relative form-group"><label for="exampleSelect" class="">Niveau Scolaire <span style="color:red;">*</span></label>
                                             <select name="id_niveau"  class="form-control" required>
                                                 <option >choisir un niveau</option>
+                                                @foreach ($niveaux as $niveau)
+                                                @if ($niveau->id_niveau==$classe->niveau()->get()[0]->id_niveau)
+                                                <option value="{{$niveau->id_niveau}}"selected>{{$niveau->nom}}</option>
                                                 
-                                                @foreach ($niveaux as $item)
-                                                <option value="{{$item->id_niveau}}">{{$item->nom}}</option>
-                                                
+                                                @else
+                                                <option value="{{$niveau->id_niveau}}">{{$niveau->nom}}</option> 
+                                                @endif
                                                 @endforeach
+                                              
                                             </select>
                                         </div>
                                         <div class="position-relative form-group">
-                                            <label for="exampleEmail" class="">Nom de la Classe <span style="color:red;">*</span></label><input name="nom" id="exampleEmail" placeholder="Classe" type="texte" class="form-control" required>
+                                            <label for="exampleEmail" class="">Nom de la Classe <span style="color:red;">*</span></label>
+                                            <input name="nom" value="{{$classe->nom}}" placeholder="Classe" type="texte" class="form-control" required>
                                         </div>
 
 
 
 
                                         <button class="mt-1 btn btn-secondary"><a href="classe-liste.html" style="color:white; text-decoration:none;">Annuler</a></button>
-                                        <button class="mt-1 btn btn-success" type="submit">Enregistrer</button>
+                                        <button class="mt-1 btn btn-success" type="submit">Modifier</button>
 
                                 </form>
                             </div>

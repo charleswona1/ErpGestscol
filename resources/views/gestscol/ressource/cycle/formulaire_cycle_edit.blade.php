@@ -10,7 +10,7 @@
                         <i class="pe-7s-help2 icon-gradient bg-premium-dark">
                         </i>
                     </div>
-                    <div>Création d'un Cycle
+                    <div>Modification d'un Cycle
 
                     </div>
                 </div>
@@ -20,8 +20,10 @@
 
 
                     </div>
-                </div>    </div>
-        </div>            <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+                </div>   
+             </div>
+        </div>           
+         <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
             <li class="nav-item">
                 <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
                     <span>Formulaire</span>
@@ -39,16 +41,17 @@
                             <div class="card-body alert alert-warning" id="idError" style="display: none;">
                             </div>
                             <div class="card-body ">
-                                <form action="{{ route('gestscol.creer_cycle') }}" method="POST">       
+                                <form action="{{ route('gestscol.update_cycle') }}" method="POST">       
                                     @csrf 
+                                    <input type="hidden" value="{{$cycle->id_cycle}}">
                                         <div class="position-relative form-group">
                                             <label for="exampleEmail" class="">Nom du Cycle <span style="color:red;">*</span></label>
-                                            <input name="nom" id="cycle" placeholder="Classe" type="texte" class="form-control" required>
+                                            <input name="nom" value="{{$cycle->nom}}" placeholder="Classe" type="texte" class="form-control" required>
                                         </div>
 
                                 
                                 <button class="mt-1 btn btn-secondary"><a href="#" style="color:white; text-decoration:none;">Annuler</a></button>
-                                <button class="mt-1 btn btn-success" type="submit">Enregistrer</button>
+                                <button class="mt-1 btn btn-success" type="submit">Modifier</button>
                             </form>
                             </div>
 

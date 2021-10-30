@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\classe;
-use Illuminate\Support\Facades\DB;
+use App\Models\niveau_scolaire;
+
+use Illuminate\Support\Facades\Session;
 
 class ClasseController extends Controller
 {
@@ -15,9 +17,10 @@ class ClasseController extends Controller
      */
     public function index()
     {
-        return classe::with('niveau')
-            ->withCount('niveau')
-            ->get();
+        $classes=classe::all();
+       
+       // dd($classes);
+        return view('gestscol.ressource.classe.list_classe', compact('classes'));
     }
 
     /**
@@ -27,7 +30,9 @@ class ClasseController extends Controller
      */
     public function create()
     {
-
+        $niveaux=niveau_scolaire::all();
+        
+        return view('gestscol.ressource.classe.formulaire_classe', compact('niveaux'));
     }
 
     /**
@@ -38,16 +43,17 @@ class ClasseController extends Controller
      */
     public function store(Request $request)
     {
-
-      $data=DB::table('classes')->insertGetId([
-        "id_niveau" => $request->id_niveau,
-        "nom" => $request->nom
+       // dd($request->all());
+         $request->validate([
+            "id_niveau" => 'required',
+            "nom" => 'required',
         ]);
-        if($data){
-                 return response()->json([
-                    'success' => "classe créer",
-                ]);
-              }
+        
+        $classe = new classe($request->all());
+        $classe= $classe ->save();    
+        Session::flash('success', "classe ajoutée avec success");
+        return redirect()->route('gestscol.list_classe');
+    
     }
 
     /**
@@ -69,7 +75,12 @@ class ClasseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $classe=classe::where('id_classe',$id)->get()[0];
+        
+        $niveaux=niveau_scolaire::all();
+       // dd($classe->niveau()->get()[0]);
+        
+        return view('gestscol.ressource.classe.formulaire_classe_edit', compact('niveaux','classe'));
     }
 
     /**
@@ -79,16 +90,22 @@ class ClasseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $updateClasse = DB::table('classes')->where('id_classe', $request->id)->update([
-            "id_niveau" => $request->id_niveau,
-        "nom" => $request->nom
+        $data = $request->validate([
+            "id_niveau" => 'required',
+            "nom"=>'required'
         ]);
-
-        return response()->json([
-            'success' => "Classe mise a jour",
-        ]);
+     
+         classe::where('id_classe',$request->id)->update(
+            array(
+                "id_niveau"=>$request->id_niveau,
+                "nom"=>$request->nom,  
+            )
+        );
+        
+        Session::flash('success', "classe modifiée avec success");
+        return redirect()->route('gestscol.list_classe');
     }
 
     /**
@@ -99,17 +116,12 @@ class ClasseController extends Controller
      */
     public function destroy($id)
     {
-        $classe = DB::table('classes')->where('id_classe', $id)->delete();
-        return response()->json([
-            'success' => "classe supprimer",
-        ]);
+        $classe = classe::where('id_classe', $id)->delete();
+        Session::flash('success', "classe supprimée ");
+        
+        return redirect()->route('gestscol.list_classe');
+     
     }
 
-    public function liste_classe() {
-        return view('gestscol.ressource.classe.list_classe');
-    }
-
-    public function formulaire_classe() {
-        return view('gestscol.ressource.classe.formulaire_classe');
-    }
+  
 }

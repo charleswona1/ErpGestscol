@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class classe extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
+    
     protected $fillable = [
         'id_niveau',
         'nom'

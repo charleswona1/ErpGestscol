@@ -69,7 +69,8 @@
 
             <div class="col-lg-12">
                 <div class="main-card mb-3 card">
-
+                    <x-flash-back></x-flash-back>
+                    
                     <div class="card-body" class="scroll-area-md">
                        <!-- <h5 class="card-title">Table with hover</h5> -->
                         <table class="mb-0 table table-hover" >
@@ -89,28 +90,36 @@
                             </thead>
                             <tbody>
                                 <?php $i=1; ?>
-                                @foreach ($resultatFinal as $resultat)
+                                @forelse ($niveau_scolaires as $resultat)
+                                <tr>
+                                    <th>
+                                        <div class="custom-checkbox custom-control">
+                                        <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
+                                        <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
+                                    </th>
+                                    <td>{{$i}}</td>
+                                    <td>{{$resultat->cycle()->get()[0]->nom}}</td>
+                                    <td>{{$resultat->nom}}</td>
+                                    <td>{{$resultat->bareme}}</td>
 
-                                    <tr>
-                                        <th>
-                                            <div class="custom-checkbox custom-control">
-                                            <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                            <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                        </th>
-                                        <td>{{$i}}</td>
-                                        <td>{{$resultat["cycle"]}}</td>
-                                        <td>{{$resultat["niveau"]}}</td>
-                                        <td>{{$resultat["bareme"]}}</td>
-
-                                        <td class="mdc-data-table__cell">
-                                            <a href='#'><i class="fas fa-eye"></i></a>
-                                            <a href='#'><i class="fas fa-edit"></i></i></a>
-                                            <a href='#'><i class="fas fa-print"></i></i></a>
-                                            <a href='#' style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                        </td>
-                                    </tr>
-                                    <?php $i++ ?>
-                                @endforeach
+                                    <td class="mdc-data-table__cell">
+                                        <a href='#'><i class="fas fa-eye"></i></a>
+                                        <a href="{{route('gestscol.formulaire_niveau.edit', $resultat->id_niveau)}}"><i class="fas fa-edit"></i></i></a>
+                                        <a href='#'><i class="fas fa-print"></i></i></a>
+                                        <a href='{{route('gestscol.delete_niveau', $resultat->id_niveau)}}' style="color:red;"><i class="fas fa-trash"></i></i></a>
+                                    </td>
+                                </tr>
+                                <?php $i++ ?>  
+                                @empty
+                                <tr>
+                                    <td colspan="10">
+                                        <div class="lead text-center text-muted pt-30 pb-30">
+                                            Pas de niveaux
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforelse
+                               
                             <tr>
                                 <th scope="row" colspan="5"></tr>
                             </tr>

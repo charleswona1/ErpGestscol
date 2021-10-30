@@ -67,7 +67,7 @@
 
             <div class="col-lg-12">
                 <div class="main-card mb-3 card">
-
+                    <x-flash-back></x-flash-back>
                     <div class="card-body" class="scroll-area-md">
                        <!-- <h5 class="card-title">Table with hover</h5> -->
                         <table class="mb-0 table table-hover" >
@@ -86,64 +86,37 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>1</td>
-                                <td>Trimestre 1</td>
-                                <td>05/10/2021</td>
-                                <td>23/12/2021</td>
-                                <td>33.34</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>2</td>
-                                <td>Trimestre 2</td>
-                                <td>04/01/2022</td>
-                                <td>27/03/2022</td>
-                                <td>33.33</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>3</td>
-                                <td>Trimestre 3</td>
-                                <td>06/04/2021</td>
-                                <td>15/06/2021</td>
-                                <td>33.33</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
+                            <tbody>   
+                                @forelse ($periodes as $key => $periode)
+                                <tr>
+                                    <th>
+                                        <div class="custom-checkbox custom-control">
+                                        <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
+                                        <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
+                                    </th>
+                                    <td>{{$key + 1}}</td>
+                                    <td>-</td>
+                                    <td>{{$periode->date_debut}}</td>
+                                    <td>{{$periode->date_fin}}</td>
+                                    <td>{{$periode->pourcentage}}</td>
+    
+                                    <td class="mdc-data-table__cell">
+                                        <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
+                                        <a href="{{route('gestscol.formulaire_periode.edit', $periode->id_periode)}}"><i class="fas fa-edit"></i></i></a>
+                                        <a href="#"><i class="fas fa-print"></i></i></a>
+                                        <a href="{{route('gestscol.delete_periode', $periode->id_periode)}}" style="color:red;"><i class="fas fa-trash"></i></i></a>
+                                    </td>
+                                </tr> 
+                                @empty
+                                <tr>
+                                    <td colspan="10">
+                                        <div class="lead text-center text-muted pt-30 pb-30">
+                                            Pas de periodes
+                                        </div>
+                                    </td>
+                                </tr>  
+                                @endforelse
+                           
 
                             <tr>
                                 <th scope="row" colspan="5"></tr>

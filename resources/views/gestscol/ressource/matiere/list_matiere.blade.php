@@ -70,7 +70,8 @@
 
             <div class="col-lg-12">
                 <div class="main-card mb-3 card">
-
+                    <x-flash-back></x-flash-back>
+                    
                     <div class="card-body" class="scroll-area-md">
                        <!-- <h5 class="card-title">Table with hover</h5> -->
                         <table class="mb-0 table table-hover" >
@@ -88,125 +89,34 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @forelse ($matieres as $matiere)
                             <tr>
                                 <th>
                                     <div class="custom-checkbox custom-control">
                                     <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
                                     <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
                                 </th>
-                                <td>1</td>
-                                <td>Allemand</td>
-                                 <td>ALL</td>
+                                <td></td>
+                                <td>{{$matiere->nom}}</td>
+                                <td>{{$matiere->abreviation}}</td>
 
                                 <td class="mdc-data-table__cell">
                                     <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
+                                    <a href="{{route('gestscol.matiere.edit', $matiere->id_matiere)}}"><i class="fas fa-edit"></i></i></a>
                                     <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
+                                    <a href="{{route('gestscol.matiere.delete', $matiere->id_matiere)}}" style="color:red;"><i class="fas fa-trash"></i></i></a>
                                 </td>
-                            </tr>
+                            </tr> 
+                            @empty
                             <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>2</td>
-                                <td>Analyse De Fabrication</td>
-                                <td>ANALYSE-F</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
+                                <td colspan="10">
+                                    <div class="lead text-center text-muted pt-30 pb-30">
+                                        Pas de parametrage de sanctions
+                                    </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>2</td>
-                                <td>Anglais</td>
-                                <td>ANG</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>3</td>
-                                <td>Automatisme</td>
-                                <td>AUTO</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>4</td>
-                                <td>Biologie/Hygiène</td>
-                                <td>BIOL/HYG</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>5</td>
-                                <td>Bureautique</td>
-                                <td>BUREAU</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>6</td>
-                                <td>Chimie</td>
-                                <td>CHIE</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
+                            @endforelse
+                            
 
                             <tr>
                                 <th scope="row" ></tr>

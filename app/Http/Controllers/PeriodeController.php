@@ -4,18 +4,65 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\periode;
+use Illuminate\Support\Facades\Session;
 
 class PeriodeController extends Controller
 {
 
     public function liste_periode() {
-        return view('gestscol.ressource.periode.liste_periode');
+		$periodes=periode::all();
+        return view('gestscol.ressource.periode.liste_periode', compact('periodes'));
     }
 
     public function formulaire_periode() {
         return view('gestscol.ressource.periode.creer_periode');
     }
-
+	public function create(Request $request) {
+		$request->validate([
+			'date_debut'=>'required',
+			'date_fin'=>'required',
+			'pourcentage'=>'required',
+	   ]);
+	  // dd($request->all());
+		$periode= new periode($request->all());
+		
+		$periode->save();
+		Session::flash('success', "periode ajoutée avec success");
+        return redirect()->route('gestscol.list_periode');
+    }
+	function edit($id) {
+        $periode=periode::where('id_periode',$id)->get()[0];
+        
+        return view('gestscol.ressource.periode.edit_periode', compact('periode'));
+    }
+	function update(Request $request)
+	{
+		$request->validate([
+			'date_debut'=>'required',
+			'date_fin'=>'required',
+			'pourcentage'=>'required',
+	   ]);
+    // dd($request->id);
+	periode::where('id_periode',$request->id)->update(
+            array(
+				'date_debut'=>$request->date_debut,
+				'date_fin'=>$request->date_fin,
+				'pourcentage'=>$request->pourcentage,
+                           
+            )
+        );
+        
+        Session::flash('success', "periode modifiée avec success");
+        return redirect()->route('gestscol.list_periode');
+	}
+	public function destroy($id)
+    {
+        periode::where('id_periode', $id)->delete();
+        Session::flash('success', "periode supprimé");
+        
+        return redirect()->route('gestscol.list_periode');
+     
+    }
 	/*session_start();
 
 
