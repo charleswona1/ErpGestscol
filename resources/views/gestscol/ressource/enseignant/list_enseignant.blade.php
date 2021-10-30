@@ -62,9 +62,11 @@
                             </ul>
                         </div>
                     </div>
-                </div>    </div>
-        </div>            <div class="row">
-
+                </div>    
+            </div>
+        </div> 
+        <x-flash-back></x-flash-back>           
+        <div class="row">
             <div class="col-lg-12">
                 <div class="main-card mb-3 card">
 
@@ -86,112 +88,33 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>Mme.</td>
-                                <td>AKABA BETIA Marie Therese</td>
-                                <td>Littérature</td>
-                                <td>Permanant</td>
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>M.</td>
-                                <td>ATEBA ONGUENE Hervé Landry</td>
-                                <td>Mathétiques</td>
-                                <td>Permanant</td>
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>Mme.</td>
-                                <td>BAYIHA BA BAYIHA Jean</td>
-                                <td>Anglais</td>
-                                <td>Vacataire</td>
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>M.</td>
-                                <td>BOUDJEU KEMGNE Silvere</td>
-                                <td>Histoire</td>
-                                <td>Permanant</td>
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>Mlle.</td>
-                                <td>KENTICK à EBONG Nicole</td>
-                                <td>SVT</td>
-                                <td>Vacataire</td>
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" colspan="5"></tr>
-                            </tr>
+                                @forelse ($enseignants as $enseignant)
+                                <tr>
+                                    <th>
+                                        <div class="custom-checkbox custom-control">
+                                        <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
+                                        <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
+                                    </th>
+                                    <td>{{$enseignant->titre}}</td>
+                                    <td>{{$enseignant->nom}}</td>
+                                    <td>/</td>
+                                    <td>{{$enseignant->status}}</td>
+                                    <td class="mdc-data-table__cell">
+                                        <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
+                                        <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
+                                        <a href=""><i class="fas fa-print"></i></i></a>
+                                        <a href="{{route('gestscol.delete', ['enseignant'=>$enseignant])}}" style="color:red;"><i class="fas fa-trash"></i></i></a>
+                                    </td>
+                                </tr>
+                                @empty
+                                    
+                                @endforelse
+                            
+                        
                             </tbody>
+                            {{ $enseignants->links() }}
                         </table>
                     </div>
-
-            <div class="col-lg-6">
-                        <nav class="" aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-                                <li class="page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
-                                <li class="page-item active"><a href="javascript:void(0);" class="page-link">2</a></li>
-                                <li class="page-item"><a href="javascript:void(0);" class="page-link">3</a></li>
-                                <li class="page-item"><a href="javascript:void(0);" class="page-link">4</a></li>
-                                <li class="page-item"><a href="javascript:void(0);" class="page-link">5</a></li>
-                                <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-                            </ul>
-                        </nav>
-
-            </div>
 
 
             </div>
