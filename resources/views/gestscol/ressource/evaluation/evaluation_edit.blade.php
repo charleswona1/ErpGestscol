@@ -10,7 +10,7 @@
                         <i class="pe-7s-news-paper icon-gradient bg-premium-dark">
                         </i>
                     </div>
-                    <div>Création d'un type d'Evaluation
+                    <div>Modification d'un type d'Evaluation
 
                     </div>
                 </div>    
@@ -29,13 +29,14 @@
                     <div class="col-md-6">
                          <div class="main-card mb-3 card">
                             <div class="card-body ">
-                                <form action="{{route('gestscol.formulaire_evaluation.create')}}" method="POST">
+                                <form action="{{route('gestscol.formulaire_evaluation.update')}}" method="POST">
                                     @csrf 
+                                    <input type="hidden" value="{{$evaluation->id_evaluation}}" name="id">
                                     <div class="position-relative form-group">
                                         <label for="exampleEmail" class="">Nom du type l'Evaluation <span style="color:red;">*</span></label>
-                                        <input name="nom" id="exampleEmail" placeholder="Classe" type="texte" class="form-control" required>
+                                        <input name="nom" id="exampleEmail"  placeholder="Nom" type="texte" class="form-control" value="{{$evaluation->nom}}" required>
                                     </div>
-                                    <button class="mt-1 btn btn-success">Enrégistrer</button>
+                                    <button class="mt-1 btn btn-success">Modifier</button>
                                 </form>
                             </div>
                         </div>

@@ -95,7 +95,7 @@
                                         <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
                                     </th>
                                     <td>{{$key + 1}}</td>
-                                    <td>-</td>
+                                    <td>{{$nom_periode}}</td>
                                     <td>{{$periode->date_debut}}</td>
                                     <td>{{$periode->date_fin}}</td>
                                     <td>{{$periode->pourcentage}}</td>

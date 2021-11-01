@@ -10,7 +10,7 @@
                         <i class="pe-7s-albums icon-gradient bg-premium-dark">
                         </i>
                     </div>
-                    <div>Création d'une Sous-Période
+                    <div>Modification d'une Sous-Période
 
                     </div>
                 </div>
@@ -38,15 +38,21 @@
                          <div class="main-card mb-3 card">
 
                             <div class="card-body ">
-                                <form action="{{route('gestscol.formulaire_sous_periode.create')}}" method="POST">
+                                <form action="{{route('gestscol.formulaire_sous_periode.update')}}" method="POST">
                                     @csrf 
+                                    <input type="hidden" value="{{$sous_periode->id_sous_periode}}" name="id">
                                     <table class="col-md-10">
                                         <tr class="col-md-5">
                                             <td>
                                                  <div class="position-relative form-group"><label for="exampleSelect" class="">Période <span style="color:red;">*</span></label>
                                                     <select name="id_periode"  class="form-control" required>
                                                         @foreach ($periodes as $item)
+                                                            @if($item->id_periode== $sous_periode->periode()->get()[0]->id_periode)
+                                                            <option value="{{$item->id_periode}}" selected>{{$item->nom_periode()}}</option>
+                                                            @else
                                                             <option value="{{$item->id_periode}}">{{$item->nom_periode()}}</option>
+                                                            
+                                                            @endif
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -54,7 +60,7 @@
                                             <td>
                                                 <div class="position-relative form-group">
                                                     <label for="exampleEmail" class="">Numéro de Sous-Période<span style="color:red;">*</span></label>
-                                                    <input name="numero"  placeholder=" " type="number" class="form-control" required>
+                                                    <input name="numero"  placeholder=" " type="number" class="form-control" value="{{$sous_periode->numero}}" required>
                                                 </div>
                                             </td>
                                         </tr>
@@ -62,13 +68,13 @@
                                             <td>
                                                 <div class="position-relative form-group">
                                                     <label for="exampleEmail" class="">Date de début <span style="color:red;">*</span></label>
-                                                    <input name="date_debut"  placeholder=" " type="date" class="form-control" required>
+                                                    <input name="date_debut"  placeholder=" " type="date" class="form-control" value="{{$sous_periode->date_debut}}" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="position-relative form-group">
                                                     <label for="exampleEmail" class="">Date de fin <span style="color:red;">*</span></label>
-                                                    <input name="date_fin"  placeholder=" " type="date" class="form-control" required>
+                                                    <input name="date_fin"  placeholder=" " type="date" class="form-control" value="{{$sous_periode->date_fin}}" required>
                                                 </div>
                                             </td>
                                         </tr>
@@ -77,7 +83,7 @@
 
 
                                     <button class="mt-1 btn btn-secondary"><a href="#" style="color:white; text-decoration:none;">Annuler</a></button>
-                                    <button class="mt-1 btn btn-success" >Enregistrer</button>
+                                    <button class="mt-1 btn btn-success" type="submit">Modifier</button>
 
                                 </form>
                             </div>

@@ -142,7 +142,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{route("gestscol.groupe_matiere.index")}} ">
                                 <i class="metismenu-icon">
                                 </i>Groupe de Matières
                             </a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\etablissement;
 use Illuminate\Http\Request;
 use App\Models\periode;
 use Illuminate\Support\Facades\Session;
@@ -11,7 +12,8 @@ class PeriodeController extends Controller
 
     public function liste_periode() {
 		$periodes=periode::all();
-        return view('gestscol.ressource.periode.liste_periode', compact('periodes'));
+		$nom_periode= etablissement::where('id_etablissement', 1)->get()[0]->nom_periode;
+        return view('gestscol.ressource.periode.liste_periode', compact('periodes', 'nom_periode'));
     }
 
     public function formulaire_periode() {
@@ -20,6 +22,7 @@ class PeriodeController extends Controller
 	public function create(Request $request) {
 		$request->validate([
 			'date_debut'=>'required',
+			'numero'=>'required',
 			'date_fin'=>'required',
 			'pourcentage'=>'required',
 	   ]);

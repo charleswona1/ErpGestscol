@@ -6,12 +6,12 @@
         Route::get('/dashboard', 'HomeController@homeGestscol')->name('gestscol.home');
 
     /** enseignant route */
-    Route::middleware([])->group(function () {
+  /*  Route::middleware([])->group(function () {
         Route::get('/gestscol/liste_enseignant', [App\Http\Controllers\EnseignantController::class, 'liste_enseignant'])->name('gestscol.list_enseignant');
         Route::get('/gestscol/creer_enseignant', [App\Http\Controllers\EnseignantController::class, 'creer_enseignant'])->name('gestscol.creer_enseignant');
         Route::get('/gestscol/emploi_enseignant', [App\Http\Controllers\EnseignantController::class, 'emploi_enseignant'])->name('gestscol.emploi_enseignant');
         Route::post('/gestscol/ajouter_enseignant', [App\Http\Controllers\EnseignantController::class, 'ajouter_enseignant'])->name('gestscol.ajouter_enseignant');
-    });
+    });*/
     /** end */
 
     /** classe route */
@@ -38,7 +38,6 @@
         
         Route::post('/gestscol/creer_matiere/update', [App\Http\Controllers\MatiereController::class, 'update'])->name('gestscol.matiere.update');
         
-        Route::get('/gestscol/groupe_matiere', [App\Http\Controllers\MatiereController::class, 'groupe_matiere'])->name('gestscol.groupe_matiere');
 
         Route::get('/gestscol/parametrage_matiere', [App\Http\Controllers\ParametrageMatiereController::class, 'parametrage_matiere'])->name('gestscol.parametrage_matiere');
         Route::post('/gestscol/parametrage_matiere/create', [App\Http\Controllers\ParametrageMatiereController::class, 'create'])->name('gestscol.parametrage_matiere.create');
@@ -51,6 +50,13 @@
         
         //Route::get('/gestscol/emploi_enseignant', [App\Http\Controllers\ClasseController::class, 'emploi_enseignant'])->name('gestscol.emploi_enseignant');
     });
+    Route::get('/gestscol/groupe_matiere', [App\Http\Controllers\GroupeMatiereController::class, 'index'])->name('gestscol.groupe_matiere.index');
+    Route::post('/gestscol/groupe_matiere/create', [App\Http\Controllers\GroupeMatiereController::class, 'store'])->name('gestscol.groupe_matiere.store');
+    Route::get('/gestscol/groupe_matiere/edit/{id}', [App\Http\Controllers\GroupeMatiereController::class, 'edit'])->name('gestscol.groupe_matiere.edit');
+    Route::post('/gestscol/groupe_matiere/update', [App\Http\Controllers\GroupeMatiereController::class, 'update'])->name('gestscol.groupe_matiere.update');
+    
+    Route::get('/gestscol/groupe_matiere/delete/{id}', [App\Http\Controllers\GroupeMatiereController::class, 'destroy'])->name('gestscol.groupe_matiere.delete');
+    
     /** end */
 
     /** cycle route */
@@ -112,13 +118,13 @@
         /** end */
 
         /** classe route */
-        Route::get('/liste_classe', 'ClasseController@liste_classe')->name('gestscol.list_classe');
-        Route::get('/formulaire_classe', 'ClasseController@formulaire_classe')->name('gestscol.formulaire_classe');
+       /* Route::get('/liste_classe', 'ClasseController@liste_classe')->name('gestscol.list_classe');
+        Route::get('/formulaire_classe', 'ClasseController@formulaire_classe')->name('gestscol.formulaire_classe');*/
         //Route::get('/emploi_enseignant', 'ClasseController@emploi_enseignant')->name('gestscol.emploi_enseignant');
         /** end */
 
         /** matiere route */
-        Route::get('/liste_matiere', 'MatiereController@liste_matiere')->name('gestscol.list_matiere');
+       /* Route::get('/liste_matiere', 'MatiereController@liste_matiere')->name('gestscol.list_matiere');
         Route::get('/creer_matiere', 'MatiereController@creer_matiere')->name('gestscol.creer_matiere');
         Route::get('/groupe_matiere', 'MatiereController@groupe_matiere')->name('gestscol.groupe_matiere');
 
@@ -135,7 +141,7 @@
 
         /** cycle route */
     
-        Route::get('/liste_cycle', 'CycleController@liste_cycle')->name('gestscol.list_cycle');
+      /*  Route::get('/liste_cycle', 'CycleController@liste_cycle')->name('gestscol.list_cycle');
         Route::get('/formulaire_cycle', 'CycleController@formulaire_cycle')->name('gestscol.formulaire_cycle');
         Route::post('/creer_cycle', 'CycleController@creer_cycle')->name('gestscol.creer_cycle');
         //Route::get('/emploi_enseignant', 'ClasseController@emploi_enseignant'])->name('gestscol.emploi_enseignant');
@@ -144,7 +150,7 @@
 
         /** cycle route */
     
-        Route::get('/liste_cycle', 'CycleController@liste_cycle')->name('gestscol.list_cycle');
+     /*   Route::get('/liste_cycle', 'CycleController@liste_cycle')->name('gestscol.list_cycle');
         Route::get('/formulaire_cycle', 'CycleController@formulaire_cycle')->name('gestscol.formulaire_cycle');
         Route::post('/creer_cycle', 'CycleController@creer_cycle')->name('gestscol.creer_cycle');
         //Route::get('/emploi_enseignant', 'ClasseController@emploi_enseignant'])->name('gestscol.emploi_enseignant');
@@ -153,7 +159,7 @@
 
         /** niveau route */
     
-        Route::get('/liste_niveau', 'NiveauController@liste_niveau')->name('gestscol.list_niveau');
+      /*  Route::get('/liste_niveau', 'NiveauController@liste_niveau')->name('gestscol.list_niveau');
         Route::get('/formulaire_niveau', 'NiveauController@formulaire_niveau')->name('gestscol.formulaire_niveau');
         Route::post('/creer_niveau', 'NiveauController@creer_niveau')->name('gestscol.creer_niveau');
         //Route::get('/emploi_enseignant', 'ClasseController@emploi_enseignant')->name('gestscol.emploi_enseignant');
@@ -162,16 +168,26 @@
 
         /** periode route */
     
-        Route::get('/liste_periode', 'PeriodeController@liste_periode')->name('gestscol.list_periode');
+     /*   Route::get('/liste_periode', 'PeriodeController@liste_periode')->name('gestscol.list_periode');
         Route::get('/formulaire_periode', 'PeriodeController@formulaire_periode')->name('gestscol.formulaire_periode');
         //Route::get('/emploi_enseignant', 'ClasseController@emploi_enseignant')->name('gestscol.emploi_enseignant');
     
         /** end */
 
         /** sous-periode route */
-    
+        Route::middleware([])->group(function () {
+        
         Route::get('/liste_sous_periode', 'SousPeriodeController@liste_sous_periode')->name('gestscol.list_sous_periode');
         Route::get('/formulaire_sous_periode', 'SousPeriodeController@formulaire_sous_periode')->name('gestscol.formulaire_sous_periode');
+        //Route::post('/formulaire_sous_periode/create', 'SousPeriodeController@create')->name('gestscol.formulaire_sous_periode.create');
+        Route::post('/formulaire_sous_periode', [App\Http\Controllers\SousPeriodeController::class, 'create'])->name('gestscol.formulaire_sous_periode.create');
+    
+        Route::get('/formulaire_sous_periode/edit/{id}', [App\Http\Controllers\SousPeriodeController::class, 'edit'])->name('gestscol.formulaire_sous_periode.edit');
+        Route::post('/formulaire_sous_periode/edit', [App\Http\Controllers\SousPeriodeController::class, 'update'])->name('gestscol.formulaire_sous_periode.update');
+        
+        Route::get('/formulaire_sous_periode/delete/{id}', [App\Http\Controllers\SousPeriodeController::class, 'destroy'])->name('gestscol.formulaire_sous_periode.delete');
+    
+    });
         //Route::get('/emploi_enseignant', 'ClasseController@emploi_enseignant')->name('gestscol.emploi_enseignant');
     
         /** end */
@@ -180,6 +196,11 @@
     
         Route::get('/liste_evaluation', 'EvaluationController@liste_evaluation')->name('gestscol.list_evaluation');
         Route::get('/formulaire_evaluation', 'EvaluationController@formulaire_evaluation')->name('gestscol.formulaire_evaluation');
+        Route::post('/formulaire_evaluation', 'EvaluationController@store')->name('gestscol.formulaire_evaluation.create');
+        Route::get('/formulaire_evaluation/edit/{id}', 'EvaluationController@edit')->name('gestscol.formulaire_evaluation.edit');
+        Route::post('/formulaire_evaluation/edit', 'EvaluationController@update')->name('gestscol.formulaire_evaluation.update');
+        Route::get('/formulaire_evaluation/delete/{id}', 'EvaluationController@destroy')->name('gestscol.formulaire_evaluation.delete');
+        
         //Route::get('/emploi_enseignant', 'ClasseController@emploi_enseignant')->name('gestscol.emploi_enseignant');
     
         /** end */

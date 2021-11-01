@@ -45,7 +45,7 @@
                                             <td>
                                         <div class="position-relative form-group">
                                             <label for="exampleEmail" class="">Numéro <span style="color:red;">*</span></label>
-                                            <input   placeholder=" " type="number" class="form-control" required>
+                                            <input   placeholder=" " name="numero" type="number" class="form-control" required>
                                         </div>
                                             </td>
                                             <td>

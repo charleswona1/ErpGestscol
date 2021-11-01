@@ -69,7 +69,7 @@
 
             <div class="col-lg-12">
                 <div class="main-card mb-3 card">
-
+                    <x-flash-back></x-flash-back>
                     <div class="card-body" class="scroll-area-md">
                        <!-- <h5 class="card-title">Table with hover</h5> -->
                         <table class="mb-0 table table-hover" >
@@ -88,96 +88,33 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>Trimestre 1</td>
-                                <td>1</td>
-                                <td>09/11/2021</td>
-                                <td>14/11/2021</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>Trimestre 1</td>
-                                <td>2</td>
-                                <td>14/12/2021</td>
-                                <td>18/12/2021</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>Trimestre 2</td>
-                                <td>3</td>
-                                <td>01/02/2022</td>
-                                <td>05/02/2022</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>Trimestre 2</td>
-                                <td>4</td>
-                                <td>15/03/2022</td>
-                                <td>19/03/2022</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
-                                    <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
-                                </th>
-                                <td>Trimestre 3</td>
-                                <td>5</td>
-                                <td>26/04/2022</td>
-                                <td>30/04/2022</td>
-
-                                <td class="mdc-data-table__cell">
-                                    <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
-                                    <a href="utilisateur-profiledit.html"><i class="fas fa-edit"></i></i></a>
-                                    <a href=""><i class="fas fa-print"></i></i></a>
-                                    <a href="" style="color:red;"><i class="fas fa-trash"></i></i></a>
-                                </td>
-                            </tr>
+                                @forelse ($sous_periodes as $key => $sous_periode)
+                                <tr>
+                                    <th>
+                                        <div class="custom-checkbox custom-control">
+                                        <input type="checkbox" id="exampleCustomCheckbox" class="custom-control-input">
+                                        <label class="custom-control-label" for="exampleCustomCheckbox"> </label></div>
+                                    </th>
+                                    <td>{{$sous_periode->periode()->get()[0]->numero}}</td>
+                                    <td>{{$nom_periode}} {{$sous_periode->numero}}</td>
+                                    <td>{{$sous_periode->date_debut}}</td>
+                                    <td>{{$sous_periode->date_fin}}</td>    
+                                    <td class="mdc-data-table__cell">
+                                        <a href="utilisateur-profil.html"><i class="fas fa-eye"></i></i></a>
+                                        <a href="{{route('gestscol.formulaire_sous_periode.edit', $sous_periode->id_sous_periode)}}"><i class="fas fa-edit"></i></i></a>
+                                        <a href="#"><i class="fas fa-print"></i></i></a>
+                                        <a href="{{route('gestscol.formulaire_sous_periode.delete', $sous_periode->id_sous_periode)}}" style="color:red;"><i class="fas fa-trash"></i></i></a>
+                                    </td>
+                                </tr> 
+                                @empty
+                                <tr>
+                                    <td colspan="10">
+                                        <div class="lead text-center text-muted pt-30 pb-30">
+                                            Pas de periodes
+                                        </div>
+                                    </td>
+                                </tr>  
+                                @endforelse
 
 
                             <tr>
