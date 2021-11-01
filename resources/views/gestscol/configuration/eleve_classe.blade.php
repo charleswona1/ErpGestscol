@@ -64,199 +64,183 @@
                             </ul>
                         </div>
                     </div>
-                </div>    </div>
+                </div>    
+            </div>
         </div>
-                    <div class="row">
+        <x-flash-back></x-flash-back>
+        <div class="row">
             <div class="col-lg-5">
                 <table>
-                <tr>
-                <td>
-                <div class="search-wrapper">
-                    <div class="input-holder">
-                        <input type="text" class="search-input" placeholder="Rechercher un Apprenant...">
-                        <button class="search-icon"><span></span></button>
-                    </div>
-                    <button class="close"></button>
+                    <tr>
+                        <td>
+                            <div class="search-wrapper">
+                                <div class="input-holder">
+                                    <input type="text" class="search-input" placeholder="Rechercher un Apprenant...">
+                                    <button class="search-icon"><span></span></button>
+                                </div>
+                                <button class="close"></button>
 
-                </div>
-                </td>
-                <td>
-   <button class="mt-1 btn btn-primary">Lister</button>
-   </td>
-   </table>
-                 <div class="main-card mb-3 card">
+                            </div>  
+                        </td>
+                        <td>
+                            <button class="mt-1 btn btn-primary">Lister</button>
+                        </td>
+                    </tr>
+                </table>
+                <div class="main-card mb-3 card">
                     <div class="card-body"> <h5 class="card-title" style="color:black;">Apprenants sans classe</h5>
+                        <table id="myTable" class="table" cellspacing="0" width="100%">
 
-
-                         <table id="myTable" class="table" cellspacing="0" width="100%">
-
-                                <tbody>
+                            <tbody>
+                                @forelse ($apprenantsSansClasse as $apprenant)
                                     <tr>
-                                        <td>ABAH BIKOA Léonie Caline Neully</td>
-
+                                        <td width="90%">{{$apprenant->nom}}</td>
+                                        <td><input type="checkbox" name="" class="appSansClass"  id="{{$apprenant->id_apprenant}}"></td>
                                     </tr>
-                                    <tr>
-                                        <td>ABDELKARIM DJIBRINE TERAS Nicolas</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>NTSAMA ATANGANA Alphonse Martial</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>ABO MOUKOUSSA Lavaliere Odile</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>ADOMOGNO MOUGNOLE Diane Eleonor</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>ALIMA ALIMA Catherine Patricia	</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>AMOUGOU ENGOLA Paul Wilfried</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>NTSAMA MBIDA Benjamin Stéphane</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>NYEMB Mariam Tiphanie Lucresse</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>OBAMA MEVOUNGOU Barbara Appoline</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>OKOMO EMANE Mackenzie Tatiana</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>Revie Josue Oswald NGUELEKOUMOU</td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                         </div>
+                                @empty
+                                <tr>
+                                    <td class="text-center">Aucun éleve crée</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
-
-
-
-
-
 
             </div>
             <div class="col-lg-6">
-                 <div class="main-card mb-3 card">
+                <div class="main-card mb-3 card">
                     <div class="card-body">
+                        <table>
+                            <tr>
+                                <td width="60%" >
+                                    <div class="position-relative form-group"><label for="exampleSelect" class="">Classe</label>
+                                        <select name="select" id="classe" class="form-control" required>
+                                            <option value="">liste des classes</option>
+                                            @forelse ($listClasses as $classe)
+                                                <option value="{{$classe->id_classe}}" >{{$classe->nom}}</option>
+                                            @empty
+                                                <option>Aucune classe disponible</option>
+                                            @endforelse
+                                            
+                                        </select>
+                                    </div>
+                                </td>
+                                <td style="padding-left: 40px;">
+                                    Effectif
+                                    <span id="effectif" style="border-style: groove;  padding:8px;"> 45 </span>
 
-                        <form class="">
-                            <table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="content-btn">
+                            <button class="mt-1 btn btn-warning" id="envoyer">Envoyer</button>
+                            <button class="mt-1 btn btn-danger">Retirer</button>
+                        </div>
+
+                           
+                        <div class="card-body"><!--<h5 class="card-title"> Matricules des Apprenants</h5> -->
+                            <table class="mb-0 table table-bordered">
+                                <thead>
                                 <tr>
-                                    <td width="60%" >
-                                        <div class="position-relative form-group"><label for="exampleSelect" class="">Classe</label>
-                                            <select name="select" id="exampleSelect" class="form-control" required>
-                                                <option>6e A</option>
-                                                <option>6e B</option>
-                                                <option>5e A</option>
-                                                <option>5e B</option>
-                                                <option>4e Esp</option>
-                                                <option>4e All</option>
-                                                <option>3e Esp</option>
-                                                <option>3e All</option
-                                            </select>
-                                        </div>
-                                    </td>
-                                    <td style="padding-left: 40px;">
-                                        Effectif
-                                        <span style="border-style: groove;  padding:8px;"> 45 </span>
+                                    <th>N°</th>
+                                    <th>Matricule</th>
+                                    <th>Nom de l'Apprenant</th>
+                                    <th>action</th>
 
-                                    </td>
-                                    <td>
-
-                                        &ensp; &ensp; &ensp; &ensp;
-                                    </td>
                                 </tr>
+                                </thead>
+                                <tbody id="result-apprenant">
+                            
+                                </tbody>
                             </table>
-
-                            <button class="mt-1 btn btn-warning">Envoyer en 6e A</button>
-                            <button class="mt-1 btn btn-danger">Retirer de la 6e A</button>
-
-
-
-
-
-
-                                </form>
-                    <div class="card-body"><!--<h5 class="card-title"> Matricules des Apprenants</h5> -->
-                        <table class="mb-0 table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>N°</th>
-                                <th>Matricule</th>
-                                <th>Nom de l'Apprenant</th>
-
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>20CPL1483F</td>
-                                <td>ABELA MBOE Parfaite Maeva</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>20CPL1484F</td>
-                                <td>ABENKOU MINKO Gabrielle Manuela</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>20CPL1485F</td>
-                                <td>AMOR à BAROUNG Chantal Carenne</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>20CPL1561M</td>
-                                <td>AZOMBO ONANDA Abner</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>20CPL1484M</td>
-                                <td>BRYAN MBENDA Kevin Leopold</td>
-
-                            </tr>
-                            </tbody>
-                        </table>
+                        </div>
                     </div>
-
                 </div>
-
-            </div>
-            <button class="mt-1 btn btn-secondary"><a href="index.html" style="color:white; text-decoration:none;">Annuler</a></button>
-                                        <a href="index.html"><button class="mt-1 btn btn-success">Enrégistrer</button></a>
-               </div>
-
-
-        </td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row" colspan="5"></tr>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
+                    <button class="mt-1 btn btn-secondary"><a href="index.html" style="color:white; text-decoration:none;">Annuler</a></button>
+                    <a href="index.html"><button class="mt-1 btn btn-success">Enrégistrer</button></a>
             </div>
         </div>
     </div>
+    <script src="{{ asset('plugins/jquery/jquery.js')}}" type="text/javascript"></script>
+    <script type="text/javascript">
+            $('#result-apprenant').empty();
+            $('#effectif').empty();
+            let id_classe = "";
+            $('#classe').on('change',function (ev) {
+                id_classe = ev.target.value;
+                console.log('test')
+                $.ajax({
+                    url: "{{route('gestscol.apprenantparclasse')}}",
+                    type: "POST",
+                    data:{
+                        "_token": "{{ csrf_token() }}",
+                        key:id_classe
+                    },
+
+                    success:function(response){
+                        console.log(response);
+                        let data = ""
+                        $('#effectif').append(response.length);
+
+                        $.each(response, function(key,val){
+                            console.log(key+'=='+val);
+                            data+=generatTBody(key+1,'/',val?.nom,'<input type="checkbox" class="appClass" name="" id="'+val.id_apprenant+'">');
+                        });
+                        $('#result-apprenant').append(data);
+                    },
+                    error: function(errors){
+                       console.log(errors)
+                    }
+                });
+            });
+
+            $('#envoyer').on('click',function(){
+                let apprenants = [];
+                $('.appSansClass').each(function(key,val){
+                    if ($(this)[0].checked) {
+                        apprenants.push($(this)[0].id)
+                    }
+                });
+
+                if(apprenants.length == 0){
+                    alert('selectionnez au moins un eleve');
+                    return;
+                }
+                if(id_classe == ""){
+                    alert('selectionnez un classe');
+                    return;
+                }
+
+                $.ajax({
+                    url: "{{route('gestscol.affectation')}}",
+                    type: "POST",
+                    data:{
+                        "_token": "{{ csrf_token() }}",
+                        dataAffectation: apprenants,
+                        id_classe : id_classe
+                    },
+
+                    success:function(response){
+                        location.reload();
+                    },
+                    error: function(errors){
+                       console.log(errors)
+                    }
+                });
+            });
+
+            var generatTBody = function (...val) {
+                var th = "";
+                var tr = "";
+               
+                for (let i = 0; i < val.length; i++) {
+                     th += '<th>'+val[i]+'</th>';
+                }
+                tr = '<tr>'+th+'</tr>';
+               
+                return tr;
+            }
+    </script>
 @endsection

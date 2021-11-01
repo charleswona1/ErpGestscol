@@ -11,6 +11,8 @@
         Route::get('/creer_apprenant', 'EleveController@creer_apprenant')->name('gestscol.creer_apprenant');
         Route::get('/classe_apprenant', 'EleveController@classe_apprenant')->name('gestscol.classe_apprenant');
         Route::post('/ajouter_apprenant', 'EleveController@ajouter_apprenant')->name('gestscol.ajouter_apprenant');
+        Route::post('/list_apprenant_class', 'EleveController@apprenantClasse')->name('gestscol.apprenantparclasse');
+        Route::post('/affectation', 'EleveController@affectation')->name('gestscol.affectation');
     
         /** end */
 
